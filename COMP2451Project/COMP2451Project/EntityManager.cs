@@ -3,109 +3,153 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-namespace COMP2451Project
+/// <summary>
+/// AUTHOR: Flynn Osborne
+/// DATE: 13/12/2021
+/// </summary>
+namespace COMP3451Project.Managers
 {
-    class EntityManager
+    public class EntityManager
     {
-        //A list that stores IEntitys
-        List<IEntity> Entity;
+        // Variable to hold game entity
+        public Entity entity;
 
-        /// <summary>
-        /// The Entity Managers constructor
-        /// </summary>
-        public EntityManager() 
+        // List to hold the entities
+        public List<Entity> entities;
+
+        public Entity CreateEntity(int pOrderNumber, int pScreenHeight, int pScreenWidth, SpriteBatch pSpriteBatch)
         {
-            //INITALIZES Entity
-            Entity = new List<IEntity>();
-        }
-
-        public List<IEntity> getList() 
-        {
-            return Entity;
-        }
-
-        /// <summary>
-        /// A Method that creates a paddle
-        /// </summary>
-        /// <param name="player">Stores the indext of the current player</param>
-        /// <param name="texture">Stores a texture for Paddle</param>
-        /// <returns></returns>
-        public IEntity createPaddle(PlayerIndex player , Texture2D texture)
-        {
-            //Creates a new vector2 called paddleLocn
-            Vector2 paddleLocn = new Vector2();
-
-            //If the current player is 1 then this is true
-            if (PlayerIndex.One == player)
+            // pOrderNumber dictates which entity will be instantiated
+            
+            // 0 = Player
+            // 1 = Secretary
+            /*
+            if (pOrderNumber == 0)
             {
-                // Stores the xPosition as 0
-                paddleLocn.X = 0;
-                // Stores the yPosition as 50
-                paddleLocn.Y = 50;
+                // Instantiate the player
+                entity = new Player(500, 500, pScreenHeight, pScreenWidth, pSpriteBatch);
             }
-            // if the current player is player 2 then this is true
-            else if (PlayerIndex.Two == player) 
+            else if (pOrderNumber == 1)
             {
-                // Stores the current xPosition as 850
-                paddleLocn.X = 850;
-                // Stores the current yPosition as 50
-                paddleLocn.Y = 50;
+                // Instantiate the secretary
+                entity = new Secretary(1200, 700, pScreenHeight, pScreenWidth, pSpriteBatch);
             }
-            //Defults the value in the middle of the screen
-            else 
-            {
-                //Stores the X and Y Position at 450
-                paddleLocn.X = 450;
-                paddleLocn.Y = 450;
-            }
-
-            //INITALIZES a new paddle passing the location and the player controling it
-            IEntity Paddle = new Paddle(paddleLocn , player);
-
-            //calles content in paddle and passes the texture
-            ((IDrawable)Paddle).Content(texture);
-
-            // Adds the paddle to the entity list
-            Entity.Add(Paddle);
-
-            //Returns the paddle
-            return Paddle;
+            */
+            // Return the chosen entity
+            return entity;
         }
 
-       /// <summary>
-       /// A method that creates a ball object
-       /// </summary>
-       /// <param name="texture">The Texture of the ball</param>
-       /// <returns>The ball object</returns>
-        public IEntity createBall(Texture2D texture) 
+        public List<Entity> CreateEntityList(int pOrderNumber, int pScreenHeight, int pScreenWidth, SpriteBatch pSpriteBatch)
         {
-            // INITALIZES a new Vector2 called ballLocn
-            Vector2 ballLocn = new Vector2();
+            // Reset the entity list
+            entities = new List<Entity>();
 
-            //Stores the x and y Position at 450 (The center of the screen)
-            ballLocn.X = 450;
-            ballLocn.Y = 450;
+            // pOrderNumber dictates which list of entities will be instantiated
 
-            //Creates a new ball Entity passing the ballLocn
-            IEntity ball = new Ball(ballLocn);
-
-            //Calls the content method passing the textrue
-            ((IDrawable)ball).Content(texture);
-
-            //Adds the ball to the list
-            Entity.Add(ball);
-
-            //Returns the ball object  
-            return ball;
+            // 0 = Patients
+            // 1 = Top Walls
+            // 2 = Top Walls (with doorway)
+            // 3 = Bottom Walls
+            // 4 = Bottom Walls (with doorway)
+            // 5 = Left Walls
+            // 6 = Left Walls (with doorway)
+            // 7 = Right Walls
+            // 8 = Right Walls (with doorway)
+            /*
+            if (pOrderNumber == 0)
+            {
+                // Instantiate the patients
+                for (int i = 0; i < 3; i++)
+                {
+                    entity = new Patient(800, 300, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            else if (pOrderNumber == 1)
+            {
+                // Instantiate the top walls
+                for (int i = 0; i < 11; i++)
+                {
+                    entity = new WallHorizontal(150 * i, -150, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            else if (pOrderNumber == 2)
+            {
+                // Instantiate the top walls (with doorway)
+                for (int i = 0; i < 4; i++)
+                {
+                    entity = new WallHorizontal(150 * i, -200, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                    entity = new WallHorizontal(pScreenWidth - (150 * i), -200, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            else if (pOrderNumber == 3)
+            {
+                // Instantiate the bottom walls
+                for (int i = 0; i < 11; i++)
+                {
+                    entity = new WallHorizontal(150 * i, pScreenHeight + 500, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            else if (pOrderNumber == 4)
+            {
+                // Instantiate the bottom walls (with doorway)
+                for (int i = 0; i < 4; i++)
+                {
+                    entity = new WallHorizontal(150 * i, pScreenHeight + 500, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                    entity = new WallHorizontal(pScreenWidth - (150 * i), pScreenHeight + 500, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            else if (pOrderNumber == 5)
+            {
+                // Instantiate the left walls
+                for (int i = 0; i < 6; i++)
+                {
+                    entity = new WallVertical(-100, 150 * i, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            else if (pOrderNumber == 6)
+            {
+                // Instantiate the left walls (with doorway)
+                for (int i = 0; i < 2; i++)
+                {
+                    entity = new WallVertical(-100, 150 * i, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                    entity = new WallVertical(-100, pScreenHeight - (150 * i), pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            else if (pOrderNumber == 7)
+            {
+                // Instantiate the right walls
+                for (int i = 0; i < 6; i++)
+                {
+                    entity = new WallVertical(pScreenWidth + 500, 150 * i, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            else if (pOrderNumber == 8)
+            {
+                // Instantiate the right walls (with doorway)
+                for (int i = 0; i < 2; i++)
+                {
+                    entity = new WallVertical(pScreenWidth + 500, 150 * i, pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                    entity = new WallVertical(pScreenWidth + 500, pScreenHeight - (150 * i), pScreenHeight, pScreenWidth, pSpriteBatch);
+                    entities.Add(entity);
+                }
+            }
+            */
+            // Return the entity list
+            return entities;
         }
-        /// <summary>
-        /// Updates the EntityManager
-        /// </summary>
-        public void update() {}
     }
 }
