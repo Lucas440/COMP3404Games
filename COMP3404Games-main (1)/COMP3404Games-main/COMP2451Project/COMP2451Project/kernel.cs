@@ -141,7 +141,7 @@ namespace COMP2451Project
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+                Environment.Exit(1);
 
             // TODO: Add your update logic here
 

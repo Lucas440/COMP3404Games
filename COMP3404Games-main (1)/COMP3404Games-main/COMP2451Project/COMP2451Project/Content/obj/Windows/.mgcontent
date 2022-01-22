@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/lucas/Source/Repos/COMP3404/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/paddle.png</File>
+    <File>C:/Users/lucas/Source/Repos/COMP3404/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/square.png</File>
+  </SourceFiles>
+</SourceFileCollection>
