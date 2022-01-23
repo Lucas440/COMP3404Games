@@ -1,4 +1,5 @@
 ﻿using COMP3451Project.Managers;
+using COMP3451Project.Managers.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -31,6 +32,8 @@ namespace COMP2451Project
         //DECLARES a colision manager called colisionM
         ColisionManager colisionM;
 
+        IEventPublisher inputM;
+
         public kernel()
         {
             // INITALIZES a graphic as a New GraphicsDeviceManager passing this as a paramiter
@@ -49,6 +52,9 @@ namespace COMP2451Project
 
             //INITALIZES a new ColisionManager
             colisionM = new ColisionManager();
+
+            inputM = new InputManager();
+
 
         }
 
@@ -97,27 +103,34 @@ namespace COMP2451Project
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //DELCARES a new Texture2D variable called temp and loads the square texture
-            Texture2D temp = Content.Load<Texture2D>("square");
+            Texture2D tempTexture = Content.Load<Texture2D>("square");
+            IEntity tempEntity;
 
             Vector2 v = new Vector2();
             v.X = 500;
             v.Y = 500;
 
+            tempEntity = entityM.CreateEntity(3, v, tempTexture);
+
             // calls the add entity method in scene passing the return value of create ball
-            scene.addEntity(entityM.CreateEntity(3 , v , temp));
+            scene.addEntity(tempEntity);
 
             // loads the paddle texture into temp
-            temp = Content.Load<Texture2D>("paddle");
+            tempTexture = Content.Load<Texture2D>("paddle");
 
             v.X = 0;
             v.Y = 0;
 
-            scene.addEntity(entityM.CreateEntity(1, v , temp));
+            tempEntity = entityM.CreateEntity(1, v, tempTexture);
+            ((IInputPublisher)inputM).subscribe((IKeyListener)tempEntity);
+            scene.addEntity(tempEntity);
 
             v.X = 850;
             v.Y = 0;
 
-            scene.addEntity(entityM.CreateEntity(2, v , temp));
+            tempEntity = entityM.CreateEntity(2, v, tempTexture);
+            ((IInputPublisher)inputM).subscribe((IKeyListener)tempEntity);
+            scene.addEntity(tempEntity);
 
 
         }
@@ -150,12 +163,14 @@ namespace COMP2451Project
             //Gets the width or the screen
             ScreenWidth = GraphicsDevice.Viewport.Width;
 
-
+            ((InputManager)inputM).update();
             // calls the update method in scene passing screen height and width
             scene.update(ScreenHeight , ScreenWidth);
 
             //Updates the colision manager passing the list 
             colisionM.update();
+
+            
 
             base.Update(gameTime);
         }

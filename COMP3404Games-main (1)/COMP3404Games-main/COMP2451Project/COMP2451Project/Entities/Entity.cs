@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using COMP2451Project.Behaviours;
 using COMP2451Project.Command;
 using COMP2451Project.Entities;
 using Microsoft.Xna.Framework;
@@ -13,6 +14,8 @@ namespace COMP2451Project
 {
     public abstract class Entity : IEntity , IEntityInternal, ICommandSender 
     {
+
+        protected IBehaviour _behaviour;
 
         //Creates a vector called ballLocn
         protected Vector2 EntityLocn;

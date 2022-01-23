@@ -41,6 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\BallBehaviour.cs" />
+    <Compile Include="Behaviours\Behaviour.cs" />
+    <Compile Include="Behaviours\IBehaviour.cs" />
+    <Compile Include="Behaviours\IUpdateListener.cs" />
+    <Compile Include="Behaviours\PaddleBehaviour.cs" />
+    <Compile Include="Behaviours\PongBehaviour.cs" />
+    <Compile Include="Behaviours\UpdateEventArgs.cs" />
     <Compile Include="Command\CommandScheduler.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\ICommandScheduler.cs" />
@@ -49,6 +56,14 @@
     <Compile Include="Entities\IEntityInternal.cs" />
     <Compile Include="Factories\Factory.cs" />
     <Compile Include="Factories\FactoryLocator.cs" />
+    <Compile Include="InputEvents\ClickEventArgs.cs" />
+    <Compile Include="InputEvents\IClickListener.cs" />
+    <Compile Include="InputEvents\IClickPublisher.cs" />
+    <Compile Include="InputEvents\IEventPublisher.cs" />
+    <Compile Include="InputEvents\IInputPublisher.cs" />
+    <Compile Include="InputEvents\IKeyListener.cs" />
+    <Compile Include="InputEvents\InputEventArgs.cs" />
+    <Compile Include="InputEvents\InputManager.cs" />
     <Compile Include="Managers\ColisionManager.cs" />
     <Compile Include="Collidable.cs" />
     <Compile Include="Drawable.cs" />
@@ -59,7 +74,7 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Factories\IFactory.cs" />
     <Compile Include="Factories\IFactoryLocator.cs" />
-    <Compile Include="Input.cs" />
+    <Compile Include="InputEvents\Input.cs" />
     <Compile Include="Factories\IService.cs" />
     <Compile Include="kernel.cs" />
     <Compile Include="Entities\Paddle.cs" />
