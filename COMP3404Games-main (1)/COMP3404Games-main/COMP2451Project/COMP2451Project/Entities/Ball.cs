@@ -1,12 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using COMP2451Project.Behaviours;
+using COMP3451Project.Managers.Input;
 
 using System;
 
 namespace COMP2451Project
 {
-    // AUTHOR: Lucas Brennan
+    // AUTHOR: Lucas Brennan & Flynn Osborne
     // DATE: 24/01/2022
     class Ball : PongEntity
     {
@@ -16,6 +18,12 @@ namespace COMP2451Project
         Vector2 Velocity;
         //DECLARES a int variable called mSpeed
         int mSpeed;
+
+        // DECLARES an UpdateEvent
+        public event OnUpdateEvent _activeBehaviour;
+
+        // DECLARES a delegate for an UpdateEvent
+        public delegate void OnUpdateEvent(object source, UpdateEventArgs args);
 
         /// <summary>
         /// This is the constructor for the ball
@@ -31,6 +39,11 @@ namespace COMP2451Project
             rnd = new Random();
             // INITALIZES mSpeed
             mSpeed = 5;
+
+            // INITIALISES the ball's behaviour
+            _behaviour = new BallBehaviour();
+            ((Behaviour)_behaviour)._myEntity = this;
+            _activeBehaviour += _behaviour.OnUpdate;
 
         }
 
@@ -56,6 +69,7 @@ namespace COMP2451Project
             // Places the ball at 450 in the y-axis
             EntityLocn.Y = 450;
 
+            /*
             // DECLARES a float called Rotation
             float Rotation;
             // Randomizes a number which determines the angle of travel
@@ -65,13 +79,23 @@ namespace COMP2451Project
             Velocity.X = (float)Math.Sin(Rotation);
             // uses the cos of rotation to determine the y velocity
             Velocity.Y = (float)Math.Cos(Rotation);
+            */
 
+            /*
             // Randomly generates a number between 0 and 1. If it is 1, then this is true:
             if (rnd.Next(0,2) == 1) 
             {
                 // The ball will move to the left
                 Velocity.X *= -1;
             }
+            */
+
+            // Calls the active behavior's serve event by passing this, a new UpdateEvent and the required string
+            _activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "serve" });
+
+            // Sets the ball's velocity to the behaviour's results
+            Velocity = _behaviour.Velocity;
+
             // Multiplies the ball's velocity by the set speed
             Velocity *= mSpeed;
 
@@ -91,9 +115,11 @@ namespace COMP2451Project
         public override void update()
         {
             // Moves the ball along the x-axis by the ball's x velocity
+            //EntityLocn.X += _behaviour.Velocity.X;
             EntityLocn.X += Velocity.X;
+
             // Moves the ball along the y-axis by the ball's y velocity
-            EntityLocn.Y += Velocity.Y;
+            EntityLocn.Y += _behaviour.Velocity.Y;
             // calls update in the parent class
             base.update();
             // calls check wall Colision
