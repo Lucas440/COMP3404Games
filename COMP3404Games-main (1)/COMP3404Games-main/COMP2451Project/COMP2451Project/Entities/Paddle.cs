@@ -17,9 +17,13 @@ namespace COMP2451Project
         //DECLARES a PlayerIndex variable that stores which player is controlling this paddle
         PlayerIndex index;
 
-
+        //DECLARES a OnUpdateEvent called _activeBehaviour
         public event OnUpdateEvent _activeBehaviour;
-
+        /// <summary>
+        /// Declares a delegate for the OnUpdateEvent 
+        /// </summary>
+        /// <param name="source">The object that caused the event to trigger</param>
+        /// <param name="args">The event Argument</param>
         public delegate void OnUpdateEvent(object source, UpdateEventArgs args);
 
         /// <summary>
@@ -37,8 +41,11 @@ namespace COMP2451Project
             speed = 5;
             // Sets the index to player passed
             index = pIndex;
+            //INTIALIZES _behaviour
             _behaviour = new PaddleBehaviour();
+            //Sets the Entity in _behaviour to this
             ((Behaviour)_behaviour)._myEntity = this;
+            //Subscribes the OnUpdate method to the event
             _activeBehaviour += _behaviour.OnUpdate;
 
         }
@@ -112,16 +119,21 @@ namespace COMP2451Project
             // If this is player one this is true
             if (PlayerIndex.One == index)
             {
+                //If the W Key is Pressed this is true
                 if (e.keyboardState.IsKeyDown(Keys.W))
                 {
+                    //Calls the active behaviour event and passes this and a new UpdateEvent with the Up string
                     _activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "up" });
                 }
+                //If the S Key is Pressed this is true
                 else if (e.keyboardState.IsKeyDown(Keys.S))
                 {
+                    //Calls the active behaviour event and passes this and a new UpdateEvent with the down string
                     _activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "down" });
                 }
                 else
                 {
+                    //Calls the active behaviour event and passes this and a new UpdateEvent with the stopped string
                     _activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "stopped" });
                 }
             }
@@ -131,15 +143,18 @@ namespace COMP2451Project
                 //If the currebt key down is up this is true
                 if (e.keyboardState.IsKeyDown(Keys.Up))
                 {
+                    //Calls the active behaviour event and passes this and a new UpdateEvent with the Up string
                     _activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "up" });
                 }
                 //If the currebt key down is down this is true
                 else if (e.keyboardState.IsKeyDown(Keys.Down))
                 {
+                    //Calls the active behaviour event and passes this and a new UpdateEvent with the down string
                     _activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "down" });
                 }
                 else
                 {
+                    //Calls the active behaviour event and passes this and a new UpdateEvent with the stopped string
                     _activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "stopped" });
                 }
             }

@@ -31,7 +31,7 @@ namespace COMP2451Project
 
         //DECLARES a colision manager called colisionM
         ColisionManager colisionM;
-
+        //DELCARES a IEventPublisher called inputM
         IEventPublisher inputM;
 
         public kernel()
@@ -52,7 +52,7 @@ namespace COMP2451Project
 
             //INITALIZES a new ColisionManager
             colisionM = new ColisionManager();
-
+            //INTALIZES a new InputManager
             inputM = new InputManager();
 
 
@@ -68,27 +68,8 @@ namespace COMP2451Project
         {
             // TODO: Add your initialization logic here
 
-            Vector2 v = new Vector2();
-            v.X = 0;
-            v.Y = 0;
-
-            Vector2[] vector2s = new Vector2[3];
-            vector2s[0] = v;
-
-            v.X = 500;
-            v.Y = 500;
-
-            vector2s[1] = v;
-
-            v.X = 800;
-            v.Y = 0;
-
-            vector2s[2] = v;
-
             //Calss the colision Managers Initalize method passing a reference to the entity list
-            colisionM.Initialize(entityM.CreateEntityList(vector2s));
-
-
+            colisionM.Initialize(entityM.CreateEntityList());
 
             base.Initialize();
         }
@@ -104,12 +85,15 @@ namespace COMP2451Project
 
             //DELCARES a new Texture2D variable called temp and loads the square texture
             Texture2D tempTexture = Content.Load<Texture2D>("square");
+            //DELCARES a new IEntity called tempEntity
             IEntity tempEntity;
-
+            //INTIALISE a new Vector2 called v
             Vector2 v = new Vector2();
+            //Sets the X and Y to 500
             v.X = 500;
             v.Y = 500;
 
+            //INTIALISES tempEntity using the CreateEntity command
             tempEntity = entityM.CreateEntity(3, v, tempTexture);
 
             // calls the add entity method in scene passing the return value of create ball
@@ -118,20 +102,25 @@ namespace COMP2451Project
             // loads the paddle texture into temp
             tempTexture = Content.Load<Texture2D>("paddle");
 
+            //Sets the X and Y to 0
             v.X = 0;
             v.Y = 0;
-
+            //INTIALISES tempEntity using the CreateEntity command
             tempEntity = entityM.CreateEntity(1, v, tempTexture);
+            //Subscribes the Entity to IInputPubisher
             ((IInputPublisher)inputM).subscribe((IKeyListener)tempEntity);
+            //Adds the Entity to the scene
             scene.addEntity(tempEntity);
 
+            //Sets the X to 850 Y to 0
             v.X = 850;
             v.Y = 0;
-
+            //INTIALISES tempEntity using the CreateEntity command
             tempEntity = entityM.CreateEntity(2, v, tempTexture);
+            //Subscribes the Entity to IInputPubisher
             ((IInputPublisher)inputM).subscribe((IKeyListener)tempEntity);
+            //Adds the Entity to the scene
             scene.addEntity(tempEntity);
-
 
         }
 

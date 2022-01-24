@@ -25,7 +25,7 @@ namespace COMP3451Project.Managers
             entities = new List<IEntity>();
         }
 
-        public IEntity CreateEntity(int which , Vector2 pLocation , Texture2D pTexture)
+        public IEntity CreateEntity(int pEntityType , Vector2 pLocation , Texture2D pTexture)
         {
             // pOrderNumber dictates which entity will be instantiated
 
@@ -44,29 +44,41 @@ namespace COMP3451Project.Managers
             }
             */
             // Return the chosen entity
+
+
+            //DECLARES a new IEntity called entity
             IEntity entity;
-            if (which == 1)
+            //it pEntityType is 1 this is true
+            if (pEntityType == 1)
             {
+                //INTALISES entity as a new Paddle passing the location and player index
                  entity = new Paddle(pLocation, PlayerIndex.One);
+                //Loads the content in the entity
                 ((PongEntity)entity).Content(pTexture);
             }
-            else if (which  == 2) 
+            //if pEntityType is 2 this is true
+            else if (pEntityType == 2) 
             {
+                //INTALISES entity as a new Paddle passing the location and player index
                 entity = new Paddle(pLocation, PlayerIndex.Two);
+                //Loads the content in the entity
                 ((PongEntity)entity).Content(pTexture);
             }
 
             else 
             {
+                //INTALISES entity as a new Ball passing the location
                 entity = new Ball(pLocation);
+                //Loads the content in the entity
                 ((PongEntity)entity).Content(pTexture);
             }
-
+            //Adds the Entity to the List
             entities.Add(entity);
+            //returns the entity
             return entity;
         }
 
-        public List<IEntity> CreateEntityList(Vector2[] pVector2)
+        public List<IEntity> CreateEntityList()
         {
             // Reset the entity list
 

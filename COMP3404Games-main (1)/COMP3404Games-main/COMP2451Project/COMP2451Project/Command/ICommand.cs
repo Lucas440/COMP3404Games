@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace COMP2451Project
 {
+    /// <summary>
+    /// A interface that repersents commands
+    /// </summary>
     public interface ICommand
     {
         /// <summary>
