@@ -1,11 +1,15 @@
 ﻿using COMP3451Project.Managers;
-using COMP3451Project.Managers.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using System;
 using System.Collections.Generic;
+
+/// <summary>
+/// AUTHOR: 
+/// DATE: 19/01/2022
+/// </summary>
 
 namespace COMP2451Project
 {
@@ -18,10 +22,14 @@ namespace COMP2451Project
         GraphicsDeviceManager graphics;
         //DELCARES a SpriteBatch variable called SpriteBatch 
         SpriteBatch spriteBatch;
+
         // DECLARES a double called ScreenHeight
         public double ScreenHeight;
         // DELCARES a double called ScreenWidth
         public double ScreenWidth;
+
+        // DECLARE private variable '_engineManager' as type EngineManager
+        private EngineManager _engineManager;
 
         // DECLARES a entityManager called entity
         EntityManager entityM;
@@ -31,30 +39,38 @@ namespace COMP2451Project
 
         //DECLARES a colision manager called colisionM
         ColisionManager colisionM;
-        //DELCARES a IEventPublisher called inputM
-        IEventPublisher inputM;
 
-        public kernel()
+        // DECLARES a factory locator named _factories
+        IFactoryLocator _factories;
+
+        public kernel(EngineManager pengineManager)
         {
             // INITALIZES a graphic as a New GraphicsDeviceManager passing this as a paramiter
             graphics = new GraphicsDeviceManager(this);
+
             // Stores the root for the content as Content
             Content.RootDirectory = "Content";
+
             // Sets the screen height to 900
             graphics.PreferredBackBufferHeight = 900;
+
             // Sets the screen width to 900
             graphics.PreferredBackBufferWidth = 900;
 
+            // SET _engineManager to the parameter value passed from Program
+            _engineManager = pengineManager;
+
+            // INITIALISES a new FactoryLocator
+            _factories = new FactoryLocator();
+
             // INITALIZES a new entityManager
-            entityM = new EntityManager();
+            entityM = new EntityManager(_factories.Get<Paddle>() as IFactory<Paddle>, _factories.Get<Ball>() as IFactory<Ball>);
+
             // INTIALZES a new sceneManager
             scene = new SceneManager();
 
             //INITALIZES a new ColisionManager
             colisionM = new ColisionManager();
-            //INTALIZES a new InputManager
-            inputM = new InputManager();
-
 
         }
 
@@ -68,8 +84,27 @@ namespace COMP2451Project
         {
             // TODO: Add your initialization logic here
 
+            Vector2 v = new Vector2();
+            v.X = 0;
+            v.Y = 0;
+
+            Vector2[] vector2s = new Vector2[3];
+            vector2s[0] = v;
+
+            v.X = 500;
+            v.Y = 500;
+
+            vector2s[1] = v;
+
+            v.X = 800;
+            v.Y = 0;
+
+            vector2s[2] = v;
+
             //Calss the colision Managers Initalize method passing a reference to the entity list
-            colisionM.Initialize(entityM.CreateEntityList());
+            colisionM.Initialize(entityM.CreateEntityList(vector2s));
+
+
 
             base.Initialize();
         }
@@ -84,43 +119,28 @@ namespace COMP2451Project
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //DELCARES a new Texture2D variable called temp and loads the square texture
-            Texture2D tempTexture = Content.Load<Texture2D>("square");
-            //DELCARES a new IEntity called tempEntity
-            IEntity tempEntity;
-            //INTIALISE a new Vector2 called v
+            Texture2D temp = Content.Load<Texture2D>("square");
+
             Vector2 v = new Vector2();
-            //Sets the X and Y to 500
             v.X = 500;
             v.Y = 500;
 
-            //INTIALISES tempEntity using the CreateEntity command
-            tempEntity = entityM.CreateEntity(3, v, tempTexture);
-
             // calls the add entity method in scene passing the return value of create ball
-            scene.addEntity(tempEntity);
+            scene.addEntity(entityM.CreateEntity(3 , v , temp));
 
             // loads the paddle texture into temp
-            tempTexture = Content.Load<Texture2D>("paddle");
+            temp = Content.Load<Texture2D>("paddle");
 
-            //Sets the X and Y to 0
             v.X = 0;
             v.Y = 0;
-            //INTIALISES tempEntity using the CreateEntity command
-            tempEntity = entityM.CreateEntity(1, v, tempTexture);
-            //Subscribes the Entity to IInputPubisher
-            ((IInputPublisher)inputM).subscribe((IKeyListener)tempEntity);
-            //Adds the Entity to the scene
-            scene.addEntity(tempEntity);
 
-            //Sets the X to 850 Y to 0
+            scene.addEntity(entityM.CreateEntity(1, v , temp));
+
             v.X = 850;
             v.Y = 0;
-            //INTIALISES tempEntity using the CreateEntity command
-            tempEntity = entityM.CreateEntity(2, v, tempTexture);
-            //Subscribes the Entity to IInputPubisher
-            ((IInputPublisher)inputM).subscribe((IKeyListener)tempEntity);
-            //Adds the Entity to the scene
-            scene.addEntity(tempEntity);
+
+            scene.addEntity(entityM.CreateEntity(2, v , temp));
+
 
         }
 
@@ -143,7 +163,7 @@ namespace COMP2451Project
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Environment.Exit(1);
+                Exit();
 
             // TODO: Add your update logic here
 
@@ -152,14 +172,12 @@ namespace COMP2451Project
             //Gets the width or the screen
             ScreenWidth = GraphicsDevice.Viewport.Width;
 
-            ((InputManager)inputM).update();
+
             // calls the update method in scene passing screen height and width
             scene.update(ScreenHeight , ScreenWidth);
 
             //Updates the colision manager passing the list 
             colisionM.update();
-
-            
 
             base.Update(gameTime);
         }
