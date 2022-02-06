@@ -9,12 +9,12 @@ namespace COMP2451Project
     class ColisionManager
     {
         //DECLARES an List Called entity that stores IEntitys
-        List<IEntity> entity;
+        IList<IEntity> entity;
         /// <summary>
         /// A method that stores a reference to the entity list
         /// </summary>
         /// <param name="pList">A reference to the entity</param>
-        public void Initialize(List<IEntity> pList) 
+        public void Initialize(IList<IEntity> pList) 
         {
             entity = pList;
         }

@@ -7,39 +7,61 @@ using System.Collections.Generic;
 
 namespace COMP2451Project
 {
-    class SceneManager
+    /// <summary>
+    /// CLASS 'SceneManager'
+    /// MODIFIED BY: William Eardley 02/02/2022
+    /// </summary>
+    public class SceneManager
     {
         //DECLARES a new List called entityList
         List<IEntity> entityList;
 
+        // DECLARE private variable '_sceneGraph' as type SceneGraph
+        private SceneGraph _sceneGraph;
+
         //DECLARES a new double called screenWidth
         double ScreenWidth;
+
         //DECLARES a new double called screenHeight
         double ScreenHeight;
+
         /// <summary>
         /// The construtor for SceneManager
         /// </summary>
-        public SceneManager() 
+        public SceneManager()
         {
             //INTIALZIES entityList
             entityList = new List<IEntity>();
+
+            // INSTANTIATE a new SceneGraph
+            _sceneGraph = new SceneGraph();
         }
+
+        /// <summary>
+        /// Method 'Initialise' - Initialises Scene Manager
+        /// </summary>
+        public void Initialise()
+        {
+            _sceneGraph.Initialise();
+        }
+
         /// <summary>
         /// Adds an Entity to the list
         /// </summary>
         /// <param name="entity">An IEntity to be stored</param>
-        public void addEntity(IEntity entity) 
+        public void addEntity(IEntity entity)
         {
             // Adds the entity passed through the
             entityList.Add(entity);
         }
+
         /// <summary>
         /// Updates the items in the list
         /// </summary>
         /// <param name="pHeight">Screen Height</param>
         /// <param name="pWidth">Screen Width </param>
         /// <returns>A list of entitys</returns>
-        public void update(double pHeight , double pWidth) 
+        public void update(double pHeight, double pWidth)
         {
             //Sets ScreenWidth to pWidth
             ScreenWidth = pWidth;
@@ -54,11 +76,12 @@ namespace COMP2451Project
                 ((ICollidable)entityList[i]).setBoundaries(ScreenWidth, ScreenHeight);
             }
         }
+
         /// <summary>
         /// Draws the Entitys on the screen
         /// </summary>
         /// <param name="spriteBatch">A spritebatch used to draw</param>
-        public void draw(SpriteBatch spriteBatch) 
+        public void draw(SpriteBatch spriteBatch)
         {
             // loops over each item in the list
             for (int i = 0; i < entityList.Count; i++)
@@ -68,7 +91,7 @@ namespace COMP2451Project
                     // Draws the entity on the screen
                     spriteBatch.Draw(((IDrawable)entityList[i]).texture(), entityList[i].position(), Color.AntiqueWhite);
                 }
-                catch(Exception e) { }
+                catch (Exception e) { }
             }
         }
     }

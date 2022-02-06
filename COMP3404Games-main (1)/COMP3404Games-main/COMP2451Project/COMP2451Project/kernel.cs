@@ -31,15 +31,6 @@ namespace COMP2451Project
         // DECLARE private variable '_engineManager' as type EngineManager
         private EngineManager _engineManager;
 
-        // DECLARES a entityManager called entity
-        EntityManager entityM;
-
-        //DECLARES a sceneManager called scene
-        SceneManager scene;
-
-        //DECLARES a colision manager called colisionM
-        ColisionManager colisionM;
-
         // DECLARES a factory locator named _factories
         IFactoryLocator _factories;
 
@@ -62,7 +53,7 @@ namespace COMP2451Project
 
             // INITIALISES a new FactoryLocator
             _factories = new FactoryLocator();
-
+            /*
             // INITALIZES a new entityManager
             entityM = new EntityManager(_factories.Get<Paddle>() as IFactory<Paddle>, _factories.Get<Ball>() as IFactory<Ball>);
 
@@ -71,6 +62,7 @@ namespace COMP2451Project
 
             //INITALIZES a new ColisionManager
             colisionM = new ColisionManager();
+            */
 
         }
 
@@ -84,27 +76,10 @@ namespace COMP2451Project
         {
             // TODO: Add your initialization logic here
 
-            Vector2 v = new Vector2();
-            v.X = 0;
-            v.Y = 0;
-
-            Vector2[] vector2s = new Vector2[3];
-            vector2s[0] = v;
-
-            v.X = 500;
-            v.Y = 500;
-
-            vector2s[1] = v;
-
-            v.X = 800;
-            v.Y = 0;
-
-            vector2s[2] = v;
-
             //Calss the colision Managers Initalize method passing a reference to the entity list
-            colisionM.Initialize(entityM.CreateEntityList(vector2s));
+            //colisionM.Initialize(entityM.CreateEntityList());
 
-
+            _engineManager.Initialise();
 
             base.Initialize();
         }
@@ -118,6 +93,8 @@ namespace COMP2451Project
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            _engineManager.LoadContent(Content);
+            /*
             //DELCARES a new Texture2D variable called temp and loads the square texture
             Texture2D temp = Content.Load<Texture2D>("square");
 
@@ -140,7 +117,7 @@ namespace COMP2451Project
             v.Y = 0;
 
             scene.addEntity(entityM.CreateEntity(2, v , temp));
-
+            */
 
         }
 
@@ -172,12 +149,15 @@ namespace COMP2451Project
             //Gets the width or the screen
             ScreenWidth = GraphicsDevice.Viewport.Width;
 
-
+            /*
             // calls the update method in scene passing screen height and width
             scene.update(ScreenHeight , ScreenWidth);
 
             //Updates the colision manager passing the list 
             colisionM.update();
+            */
+            //Updates Engine Manager
+            _engineManager.update(ScreenHeight , ScreenWidth);
 
             base.Update(gameTime);
         }
@@ -195,8 +175,7 @@ namespace COMP2451Project
             //Begins the Drawing code for spriteBatch
             spriteBatch.Begin();
 
-            //Calls the draw method in scene passing spriteBatch 
-            scene.draw(spriteBatch);
+            _engineManager.Draw(spriteBatch);
 
             //Ends the Drawing code for SpriteBatch
             spriteBatch.End();

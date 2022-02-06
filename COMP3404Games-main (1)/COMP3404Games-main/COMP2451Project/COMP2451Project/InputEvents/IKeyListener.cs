@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Input;
 /// </summary>
 namespace COMP3451Project.Managers.Input
 {
-    interface IKeyListener
+    public interface IKeyListener
     {
         /// <summary>
         /// A method the responds to the keyboard event

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace COMP2451Project
 {
-    class InputEventArgs
+    public class InputEventArgs
     {
         /// <summary>
         /// Stores the current keyboardState

@@ -10,7 +10,7 @@ namespace COMP2451Project
 {
     // AUTHOR: Lucas Brennan & Flynn Osborne
     // DATE: 24/01/2022
-    class Ball : PongEntity
+    public class Ball : PongEntity
     {
         // DECLARES a random variable called rnd
         Random rnd;
@@ -29,12 +29,18 @@ namespace COMP2451Project
         /// This is the constructor for the ball
         /// </summary>
         /// <param name="ballVector"> Is used to store the starting location for the ball </param>
-        public Ball(Vector2 ballVector) 
+        public Ball() 
+        {
+
+
+        }
+
+        public void Intalise(Vector2 pBallVector) 
         {
             //INITALIZES objectType in the parent class
             objectType = "square";
             //INITALIZES EntityLocn in the parent class
-            EntityLocn = ballVector;
+            EntityLocn = pBallVector;
             //INITALIZES rnd
             rnd = new Random();
             // INITALIZES mSpeed
@@ -44,7 +50,6 @@ namespace COMP2451Project
             _behaviour = new BallBehaviour();
             ((Behaviour)_behaviour)._myEntity = this;
             _activeBehaviour += _behaviour.OnUpdate;
-
         }
 
 

@@ -6,7 +6,7 @@ using System;
 
 namespace COMP2451Project
 {
-     abstract class PongEntity : Entity , ICollidable , IDrawable
+    public abstract class PongEntity : Entity , ICollidable , IDrawable
     {
 
         //--------------------------------------------- IEntity Implementation ---------------------------------------------

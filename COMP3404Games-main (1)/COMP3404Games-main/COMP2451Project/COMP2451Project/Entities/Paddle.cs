@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace COMP2451Project
 {
-    class Paddle : PongEntity, IKeyListener
+    public class Paddle : PongEntity, IKeyListener
     {
         //DECLARES an int called speed
         int speed;
@@ -31,7 +31,15 @@ namespace COMP2451Project
         /// </summary>
         /// <param name="paddleLocation">Passes the paddles Location</param>
         /// <param name="pIndex">Passes which player is controlling this paddle</param>>
-        public Paddle(Vector2 paddleLocation, PlayerIndex pIndex)
+        public Paddle()
+        {
+        }
+        /// <summary>
+        /// A method that intialises paddle
+        /// </summary>
+        /// <param name="paddleLocation">The locatiob of the paddle</param>
+        /// <param name="pIndex">the player index</param>
+        public void Initalise(Vector2 paddleLocation, PlayerIndex pIndex) 
         {
             //INITALZIES objectType in the parent class
             objectType = "paddle";
@@ -47,7 +55,6 @@ namespace COMP2451Project
             ((Behaviour)_behaviour)._myEntity = this;
             //Subscribes the OnUpdate method to the event
             _activeBehaviour += _behaviour.OnUpdate;
-
         }
 
 
