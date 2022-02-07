@@ -101,8 +101,10 @@ namespace COMP2451Project
             v.Y = 0;
             //Creates a new Entity and stores it in temp entity
             tempEntity = _entityManager.CreateEntity(1, v, tempTexture);
+
             //Subscribes tempEntity to the event publisher
             ((IInputPublisher)_inputManager).subscribe(((IKeyListener)tempEntity));
+
             //Adds the entity to the scene
             _sceneManager.addEntity(tempEntity);
 
