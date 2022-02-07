@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using COMP2451Project.Behaviours;
+using COMP2451Project.States;
 using COMP3451Project.Managers.Input;
 
 using System;
@@ -9,7 +10,8 @@ using System;
 namespace COMP2451Project
 {
     // AUTHOR: Lucas Brennan & Flynn Osborne
-    // DATE: 24/01/2022
+    // DATE: 07/02/2022
+
     public class Ball : PongEntity
     {
         // DECLARES a random variable called rnd
@@ -28,21 +30,26 @@ namespace COMP2451Project
         /// <summary>
         /// This is the constructor for the ball
         /// </summary>
-        /// <param name="ballVector"> Is used to store the starting location for the ball </param>
         public Ball() 
         {
 
-
         }
 
-        public void Intalise(Vector2 pBallVector) 
+        /// <summary>
+        /// The method that initialises the ball's variables
+        /// </summary>
+        /// <param name="pBallVector">The starting location of the ball</param>
+        public void Initialise(Vector2 pBallVector) 
         {
             //INITALIZES objectType in the parent class
             objectType = "square";
+
             //INITALIZES EntityLocn in the parent class
             EntityLocn = pBallVector;
+
             //INITALIZES rnd
             rnd = new Random();
+
             // INITALIZES mSpeed
             mSpeed = 5;
 
@@ -50,6 +57,11 @@ namespace COMP2451Project
             _behaviour = new BallBehaviour();
             ((Behaviour)_behaviour)._myEntity = this;
             _activeBehaviour += _behaviour.OnUpdate;
+
+            // INITIALISES the ball's state
+            _state = new BallState();
+            ((State)_state)._entity = this;
+            ((State)_state)._behaviour = _behaviour;
         }
 
 
@@ -59,8 +71,18 @@ namespace COMP2451Project
         /// <returns>_Entity - The object's Texture</returns>
         public override Texture2D texture()
         {
-            //Returns _Entity
+            //RETURNS _Entity
             return _Entity;
+        }
+
+        /// <summary>
+        /// Sets the ball's state
+        /// </summary>
+        /// <param name="pState">The ball's next state</param>
+        public override void SetState(IState pState)
+        {
+            // SET the ball's state
+            _state = pState;
         }
 
         /// <summary>
@@ -70,9 +92,9 @@ namespace COMP2451Project
         {
             // These place the ball in the center of the screen
             // Places the ball at 450, in the x-axis
-            EntityLocn.X = 450;
+            //EntityLocn.X = 450;
             // Places the ball at 450 in the y-axis
-            EntityLocn.Y = 450;
+            //EntityLocn.Y = 450;
 
             /*
             // DECLARES a float called Rotation
@@ -121,10 +143,18 @@ namespace COMP2451Project
         {
             // Moves the ball along the x-axis by the ball's x velocity
             //EntityLocn.X += _behaviour.Velocity.X;
-            EntityLocn.X += Velocity.X;
+            //EntityLocn.X += Velocity.X;
 
             // Moves the ball along the y-axis by the ball's y velocity
-            EntityLocn.Y += _behaviour.Velocity.Y;
+            //EntityLocn.Y += _behaviour.Velocity.Y;
+
+            // Call the update method in the ball's state
+            _state.Update();
+
+            // Set the balls location
+            EntityLocn.X = _behaviour.Location.X;
+            EntityLocn.Y = _behaviour.Location.Y;
+
             // calls update in the parent class
             base.update();
             // calls check wall Colision
@@ -136,12 +166,15 @@ namespace COMP2451Project
         /// </summary>
         public override void checkWallColision() 
         {
+            /*
             // if the ball's y position is less than 0 or greater than the screens height then this is true
             if (EntityLocn.Y < 0 || EntityLocn.Y > Height - 45) 
             {
                 // multiplies the Y velocity by -1, reversing the vertical direction of the ball
                 Velocity.Y *= -1;
             }
+            */
+
             // if the ball's x position is less than 0 or greater than the screens width then this is true
             if (EntityLocn.X < 0 || EntityLocn.X > Width - 45) 
             {
@@ -156,10 +189,16 @@ namespace COMP2451Project
         public override void colision() 
         {
             // Reverse the horizontal direction of the ball
-            Velocity.X *= -1;
+            //Velocity.X *= -1;
             
             // Update the ball's location
-            EntityLocn.X += Velocity.X;
+            //EntityLocn.X += Velocity.X;
+
+            // Call the state's collide method
+            _state.Collide();
+
+            // Set the ball's location
+            EntityLocn = _behaviour.Location;
         }
 
         /// <summary>
