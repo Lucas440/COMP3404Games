@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-/// Author Lucas Brennan
+/// AUTHOR: Lucas Brennan & Flynn Osborne
 /// 
-/// DATE 22/01/22
+/// DATE 31/01/22
 /// </summary>
 namespace COMP2451Project.Behaviours
 {
@@ -20,5 +20,12 @@ namespace COMP2451Project.Behaviours
         /// <param name="sender">The object that sent the event</param>
         /// <param name="UpdateEventArgs">The event argument</param>
         public override void OnUpdate(Object sender, UpdateEventArgs UpdateEventArgs) { }
+
+        /// <summary>
+        /// A method that is called when an entity is collided with
+        /// </summary>
+        /// <param name="sender">The object that sent the event</param>
+        /// <param name="UpdateEventArgs">The event argument</param>
+        public override void OnCollision(Object sender, UpdateEventArgs UpdateEventArgs) { }
     }
 }

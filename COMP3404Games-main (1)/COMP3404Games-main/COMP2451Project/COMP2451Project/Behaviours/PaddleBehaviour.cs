@@ -5,22 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Author Lucas Brennan
+/// AUTHOR: Lucas Brennan & Flynn Osborne
 /// 
-/// DATE 22/01/22
+/// DATE: 07/02/2022
 /// </summary>
 namespace COMP2451Project.Behaviours
 {
     class PaddleBehaviour : PongBehaviour, IUpdateListener
     {
+        // A variable to hold the height limit
+        double _height;
+
         /// <summary>
-        /// The Defualt constructor for PaddleBehaviour
+        /// The Default constructor for PaddleBehaviour
         /// </summary>
         public PaddleBehaviour() 
         {
-            //INITALISES _velocity
+            // INITALISES _velocity
             _velocity = new Vector2();
+
+            // SETS the height limit
+            _height = 760;
         }
+
         /// <summary>
         /// A method that is called when the sender is updated
         /// </summary>
@@ -46,6 +53,32 @@ namespace COMP2451Project.Behaviours
                 //Sets the Y velocity to 0
                 _velocity.Y = 0;
             }
+
+            // Update the paddle's location
+            _location.Y += _velocity.Y * 5;
+
+            // This triggers if the paddle reaches the screen's boundaries
+            if (_location.Y < 0)
+            {
+                // Stop the paddle from moving off the top of the screen
+                _location.Y = 0;
+            }
+            else if (_location.Y > _height)
+            {
+                // Stop the paddle from moving off the bottom of the screen
+                _location.Y = (float)_height;
+            }
+            
+        }
+
+        /// <summary>
+        /// The method called when the paddle collides with an object
+        /// </summary>
+        /// <param name="sender">The object that triggered that method</param>
+        /// <param name="UpdateEventArgs">The event arguments</param>
+        public override void OnCollision(object sender, UpdateEventArgs UpdateEventArgs)
+        {
+
         }
     }
 }
