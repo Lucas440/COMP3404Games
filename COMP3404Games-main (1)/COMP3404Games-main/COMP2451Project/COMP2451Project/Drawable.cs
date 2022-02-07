@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace COMP2451Project
 {
-    class Drawable : IDrawable
+    public class Drawable : IDrawable
     {
         //Creates a 2D Texture Varibable called _Entity
         protected Texture2D _Entity;

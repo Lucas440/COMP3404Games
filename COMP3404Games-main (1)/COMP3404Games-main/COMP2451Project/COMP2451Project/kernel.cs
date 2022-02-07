@@ -7,33 +7,40 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// AUTHOR: 
-/// DATE: 19/01/2022
+/// AUTHOR: Lucas Brennan
+/// CO-AUTHOR: William Eardley, Flynn Osbourne
+/// DATE: 07/02/2022
 /// </summary>
 
 namespace COMP2451Project
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// CLASS 'Kernel' - Main class for the engine - inherits from 'Game'
     /// </summary>
     public class kernel : Game
     {
-        // DECLARES a GraphicsDeviceManager variable called graphics
-        GraphicsDeviceManager graphics;
-        //DELCARES a SpriteBatch variable called SpriteBatch 
-        SpriteBatch spriteBatch;
+        // DECLARE a GraphicsDeviceManager variable called graphics
+        private GraphicsDeviceManager graphics;
 
-        // DECLARES a double called ScreenHeight
-        public double ScreenHeight;
-        // DELCARES a double called ScreenWidth
-        public double ScreenWidth;
+        // DELCARE a SpriteBatch variable called SpriteBatch 
+        private SpriteBatch spriteBatch;
+
+        // DECLARE a double called ScreenHeight
+        private double ScreenHeight;
+
+        // DELCARE a double called ScreenWidth
+        private double ScreenWidth;
 
         // DECLARE private variable '_engineManager' as type EngineManager
         private EngineManager _engineManager;
 
-        // DECLARES a factory locator named _factories
+        // DECLARE a factory locator named _factories
         IFactoryLocator _factories;
 
+        /// <summary>
+        /// CONSTRUCTOR 'Kernel' - called upon Instantiation
+        /// </summary>
+        /// <param name="pengineManager"></param>
         public kernel(EngineManager pengineManager)
         {
             // INITALIZES a graphic as a New GraphicsDeviceManager passing this as a paramiter
@@ -51,80 +58,46 @@ namespace COMP2451Project
             // SET _engineManager to the parameter value passed from Program
             _engineManager = pengineManager;
 
-            // INITIALISES a new FactoryLocator
+            // INSTANTIATE '_factories' as new FactoryLocator
             _factories = new FactoryLocator();
-            /*
-            // INITALIZES a new entityManager
-            entityM = new EntityManager(_factories.Get<Paddle>() as IFactory<Paddle>, _factories.Get<Ball>() as IFactory<Ball>);
-
-            // INTIALZES a new sceneManager
-            scene = new SceneManager();
-
-            //INITALIZES a new ColisionManager
-            colisionM = new ColisionManager();
-            */
-
         }
 
         /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// METHOD 'Initialise' 
+        /// 
+        /// PURPOSE: Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
-            //Calss the colision Managers Initalize method passing a reference to the entity list
-            //colisionM.Initialize(entityM.CreateEntityList());
-
+            // CALL Initialise method inside EngineManager
             _engineManager.Initialise();
 
+            // CALL Initiaise method inside base class
             base.Initialize();
         }
 
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+        /// METHOD 'LoadContent'
+        /// 
+        /// PURPOSE: LoadContent will be called once per game and is the place to load all of your content.
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+            // INSTANTIATE spriteBatch as new SpriteBatch
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // CALL LoadContent method inside EngineManager
             _engineManager.LoadContent(Content);
-            /*
-            //DELCARES a new Texture2D variable called temp and loads the square texture
-            Texture2D temp = Content.Load<Texture2D>("square");
-
-            Vector2 v = new Vector2();
-            v.X = 500;
-            v.Y = 500;
-
-            // calls the add entity method in scene passing the return value of create ball
-            scene.addEntity(entityM.CreateEntity(3 , v , temp));
-
-            // loads the paddle texture into temp
-            temp = Content.Load<Texture2D>("paddle");
-
-            v.X = 0;
-            v.Y = 0;
-
-            scene.addEntity(entityM.CreateEntity(1, v , temp));
-
-            v.X = 850;
-            v.Y = 0;
-
-            scene.addEntity(entityM.CreateEntity(2, v , temp));
-            */
-
         }
 
 
-
         /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
+        /// METHOD 'UnloadContent'
+        /// 
+        /// PURPOSE: UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
         /// </summary>
         protected override void UnloadContent()
@@ -139,47 +112,46 @@ namespace COMP2451Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // IF back button on gamepad or escape key is pressed
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                // CALL 'Exit' method
                 Exit();
+            }
 
-            // TODO: Add your update logic here
-
-            //Gets the hight of the screen
+            // SET ScreenHeight to viewport height - height of the screen
             ScreenHeight = GraphicsDevice.Viewport.Height;
-            //Gets the width or the screen
+
+            // SET ScreenWidth to viewport width - width of the screen
             ScreenWidth = GraphicsDevice.Viewport.Width;
 
-            /*
-            // calls the update method in scene passing screen height and width
-            scene.update(ScreenHeight , ScreenWidth);
+            // CALL 'Update' method inside EngineManager - passing screen width and height
+            _engineManager.Update(ScreenHeight , ScreenWidth);
 
-            //Updates the colision manager passing the list 
-            colisionM.update();
-            */
-            //Updates Engine Manager
-            _engineManager.update(ScreenHeight , ScreenWidth);
-
+            // CALL Update in base class
             base.Update(gameTime);
         }
 
         /// <summary>
-        /// This is called when the game should draw itself.
+        /// METHOD 'Draw'
+        /// PURPOSE: This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            // CALL 'Clear' method inside GraphicsDevice
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
             
-            //Begins the Drawing code for spriteBatch
+            // CALL 'Begin' method for spriteBatch
             spriteBatch.Begin();
 
+            // CALL 'Draw' method inside EngineManager class - passing spriteBatch
             _engineManager.Draw(spriteBatch);
 
-            //Ends the Drawing code for SpriteBatch
+            // CALL 'End' method for spriteBatch
             spriteBatch.End();
 
+            // CALL 'Draw' method for base class - passes game time
             base.Draw(gameTime);
         }
     }

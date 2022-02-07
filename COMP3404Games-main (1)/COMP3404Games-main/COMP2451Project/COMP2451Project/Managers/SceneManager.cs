@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using System;
 using System.Collections.Generic;
 
@@ -9,31 +8,31 @@ namespace COMP2451Project
 {
     /// <summary>
     /// CLASS 'SceneManager'
-    /// MODIFIED BY: William Eardley 02/02/2022
+    /// MODIFIED BY: William Eardley 07/02/2022
     /// </summary>
     public class SceneManager
     {
-        //DECLARES a new List called entityList
+        // DECLARE a new List called entityList
         List<IEntity> entityList;
 
         // DECLARE private variable '_sceneGraph' as type SceneGraph
         private SceneGraph _sceneGraph;
 
-        //DECLARES a new double called screenWidth
+        // DECLARE a new double called screenWidth
         double ScreenWidth;
 
-        //DECLARES a new double called screenHeight
+        // DECLARE a new double called screenHeight
         double ScreenHeight;
 
         /// <summary>
-        /// The construtor for SceneManager
+        /// CONSTRUCTOR 'SceneManager' - called upon Instantiation
         /// </summary>
         public SceneManager()
         {
-            //INTIALZIES entityList
+            // INSTANTIATE entityList as new List
             entityList = new List<IEntity>();
 
-            // INSTANTIATE a new SceneGraph
+            // INSTANTIATE  _sceneGraph as new SceneGraph
             _sceneGraph = new SceneGraph();
         }
 
@@ -42,7 +41,8 @@ namespace COMP2451Project
         /// </summary>
         public void Initialise()
         {
-            _sceneGraph.Initialise();
+            // CALL Initialise inside SceneGraph class - passing entityList
+            _sceneGraph.Initialise(entityList);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace COMP2451Project
         /// <param name="entity">An IEntity to be stored</param>
         public void addEntity(IEntity entity)
         {
-            // Adds the entity passed through the
+            // ADD entity parameter passed through to entityList
             entityList.Add(entity);
         }
 
@@ -63,16 +63,19 @@ namespace COMP2451Project
         /// <returns>A list of entitys</returns>
         public void update(double pHeight, double pWidth)
         {
-            //Sets ScreenWidth to pWidth
+            // SET ScreenWidth to pWidth
             ScreenWidth = pWidth;
-            //Sets screenHeight to pHeight
+            
+            // SET screenHeight to pHeight
             ScreenHeight = pHeight;
-            // Loops over each item in the array
+            
+            // FOR LOOP which loops over each item in the array
             for (int i = 0; i < entityList.Count; i++)
             {
-                // calls update
+                // CALL Update for each entity in the entityList
                 entityList[i].update();
-                // calls the set boundies method passing the screenWidth and ScreenHeight
+
+                // CALL the SetBoundaries method - passing the screenWidth and ScreenHeight
                 ((ICollidable)entityList[i]).setBoundaries(ScreenWidth, ScreenHeight);
             }
         }
@@ -83,16 +86,8 @@ namespace COMP2451Project
         /// <param name="spriteBatch">A spritebatch used to draw</param>
         public void draw(SpriteBatch spriteBatch)
         {
-            // loops over each item in the list
-            for (int i = 0; i < entityList.Count; i++)
-            {
-                try
-                {
-                    // Draws the entity on the screen
-                    spriteBatch.Draw(((IDrawable)entityList[i]).texture(), entityList[i].position(), Color.AntiqueWhite);
-                }
-                catch (Exception e) { }
-            }
+            // CALL Draw method inside SceneGraph
+            _sceneGraph.Draw(spriteBatch);
         }
     }
 }

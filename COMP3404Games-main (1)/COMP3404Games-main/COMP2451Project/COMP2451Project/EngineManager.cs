@@ -13,8 +13,9 @@ using COMP3451Project.Managers.Input;
 namespace COMP2451Project
 {
     /// <summary>
+    /// CLASS 'EngineManager' - manages game engine
     /// AUTHOR: Will Eardley
-    /// DATE: 31/01/22
+    /// DATE: 07/02/22
     /// </summary>
     public class EngineManager
     {
@@ -29,7 +30,8 @@ namespace COMP2451Project
 
         // DECLARE private variable '_factoryLocator' as type IFactoryLocater
         private IFactoryLocator _factoryLocator;
-        //DECLARE a private variable calld_inputManager as IEventPublisher
+
+        // DECLARE a private variable calld_inputManager as IEventPublisher
         private IEventPublisher _inputManager;
 
         /// <summary>
@@ -37,7 +39,9 @@ namespace COMP2451Project
         /// </summary>
         public EngineManager(IFactoryLocator pfactoryLocator)
         {
+            // SET _factoryLocator to pfactoryLocator parameter
             _factoryLocator = pfactoryLocator;
+
             //INTALISES _inputManager
             _inputManager = new InputManager();
 
@@ -65,66 +69,105 @@ namespace COMP2451Project
             // CALL Initialise method for Scene Manager
             _sceneManager.Initialise();
         }
+
         /// <summary>
-        /// Updates the engine manager
+        /// METHOD 'Update' - Updates the engine manager
         /// </summary>
         /// <param name="pHeight">The Height of the Screen</param>
         /// <param name="pWidth">The Width of the Screen</param>
-        public void update(double pHeight , double pWidth) 
+        public void Update(double pHeight , double pWidth) 
         {
-            //Updates _inputManager
+            // CALL Update method inside InputManager class
             _inputManager.update();
-            //Updates Colision Manager
+
+            // CALL Update method inside CollisionManager class
             _collisionManager.update();
-            //Updates Scene Manager
+
+            // CALL Update method inside SceneManager class
             _sceneManager.update(pHeight , pWidth);
         }
 
+        /// <summary>
+        /// METHOD 'LoadContent' - loads content
+        /// </summary>
+        /// <param name="pContent"></param>
         public void LoadContent(ContentManager pContent) 
         {
-            //Loads the ball texture into tempTexture
-            Texture2D tempTexture = pContent.Load<Texture2D>("square");
-            IEntity tempEntity;
-            Vector2 v = new Vector2();
-            v.X = 500;
-            v.Y = 500;
-            //Creates a new Entity and stores it in temp entity
-            tempEntity = _entityManager.CreateEntity(3, v, tempTexture);
+            ///
+            // BALL INITIALISE
+            ///
 
-            // calls the add entity method in scene passing the return value of create ball
+            // DECLARE variable 'temptTexture' as type Texture2D - load 'square' texture onto ball
+            Texture2D tempTexture = pContent.Load<Texture2D>("square");
+            
+            // DECLARE variable 'tempEntity' as type IEntity 
+            IEntity tempEntity;
+            
+            // DECLARE AND INSTANTIATE variable 'v' as new Vector2
+            Vector2 _vector = new Vector2();
+
+            // SET 'vector' X coordinate to 500
+            _vector.X = 500;
+            
+            // SET 'vector' Y coordinate to 500
+            _vector.Y = 500;
+            
+            // SET 'tempEntity' to value returned from CreateEntity method inside EntityManager
+            tempEntity = _entityManager.CreateEntity(3, _vector, tempTexture);
+
+            // CALL 'AddEntity' method inside SceneManager - passing tempEntity
             _sceneManager.addEntity(tempEntity);
 
-            // loads the paddle texture into temp
+            ///
+            // PADDLE 1 INITIALISE
+            /// 
+
+            // SET 'tempTexture' to 'paddle' texture from 'Load' method - assign paddle texture to paddles
             tempTexture = pContent.Load<Texture2D>("paddle");
 
-            v.X = 0;
-            v.Y = 0;
-            //Creates a new Entity and stores it in temp entity
-            tempEntity = _entityManager.CreateEntity(1, v, tempTexture);
+            // SET '_vector' X coordinate to 0
+            _vector.X = 0;
 
-            //Subscribes tempEntity to the event publisher
+            // SET '_vector' Y coordinate to 0
+            _vector.Y = 0;
+
+            // SET 'tempEntity' to value returned from CreateEntity method inside EntityManager
+            tempEntity = _entityManager.CreateEntity(1, _vector, tempTexture);
+
+            // CALL Subscribe method inside InputManager - subscribes to an input publisher
             ((IInputPublisher)_inputManager).subscribe(((IKeyListener)tempEntity));
 
-            //Adds the entity to the scene
+            // CALL 'AddEntity' method inside SceneManager to ADD entity to scene
             _sceneManager.addEntity(tempEntity);
 
-            v.X = 850;
-            v.Y = 0;
-            //Creates a new Entity and stores it in temp entity
-            tempEntity = _entityManager.CreateEntity(2, v, tempTexture);
-            //Subscribes tempEntity to the event publisher
+            ///
+            // PADDLE 2 INITIALISE
+            ///
+
+            // SET '_vector' X coordinate to 850
+            _vector.X = 850;
+
+            // SET '_vector' Y coordinate to 0
+            _vector.Y = 0;
+
+            // SET 'tempEntity' to value returned from CreateEntity method inside EntityManager
+            tempEntity = _entityManager.CreateEntity(2, _vector, tempTexture);
+
+            // CALL 'Subscribe' method inside InputManager - subscribes to an input publisher
             ((IInputPublisher)_inputManager).subscribe(((IKeyListener)tempEntity));
-            //Adds the entity to the scene
+
+            // CALL 'AddEntity' method inside SceneManager to ADD entity to scene
             _sceneManager.addEntity(tempEntity);
         }
+
         /// <summary>
         /// A Method that draws entities onto the screen
         /// </summary>
         /// <param name="spriteBatch">The SpriteBatch</param>
         public void Draw(SpriteBatch spriteBatch) 
         {
+            // CALL 'Draw' method inside SceneManager
             _sceneManager.draw(spriteBatch);
         }
-
     }
 }

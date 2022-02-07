@@ -6,33 +6,48 @@ using System.Threading.Tasks;
 using COMP2451Project;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 /// <summary>
 /// AUTHOR: Flynn Osborne
-/// DATE: 19/01/2022
+/// MODIFIED BY: William Eardley
+/// DATE: 07/02/2022
 /// </summary>
 namespace COMP3451Project.Managers
 {
+    /// <summary>
+    /// CLASS 'EntityManager' - Manages entities
+    /// </summary>
    public class EntityManager
     {
-        // Variable to hold game entity
-        public IEntity entity;
+        // DECLARE variable 'entity' as type IEntity
+        private IEntity entity;
 
-        // List to hold the entities
-        public IList<IEntity> entities;
+        // DECLARE variable 'entities' as type IList<IEntity> - stores entities
+        private IList<IEntity> entities;
 
+        // DECLARE variable '_entityList' as type IList<IEntity>
         public IList<IEntity> EntityList {  get => entities; }
 
-        // Variables to hold factories for the ball and paddles
-        public IFactory<Paddle> _paddleFactory;
-        public IFactory<Ball> _ballFactory;
+        // DECLARE variable '_paddleFactory' as type IFactory<Paddle>
+        private IFactory<Paddle> _paddleFactory;
 
+        // DECLARE variable '_ballFactory' as type IFactory<Ball>
+        private IFactory<Ball> _ballFactory;
+
+        /// <summary>
+        /// CONSTRUCTOR 'EntityManager' - called upon Instantiation
+        /// </summary>
+        /// <param name="pPaddleFactory"></param>
+        /// <param name="pBallFactory"></param>
         public EntityManager(IFactory<Paddle> pPaddleFactory, IFactory<Ball> pBallFactory) 
         {
-            // Create a new entity list
+            // INSTANTIATE a new entity list
             entities = new List<IEntity>();
 
-            // Initialise the ball and paddle factories
+            // SET _paddleFactory to pPaddleFactory
             _paddleFactory = pPaddleFactory;
+
+            // SET _ballFactory to pBallFactory parameter
             _ballFactory = pBallFactory;
         }
 
@@ -44,15 +59,24 @@ namespace COMP3451Project.Managers
             
         }
 
+        /// <summary>
+        /// METHOD 'CreateEntity'- creates entities
+        /// </summary>
+        /// <param name="which"></param>
+        /// <param name="pLocation"></param>
+        /// <param name="pTexture"></param>
+        /// <returns></returns>
         public IEntity CreateEntity(int which , Vector2 pLocation , Texture2D pTexture)
         {
             // pOrderNumber dictates which entity will be instantiated
 
+            /////////////////////////////
             // 1 = Paddle (Player 1)
             // 2 = Paddle (Player 2)
             // other = Ball
-            
-            // Return the chosen entity
+            /////////////////////////////
+
+            // RETURN the chosen entity
             IEntity entity;
             if (which == 1)
             {
@@ -63,29 +87,33 @@ namespace COMP3451Project.Managers
 
                 ((PongEntity)entity).Content(pTexture);
             }
-            else if (which  == 2) 
+            else if (which == 2) 
             {
                 //entity = new Paddle(pLocation, PlayerIndex.Two);
                 entity = _paddleFactory.Create<Paddle>();
 
-
+                // CALL Initialise inside Paddle class - passing location and player index
                 ((Paddle)entity).Initalise(pLocation, PlayerIndex.Two);
 
+                // CALL Content inside PongEntity class - passing texture
                 ((PongEntity)entity).Content(pTexture);
             }
-
             else 
-            {
-                //entity = new Ball(pLocation);
-
+            {                
+                // CREATE a new ball using _ballFactory - SET to entity 
                 entity = _ballFactory.Create<Ball>();
 
+                // CALL Initialise inside Ball class - passing location
                 ((Ball)entity).Intalise(pLocation);
 
+                // CALL Content inside PongEntity class - passing texture
                 ((PongEntity)entity).Content(pTexture);
             }
 
+            // ADD entity to 'entities' list
             entities.Add(entity);
+
+            // RETURN entity
             return entity;
         }
     }
