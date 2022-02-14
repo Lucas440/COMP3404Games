@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace COMP3451.Behaviours
 {
     /// <summary>
-    /// A Class used to represent an Event Argument
+    /// A Class used to represent an Event Argument for a Update
     /// </summary>
     public class UpdateEventArgs
     {

@@ -5,13 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+///<summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
 /// 
 /// DATE 07/02/2022
 /// </summary>
 namespace COMP3451.Behaviours
 {
+    /// <summary>
+    /// A Class to represent the behaviour of objects
+    /// </summary>
     public class Behaviour: IBehaviour
     {
         //DECLARES a Vector2 called _velocity

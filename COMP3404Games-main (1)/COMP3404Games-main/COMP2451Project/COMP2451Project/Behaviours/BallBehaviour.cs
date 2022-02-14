@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// AUTHOR: Flynn Osborne & Lucas Brennan
+/// DATE: 07/02/2022
+/// </summary>
 namespace COMP3451.Behaviours
 {
     /// <summary>
-    /// AUTHOR: Flynn Osborne & Lucas Brennan
-    /// DATE: 07/02/2022
+    /// A class used to represent the balls behavour
     /// </summary>
     class BallBehaviour: PongBehaviour, IUpdateListener
     {

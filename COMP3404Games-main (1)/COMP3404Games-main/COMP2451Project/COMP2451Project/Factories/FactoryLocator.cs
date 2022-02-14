@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 namespace COMP3451.Factories
 {
 
-
+    /// <summary>
+    /// A class used to get factory services
+    /// </summary>
     public class FactoryLocator : IFactoryLocator
     {
         // Dictionary to hold all factories

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 /// </summary>
 namespace COMP3451.Factories
 {
-    // AUTHOR: Flynn Osborne
-    // DATE: 19/01/2022
-
+    /// <summary>
+    /// An interface used to represent Services
+    /// </summary>
     public interface IService
     {
 

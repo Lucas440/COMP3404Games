@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 /// </summary>
 namespace COMP3451.Behaviours
 {
+    /// <summary>
+    /// A class used to represent behaviours of paddle objects
+    /// </summary>
     class PaddleBehaviour : PongBehaviour, IUpdateListener
     {
         // A variable to hold the height limit

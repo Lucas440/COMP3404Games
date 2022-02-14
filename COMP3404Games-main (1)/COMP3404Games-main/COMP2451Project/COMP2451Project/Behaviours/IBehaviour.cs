@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
 /// DATE 07/02/22
 /// </summary>
 namespace COMP3451.Behaviours
 {
+    /// <summary>
+    /// An interface used to represent the Behaviour of objects
+    /// </summary>
     public interface IBehaviour
     {
         /// <summary>
