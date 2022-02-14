@@ -13,9 +13,12 @@ using Microsoft.Xna.Framework.Input;
 /// </summary>
 namespace COMP3451.InputEvents
 {
+    /// <summary>
+    ///  A class used to send data during a click event
+    /// </summary>
     class ClickEventArgs
     {
-        //A paramiter Mousestate
+        //A MouseState paramiter that stores the data being sent
         public MouseState mouseState { get; set; }
     }
 }
