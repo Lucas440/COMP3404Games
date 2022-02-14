@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-namespace COMP2451Project
+/// <summary>
+/// Author Lucas Brennan
+/// 
+/// Date 14/02/22
+/// </summary>
+namespace COMP3451.Entities
 {
+    /// <summary>
+    /// An interface used to represent drawable objects
+    /// </summary>
     interface IDrawable
     {
         /// <summary>

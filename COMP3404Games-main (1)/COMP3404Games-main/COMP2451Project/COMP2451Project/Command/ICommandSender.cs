@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 /// 
 /// Date 22/01/22
 /// </summary>
-namespace COMP2451Project.Command
+namespace COMP3451.Command
 {
     /// <summary>
     /// An interface used to Send commands

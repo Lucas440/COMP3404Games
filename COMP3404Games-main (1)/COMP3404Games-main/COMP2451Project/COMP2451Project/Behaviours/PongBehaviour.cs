@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 /// 
 /// DATE 31/01/22
 /// </summary>
-namespace COMP2451Project.Behaviours
+namespace COMP3451.Behaviours
 {
     /// <summary>
     /// A class that represents the Behavor of a PongEntity

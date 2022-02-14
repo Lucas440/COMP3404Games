@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using COMP3451.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
-
-namespace COMP2451Project
+/// <summary>
+/// Author Lucas Brennan
+/// 
+/// Date 14/02/22
+/// </summary>
+namespace COMP3451
 {
     /// <summary>
     /// PUBLIC CLASS 'SceneGraph'
@@ -48,7 +52,7 @@ namespace COMP2451Project
                 try
                 {
                     // CALL Draw method for each IDrawable entity in the _entityList
-                    spriteBatch.Draw(((IDrawable)_entityList[i]).texture(), _entityList[i].position(), Color.AntiqueWhite);
+                    spriteBatch.Draw(((Entities.IDrawable)_entityList[i]).texture(), _entityList[i].position(), Color.AntiqueWhite);
                 }
                 // IF TRY fails then throw exception
                 catch (Exception e) { }

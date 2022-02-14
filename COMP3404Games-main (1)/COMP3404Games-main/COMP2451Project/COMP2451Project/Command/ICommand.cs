@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP2451Project
+namespace COMP3451.Command
 {
     /// <summary>
     /// A interface that repersents commands

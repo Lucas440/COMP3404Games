@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 /// 
 /// DATE 22/01/22
 /// </summary>
-namespace COMP2451Project.Behaviours
+namespace COMP3451.Behaviours
 {
     /// <summary>
     /// An interface for Subscribers of the update event

@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using COMP2451Project.Behaviours;
-using COMP2451Project.States;
-using COMP3451Project.Managers.Input;
 
 using System;
+using COMP3451.Behaviours;
+using COMP3451.States;
 
-namespace COMP2451Project
+namespace COMP3451.Entities
 {
     // AUTHOR: Lucas Brennan & Flynn Osborne
     // DATE: 07/02/2022
@@ -15,19 +14,19 @@ namespace COMP2451Project
     public class Ball : PongEntity
     {
         // DECLARES a random variable called rnd
-        Random rnd;
+        Random _rnd;
         //DECLARES a vector2 variable called velocity
-        Vector2 Velocity;
+        Vector2 _velocity;
         //DECLARES a int variable called mSpeed
-        int mSpeed;
+        int _mSpeed;
 
         // DECLARES an UpdateEvent
         public event OnUpdateEvent _activeBehaviour;
 
         // DECLARES a delegate for an UpdateEvent
         public delegate void OnUpdateEvent(object source, UpdateEventArgs args);
-
-        int score;
+        // A Int used to keep track of how many times the ball has hit the wall
+        int _score;
 
         /// <summary>
         /// This is the constructor for the ball
@@ -47,13 +46,13 @@ namespace COMP2451Project
             objectType = "square";
 
             //INITALIZES EntityLocn in the parent class
-            EntityLocn = pBallVector;
+            _entityLocn = pBallVector;
 
             //INITALIZES rnd
-            rnd = new Random();
+            _rnd = new Random();
 
             // INITALIZES mSpeed
-            mSpeed = 5;
+            _mSpeed = 5;
 
             // INITIALISES the ball's behaviour
             _behaviour = new BallBehaviour();
@@ -64,8 +63,8 @@ namespace COMP2451Project
             _state = new BallState();
             ((State)_state)._entity = this;
             ((State)_state)._behaviour = _behaviour;
-
-            score = -1;
+            //Sets score to -1
+            _score = -1;
         }
 
 
@@ -125,10 +124,10 @@ namespace COMP2451Project
             _activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "serve" });
 
             // Sets the ball's velocity to the behaviour's results
-            Velocity = _behaviour.Velocity;
+            _velocity = _behaviour.Velocity;
 
             // Multiplies the ball's velocity by the set speed
-            Velocity *= mSpeed;
+            _velocity *= _mSpeed;
 
         }
         /// <summary>
@@ -156,8 +155,8 @@ namespace COMP2451Project
             _state.Update();
 
             // Set the balls location
-            EntityLocn.X = _behaviour.Location.X;
-            EntityLocn.Y = _behaviour.Location.Y;
+            _entityLocn.X = _behaviour.Location.X;
+            _entityLocn.Y = _behaviour.Location.Y;
 
             // calls update in the parent class
             base.update();
@@ -180,14 +179,14 @@ namespace COMP2451Project
             */
 
             // if the ball's x position is less than 0 or greater than the screens width then this is true
-            if (EntityLocn.X < 0 || EntityLocn.X > Width - 45) 
+            if (_entityLocn.X < 0 || _entityLocn.X > Width - 45) 
             {
                 //Calls the serve Method
                 serve();
                 //Increments score By 1
-                score++;
+                _score++;
                 //If score is 3 then this is true
-                if (score == 3) 
+                if (_score == 3) 
                 {
                     //Inokes the Command Schuldar Passing RemoveME
                     ScheduleCommand.Invoke(RemoveMe);
@@ -212,7 +211,7 @@ namespace COMP2451Project
             _state.Collide();
 
             // Set the ball's location
-            EntityLocn = _behaviour.Location;
+            _entityLocn = _behaviour.Location;
         }
 
         /// <summary>
@@ -222,19 +221,20 @@ namespace COMP2451Project
         public void Colision(Vector2 paddleDirection)
         {
             // multiply the x velocity by -1;
-            Velocity.X *= -1;
+            
+            _velocity.X *= -1;
 
             // if the paddle's y direction is greater than 0 this is true
             if (paddleDirection.Y > 0)
             {
                 // Adds the speed of the paddle plus 1.5 to the y Velocity
-                Velocity.Y += (paddleDirection.Y + 1.5F);
+                _velocity.Y += (paddleDirection.Y + 1.5F);
             }
             // else if the paddles y direction is less than 0 this is true
             else if (paddleDirection.Y < 0) 
             {
                 // subbtracts the paddles y direction plus 1.5 from the y velocity
-                Velocity.Y -= (paddleDirection.Y + 1.5F);
+                _velocity.Y -= (paddleDirection.Y + 1.5F);
             }
         }
     }

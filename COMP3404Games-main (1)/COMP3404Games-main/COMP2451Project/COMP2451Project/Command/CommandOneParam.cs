@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP2451Project.Command
+namespace COMP3451.Command
 {
     public class CommandOneParam<T> : ICommandOneParam<T>
     {

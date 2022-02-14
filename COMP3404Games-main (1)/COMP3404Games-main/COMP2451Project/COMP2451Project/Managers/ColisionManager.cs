@@ -1,22 +1,30 @@
-﻿using System;
+﻿using COMP3451.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace COMP2451Project
+/// <summary>
+/// Author Lucas Brennan
+/// 
+/// Date 14/02/22
+/// </summary>
+namespace COMP3451.Managers
 {
+    /// <summary>
+    /// A class used to detect any collisions between colibable objects
+    /// </summary>
     class ColisionManager
     {
         //DECLARES an List Called entity that stores IEntitys
-        IList<IEntity> entity;
+        IList<IEntity> _entityList;
         /// <summary>
         /// A method that stores a reference to the entity list
         /// </summary>
         /// <param name="pList">A reference to the entity</param>
         public void Initialize(IList<IEntity> pList) 
         {
-            entity = pList;
+            _entityList = pList;
         }
 
         /// <summary>
@@ -29,7 +37,7 @@ namespace COMP2451Project
             List<ICollidable> collidables = new List<ICollidable>();
 
             //Loops over each IEntity in the list Entity
-            foreach (IEntity e in entity) 
+            foreach (IEntity e in _entityList) 
             {
                 // If the entity is a ICollidable type
                 if (e is ICollidable) 

@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using COMP2451Project.Behaviours;
-using COMP2451Project.States;
-using COMP2451Project.Command;
-using COMP2451Project.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using COMP3451.Command;
+using COMP3451.Behaviours;
+using COMP3451.States;
 
-namespace COMP2451Project
+namespace COMP3451.Entities
 {
     // AUTHOR: Lucas Brennan & Flynn Osborne
     // DATE: 07/02/2022
@@ -25,7 +24,7 @@ namespace COMP2451Project
         protected IState _state;
 
         // Creates a vector called ballLocn
-        protected Vector2 EntityLocn;
+        protected Vector2 _entityLocn;
 
         /// <summary>
         /// Updates the entity on each loop
@@ -39,7 +38,7 @@ namespace COMP2451Project
         public virtual Vector2 position()
         {
             // Returns the entity's location
-            return EntityLocn;
+            return _entityLocn;
         }
 
         /// <summary>
@@ -53,15 +52,21 @@ namespace COMP2451Project
 
         //----------------------------------------------------------------- ICommandSender Implementation ----------------------------------
 
-        
+        /// <summary>
+        /// A Property used to set a ScheduleCommand action
+        /// </summary>
         public Action<ICommand> ScheduleCommand { get; set; }
 
         // ---------------------------------------------------- IEntityInternal Implementation -------------------------------------------
 
-        
+        /// <summary>
+        /// A property used to store a Terminate Method
+        /// </summary>
         public ICommand TerminateMe { get; set; }
         
-        //
+        /// <summary>
+        /// A Property used to Store a Remove MEthod
+        /// </summary>
         public ICommand RemoveMe { get; set; }
 
     }

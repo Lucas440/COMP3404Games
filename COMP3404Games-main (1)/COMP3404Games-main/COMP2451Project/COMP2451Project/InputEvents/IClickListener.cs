@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 /// <summary>
 /// AUTHOR Lucas Brennan
 ///
+/// Date 14/02/22
 /// </summary>
-namespace COMP3451Project.Managers.Input
+namespace COMP3451.InputEvents
 {
+    /// <summary>
+    /// An interface used to repersent a object that listens for clicks
+    /// </summary>
     interface IClickListener
     {
         /// <summary>

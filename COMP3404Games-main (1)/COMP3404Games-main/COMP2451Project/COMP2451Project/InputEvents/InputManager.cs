@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using COMP3451Project.Managers.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace COMP2451Project
+/// <summary>
+/// Author Lucas Brennan
+/// 
+/// Date 14/02/22
+/// </summary>
+namespace COMP3451.InputEvents
 {
+    /// <summary>
+    /// A class used to respond to inputs and publish those events
+    /// </summary>
     class InputManager : IEventPublisher , IInputPublisher , IClickPublisher
     {
         // A KeyboardState called keyboardstate
-        KeyboardState keyboardState;
+        KeyboardState _keyBoardState;
         //A MouseState called mouseState
-        MouseState mouseState;
+        MouseState _mouseState;
 
         /// <summary>
         /// Updates the input Manager
@@ -23,18 +30,18 @@ namespace COMP2451Project
         public void update()
         {
             // if the state of the keyboard is not equal to the current state this is true
-            if (keyboardState != Keyboard.GetState())
+            if (_keyBoardState != Keyboard.GetState())
             {
                 //Updates the state of the keyboard
-                keyboardState = Keyboard.GetState();
+                _keyBoardState = Keyboard.GetState();
                 // Calls the OnNewInput method
                 OnNewInput();
             }
             // If mouse state is not the same as current mousestate this is true
-            if (mouseState != Mouse.GetState()) 
+            if (_mouseState != Mouse.GetState()) 
             {
                 //Updates mouseState
-                mouseState = Mouse.GetState();
+                _mouseState = Mouse.GetState();
                 //Calls onNewCLick method
                 OnNewClick();
             }
@@ -49,7 +56,7 @@ namespace COMP2451Project
             if (NewInput != null)
             {
                 //  Raises the events and passes through the arugments
-                NewInput(this, new InputEventArgs(){keyboardState = this.keyboardState});
+                NewInput(this, new InputEventArgs(){keyboardState = this._keyBoardState });
             }
         }
         /// <summary>
@@ -61,7 +68,7 @@ namespace COMP2451Project
             if (NewClick != null) 
             {
                 //Raises the event and passes this and the mousestate
-                NewClick(this, new ClickEventArgs() {mouseState = this.mouseState });
+                NewClick(this, new ClickEventArgs() {mouseState = this._mouseState });
             }
         }
 
@@ -71,9 +78,9 @@ namespace COMP2451Project
             public InputManager() 
         {
             // INTALIZES the keyboardstate to the current state of the keyboard
-            keyboardState = Keyboard.GetState();
+            _keyBoardState = Keyboard.GetState();
             //INTALISES mouse state with the current state of the mouse
-            mouseState = Mouse.GetState();
+            _mouseState = Mouse.GetState();
         }
 
 

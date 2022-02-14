@@ -1,10 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using COMP3451.Entities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-
-namespace COMP2451Project
+/// <summary>
+/// Author Lucas Brennan
+/// 
+/// Date 14/02/22
+/// </summary>
+namespace COMP3451.Managers
 {
     /// <summary>
     /// CLASS 'SceneManager'
@@ -13,7 +18,7 @@ namespace COMP2451Project
     public class SceneManager
     {
         // DECLARE a new List called entityList
-        List<IEntity> entityList;
+        List<IEntity> _entityList;
 
         // DECLARE private variable '_sceneGraph' as type SceneGraph
         private SceneGraph _sceneGraph;
@@ -30,7 +35,7 @@ namespace COMP2451Project
         public SceneManager()
         {
             // INSTANTIATE entityList as new List
-            entityList = new List<IEntity>();
+            _entityList = new List<IEntity>();
 
             // INSTANTIATE  _sceneGraph as new SceneGraph
             _sceneGraph = new SceneGraph();
@@ -42,7 +47,7 @@ namespace COMP2451Project
         public void Initialise()
         {
             // CALL Initialise inside SceneGraph class - passing entityList
-            _sceneGraph.Initialise(entityList);
+            _sceneGraph.Initialise(_entityList);
         }
 
         /// <summary>
@@ -52,7 +57,7 @@ namespace COMP2451Project
         public void addEntity(IEntity entity)
         {
             // ADD entity parameter passed through to entityList
-            entityList.Add(entity);
+            _entityList.Add(entity);
         }
 
         /// <summary>
@@ -70,13 +75,13 @@ namespace COMP2451Project
             ScreenHeight = pHeight;
             
             // FOR LOOP which loops over each item in the array
-            for (int i = 0; i < entityList.Count; i++)
+            for (int i = 0; i < _entityList.Count; i++)
             {
                 // CALL Update for each entity in the entityList
-                entityList[i].update();
+                _entityList[i].update();
 
                 // CALL the SetBoundaries method - passing the screenWidth and ScreenHeight
-                ((ICollidable)entityList[i]).setBoundaries(ScreenWidth, ScreenHeight);
+                ((ICollidable)_entityList[i]).setBoundaries(ScreenWidth, ScreenHeight);
             }
         }
 
@@ -99,7 +104,7 @@ namespace COMP2451Project
             //Calls remove in _sceneGraph
             _sceneGraph.Remove(pEntity);
             //Removes pEntity from the entityList
-            entityList.Remove(pEntity);
+            _entityList.Remove(pEntity);
         }
     }
 }

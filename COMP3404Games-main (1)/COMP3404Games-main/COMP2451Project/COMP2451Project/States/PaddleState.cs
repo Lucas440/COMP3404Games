@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COMP2451Project.States
+namespace COMP3451.States
 {
     // AUTHOR: Flynn Osborne
     // DATE: 07/02/2022

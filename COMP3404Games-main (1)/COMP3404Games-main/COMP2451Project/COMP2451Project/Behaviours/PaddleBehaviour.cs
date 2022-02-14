@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 /// 
 /// DATE: 07/02/2022
 /// </summary>
-namespace COMP2451Project.Behaviours
+namespace COMP3451.Behaviours
 {
     class PaddleBehaviour : PongBehaviour, IUpdateListener
     {

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using COMP3451.Behaviours;
 
-namespace COMP2451Project.States
+namespace COMP3451.States
 {
     // AUTHOR: Flynn Osborne
     // DATE: 31/01/2022

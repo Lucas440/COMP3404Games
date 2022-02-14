@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Input;
 /// 
 /// Date 22/01/22
 /// </summary>
-namespace COMP2451Project
+namespace COMP3451.Entities
 {
     /// <summary>
     /// An interface used to repesent entitys

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using COMP2451Project;
+using COMP3451.Entities;
+using COMP3451.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -20,13 +22,13 @@ namespace COMP3451Project.Managers
    public class EntityManager
     {
         // DECLARE variable 'entity' as type IEntity
-        private IEntity entity;
+        private IEntity _entity;
 
         // DECLARE variable 'entities' as type IList<IEntity> - stores entities
-        private IList<IEntity> entities;
+        private IList<IEntity> _entities;
 
         // DECLARE variable '_entityList' as type IList<IEntity>
-        public IList<IEntity> EntityList {  get => entities; }
+        public IList<IEntity> EntityList {  get => _entities; }
 
         // DECLARE variable '_paddleFactory' as type IFactory<Paddle>
         private IFactory<Paddle> _paddleFactory;
@@ -42,7 +44,7 @@ namespace COMP3451Project.Managers
         public EntityManager(IFactory<Paddle> pPaddleFactory, IFactory<Ball> pBallFactory) 
         {
             // INSTANTIATE a new entity list
-            entities = new List<IEntity>();
+            _entities = new List<IEntity>();
 
             // SET _paddleFactory to pPaddleFactory
             _paddleFactory = pPaddleFactory;
@@ -111,7 +113,7 @@ namespace COMP3451Project.Managers
             }
 
             // ADD entity to 'entities' list
-            entities.Add(entity);
+            _entities.Add(entity);
 
             // RETURN entity
             return entity;
@@ -123,7 +125,7 @@ namespace COMP3451Project.Managers
         public void Temerinate(IEntity pEntity) 
         {
             //Removes pEntity from the list
-            entities.Remove(pEntity);
+            _entities.Remove(pEntity);
         }
     }
 }

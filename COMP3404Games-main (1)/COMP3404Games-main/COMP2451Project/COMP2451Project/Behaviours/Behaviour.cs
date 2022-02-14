@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using COMP3451.Entities;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 /// 
 /// DATE 07/02/2022
 /// </summary>
-namespace COMP2451Project.Behaviours
+namespace COMP3451.Behaviours
 {
     public class Behaviour: IBehaviour
     {

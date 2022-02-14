@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 /// 
 /// DATE 22/01/22
 /// </summary>
-namespace COMP2451Project
+namespace COMP3451.Command
 {
     /// <summary>
     /// An interface that Schedules commands

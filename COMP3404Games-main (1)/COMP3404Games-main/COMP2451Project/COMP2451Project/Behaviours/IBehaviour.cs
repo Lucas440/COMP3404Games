@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 /// AUTHOR: Lucas Brennan & Flynn Osborne
 /// DATE 07/02/22
 /// </summary>
-namespace COMP2451Project.Behaviours
+namespace COMP3451.Behaviours
 {
     public interface IBehaviour
     {

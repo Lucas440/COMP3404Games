@@ -10,9 +10,13 @@ using Microsoft.Xna.Framework.Input;
 /// <summary>
 /// AUTHOR Lucas Brennan
 ///
+/// Date 14/02/22
 /// </summary>
-namespace COMP3451Project.Managers.Input
+namespace COMP3451.InputEvents
 {
+    /// <summary>
+    /// An interface used to Listen for Key inputs
+    /// </summary>
     public interface IKeyListener
     {
         /// <summary>

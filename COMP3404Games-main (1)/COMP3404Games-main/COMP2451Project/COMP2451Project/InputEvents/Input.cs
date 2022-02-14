@@ -1,9 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-namespace COMP2451Project
+/// <summary>
+/// Author Lucas Brennan
+/// 
+/// Date 14/02/22
+/// </summary>
+namespace COMP3451.InputEvents
 {
+    /// <summary>
+    /// A class used to respond to inputs and publish those events
+    /// </summary>
     class Input
     {
         // DECLARES a Vector2 variable called direction

@@ -7,9 +7,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-
-namespace COMP2451Project
+/// <summary>
+/// Author Lucas Brennan
+/// 
+/// Date 14/02/22
+/// </summary>
+namespace COMP3451.InputEvents
 {
+    /// <summary>
+    /// A Event Argument used to send data during an input event
+    /// </summary>
     public class InputEventArgs
     {
         /// <summary>

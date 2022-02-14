@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 /// <summary>
 /// AUTHOR Lucas Brennan
 ///
+/// Date 14/02/22
 /// </summary>
-namespace COMP3451Project.Managers.Input
+namespace COMP3451.InputEvents
 {
+    /// <summary>
+    /// An interface used to reprsent an object that publishes Clicks
+    /// </summary>
     interface IClickPublisher
     {
         /// <summary>

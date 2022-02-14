@@ -8,17 +8,18 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-using COMP3451Project.Managers.Input;
-using COMP2451Project.Entities;
-using COMP2451Project.Command;
-
-namespace COMP2451Project
+using COMP3451.Managers;
+using COMP3451.Factories;
+using COMP3451.InputEvents;
+using COMP3451.Command;
+using COMP3451.Entities;
+/// <summary>
+/// CLASS 'EngineManager' - manages game engine
+/// AUTHOR: Will Eardley
+/// DATE: 07/02/22
+/// </summary>
+namespace COMP3451
 {
-    /// <summary>
-    /// CLASS 'EngineManager' - manages game engine
-    /// AUTHOR: Will Eardley
-    /// DATE: 07/02/22
-    /// </summary>
     public class EngineManager
     {
         // DECLARE private variable '_entityManager' as type EntityManager

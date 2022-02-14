@@ -1,4 +1,5 @@
-﻿using System;
+﻿using COMP3451.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 /// 
 /// Date 22/01/22
 /// </summary>
-namespace COMP2451Project.Entities
+namespace COMP3451.Entities
 {
     /// <summary>
     /// An interface that represents the internal Entity

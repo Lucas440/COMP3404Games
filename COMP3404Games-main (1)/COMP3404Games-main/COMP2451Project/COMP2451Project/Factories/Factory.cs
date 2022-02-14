@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace COMP2451Project
+/// <summary>
+/// AUTHOR: Flynn Osborne
+/// DATE: 19/01/2022
+/// </summary>
+namespace COMP3451.Factories
 {
-    // AUTHOR: Flynn Osborne
-    // DATE: 19/01/2022
+    
 
     public class Factory<I> : IFactory<I>, IService
     {

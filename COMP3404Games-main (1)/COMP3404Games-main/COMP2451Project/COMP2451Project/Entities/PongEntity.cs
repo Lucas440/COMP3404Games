@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 
-namespace COMP2451Project
+namespace COMP3451.Entities
 {
     public abstract class PongEntity : Entity , ICollidable , IDrawable
     {
@@ -52,7 +52,7 @@ namespace COMP2451Project
         public Rectangle createHitbox()
         {
             // Creates a hitbox using a retangle using the location and the dimentions of the entity
-            hitBox = new Rectangle(Convert.ToInt32(EntityLocn.X), Convert.ToInt32(EntityLocn.Y), _Entity.Width, _Entity.Height);
+            hitBox = new Rectangle(Convert.ToInt32(_entityLocn.X), Convert.ToInt32(_entityLocn.Y), _Entity.Width, _Entity.Height);
             //Returns hitbox
             return hitBox;
         }
@@ -125,7 +125,7 @@ namespace COMP2451Project
         /// <returns>The entity current position</returns>
         public override Vector2 position()
         {
-            return EntityLocn;
+            return _entityLocn;
         }
 
     }

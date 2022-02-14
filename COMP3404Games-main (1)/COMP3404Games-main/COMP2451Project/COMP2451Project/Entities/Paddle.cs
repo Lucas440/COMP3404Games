@@ -1,23 +1,24 @@
-﻿using COMP2451Project.Behaviours;
-using COMP2451Project.States;
-using COMP3451Project.Managers.Input;
+﻿
+using COMP3451.Behaviours;
+using COMP3451.InputEvents;
+using COMP3451.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-
-namespace COMP2451Project
+/// <summary>
+/// AUTHOR: Lucas Brennan & Flynn Osborne
+/// DATE: 07/02/2022
+/// </summary>
+namespace COMP3451.Entities
 {
-    // AUTHOR: Lucas Brennan & Flynn Osborne
-    // DATE: 07/02/2022
-
+    /// <summary>
+    /// A paddle class used to allow the player to hit the ball using this
+    /// </summary>
     public class Paddle : PongEntity, IKeyListener
     {
-        //DECLARES an int called speed
-        int speed;
-
         //DECLARES a vector2 called currentDirection
-        Vector2 CurrentDirection;
+        Vector2 _currentDirection;
 
         //DECLARES a PlayerIndex variable that stores which player is controlling this paddle
         PlayerIndex index;
@@ -33,9 +34,9 @@ namespace COMP2451Project
         public delegate void OnUpdateEvent(object source, UpdateEventArgs args);
 
         // Variables to hold states
-        public IState defaultState;
-        public IState upState;
-        public IState downState;
+        public IState _defaultState;
+        public IState _upState;
+        public IState _downState;
 
         /// <summary>
         /// Is the Constructor for the Paddle
@@ -56,9 +57,7 @@ namespace COMP2451Project
             //INITALZIES objectType in the parent class
             objectType = "paddle";
             //INITALZIES entitylocn in the parent class
-            EntityLocn = paddleLocation;
-            // INTIALIZES speed to 5
-            speed = 5;
+            _entityLocn = paddleLocation;
             // Sets the index to player passed
             index = pIndex;
 
@@ -70,22 +69,22 @@ namespace COMP2451Project
             _activeBehaviour += _behaviour.OnUpdate;
 
             // INITIALISE the default state
-            defaultState = new PaddleState("stopped");
-            ((State)defaultState)._entity = this;
-            ((State)defaultState)._behaviour = _behaviour;
+            _defaultState = new PaddleState("stopped");
+            ((State)_defaultState)._entity = this;
+            ((State)_defaultState)._behaviour = _behaviour;
 
             // INITIALISE the up state
-            upState = new PaddleState("up");
-            ((State)upState)._entity = this;
-            ((State)upState)._behaviour = _behaviour;
+            _upState = new PaddleState("up");
+            ((State)_upState)._entity = this;
+            ((State)_upState)._behaviour = _behaviour;
 
             // INITIALISE the down state
-            downState = new PaddleState("down");
-            ((State)downState)._entity = this;
-            ((State)downState)._behaviour = _behaviour;
+            _downState = new PaddleState("down");
+            ((State)_downState)._entity = this;
+            ((State)_downState)._behaviour = _behaviour;
 
             // SET the default state as the starting state
-            _state = defaultState;
+            _state = _defaultState;
         }
 
 
@@ -120,7 +119,7 @@ namespace COMP2451Project
             _state.Update();
 
             // Update the paddle's location
-            EntityLocn.Y = _behaviour.Location.Y;
+            _entityLocn.Y = _behaviour.Location.Y;
 
             // calls the update method in the parent class
             base.update();
@@ -135,16 +134,16 @@ namespace COMP2451Project
         public override void checkWallColision()
         {
             // if the y position is less than 0 this is true
-            if (EntityLocn.Y < 0)
+            if (_entityLocn.Y < 0)
             {
                 // sets the y position to 0
-                EntityLocn.Y = 50;
+                _entityLocn.Y = 50;
             }
             // else if the y position is greater than the hight minus 150 this is true
-            else if (EntityLocn.Y > Height - 150)
+            else if (_entityLocn.Y > Height - 150)
             {
                 // sets the y postion to the screen height - 150
-                EntityLocn.Y = (float)(Height - 150);
+                _entityLocn.Y = (float)(Height - 150);
             }
         }
         /// <summary>
@@ -154,7 +153,7 @@ namespace COMP2451Project
         public Vector2 getCurrentDirection()
         {
             // Return the paddle's current direction
-            return CurrentDirection;
+            return _currentDirection;
         }
 
         /// <summary>
@@ -181,7 +180,7 @@ namespace COMP2451Project
                     //_activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "up" });
 
                     // Change the state to the 'up' state
-                    SetState(upState);
+                    SetState(_upState);
                 }
                 //If the S Key is Pressed this is true
                 else if (e.keyboardState.IsKeyDown(Keys.S))
@@ -190,7 +189,7 @@ namespace COMP2451Project
                     //_activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "down" });
 
                     // Change the state to the 'down' state
-                    SetState(downState);
+                    SetState(_downState);
                 }
                 else
                 {
@@ -198,7 +197,7 @@ namespace COMP2451Project
                     //_activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "stopped" });
 
                     // Change the state to the default state
-                    SetState(defaultState);
+                    SetState(_defaultState);
                 }
             }
             // If the current paddle is Player is Player 2
@@ -211,7 +210,7 @@ namespace COMP2451Project
                     //_activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "up" });
 
                     // Change the state to the 'up' state
-                    SetState(upState);
+                    SetState(_upState);
                 }
                 //If the currebt key down is down this is true
                 else if (e.keyboardState.IsKeyDown(Keys.Down))
@@ -220,7 +219,7 @@ namespace COMP2451Project
                     //_activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "down" });
 
                     // Change the state to the 'down' state
-                    SetState(downState);
+                    SetState(_downState);
                 }
                 else
                 {
@@ -228,7 +227,7 @@ namespace COMP2451Project
                     //_activeBehaviour(this, new UpdateEventArgs() { ActiveBehaviour = "stopped" });
 
                     // Change the state to the default state
-                    SetState(defaultState);
+                    SetState(_defaultState);
                 }
             }
         }
