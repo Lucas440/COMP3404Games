@@ -18,6 +18,10 @@ namespace COMP2451Project
         /// <summary>
         /// A method that Executes a command
         /// </summary>
-        void ExecuteCommand(Action pAction);
+        void ExecuteCommand(ICommand pCommand);
+        /// <summary>
+        /// A method used to update the ICommandScheduler
+        /// </summary>
+        void Update();
     }
 }

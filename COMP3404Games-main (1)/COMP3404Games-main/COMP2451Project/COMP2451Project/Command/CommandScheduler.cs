@@ -15,14 +15,34 @@ namespace COMP2451Project
     /// </summary>
     public class CommandScheduler : ICommandScheduler
     {
+        //DELCARE a new IList called _commandList
+        IList<ICommand> _commandList;
         /// <summary>
-        /// A method used to Execute a command
+        /// The defualt constructor
         /// </summary>
-        /// <param name="pAction">The action being Executed</param>
-        public void ExecuteCommand(Action pAction) 
+        public CommandScheduler() 
         {
-            //Invokes the action
-            pAction.Invoke();
+            //INTIALSE the list
+            _commandList = new List<ICommand>();
+        }
+
+        /// <summary>
+        /// A method used for scheduling commands
+        /// </summary>
+        /// <param name="pCommand">The command being scheduled</param>
+        public void ExecuteCommand(ICommand pCommand) 
+        {
+            //Adds the command to the list
+            _commandList.Add(pCommand);
+        }
+        /// <summary>
+        /// A MEthod that updates the commandScheduler
+        /// </summary>
+        public void Update() 
+        {
+            //loops through each command in the list and Executes it
+            foreach (ICommand c in _commandList)
+                c.Execute();
         }
     }
 }

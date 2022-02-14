@@ -89,5 +89,17 @@ namespace COMP2451Project
             // CALL Draw method inside SceneGraph
             _sceneGraph.Draw(spriteBatch);
         }
+        // -------------------------------------------------------- Command Pattern ----------------------------------------------------------
+        /// <summary>
+        /// A method used to remove an entity from the scene
+        /// </summary>
+        /// <param name="pEntity">The entity being removed</param>
+        public void Remove(IEntity pEntity)
+        {
+            //Calls remove in _sceneGraph
+            _sceneGraph.Remove(pEntity);
+            //Removes pEntity from the entityList
+            entityList.Remove(pEntity);
+        }
     }
 }

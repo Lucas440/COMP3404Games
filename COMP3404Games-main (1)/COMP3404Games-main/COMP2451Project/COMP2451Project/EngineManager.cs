@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using COMP3451Project.Managers.Input;
+using COMP2451Project.Entities;
+using COMP2451Project.Command;
 
 namespace COMP2451Project
 {
@@ -34,6 +36,8 @@ namespace COMP2451Project
         // DECLARE a private variable calld_inputManager as IEventPublisher
         private IEventPublisher _inputManager;
 
+        private ICommandScheduler _commandScheduler;
+
         /// <summary>
         /// CONSTRUCTOR for EngineManager
         /// </summary>
@@ -53,6 +57,8 @@ namespace COMP2451Project
 
             // INSTANTIATE '_entityManager' as new EntityManager
             _entityManager = new EntityManager(_factoryLocator.Get<Paddle>() as IFactory<Paddle>, _factoryLocator.Get<Ball>() as IFactory<Ball>);
+            //INSTANTIATE _commandScheduler as new CommandSchedular
+            _commandScheduler = (_factoryLocator.Get<ICommandScheduler>() as IFactory<ICommandScheduler>).Create<CommandScheduler>();
         }
 
         /// <summary>
@@ -85,6 +91,8 @@ namespace COMP2451Project
 
             // CALL Update method inside SceneManager class
             _sceneManager.update(pHeight , pWidth);
+            //CALL update method inside _commandSceduler
+            _commandScheduler.Update();
         }
 
         /// <summary>
@@ -118,6 +126,30 @@ namespace COMP2451Project
             // CALL 'AddEntity' method inside SceneManager - passing tempEntity
             _sceneManager.addEntity(tempEntity);
 
+            //Creates a new ICOmmand called removeCommand
+            ICommand removeCommand = (_factoryLocator.Get<ICommandOneParam<IEntity>>() as IFactory<ICommandOneParam<IEntity>>).Create<CommandOneParam<IEntity>>();
+            //Creates a new ICOmmand called terminateCommand
+            ICommand terminateCommand = (_factoryLocator.Get<ICommandOneParam<IEntity>>() as IFactory<ICommandOneParam<IEntity>>).Create<CommandOneParam<IEntity>>();
+            //Creates a new ICOmmand called schedualCommand
+            ICommand schedualCommand = (_factoryLocator.Get<ICommandOneParam<Action>>() as IFactory<ICommandOneParam<Action>>).Create<CommandOneParam<Action>>();
+
+            
+
+            //Sets the action of the command to _sceneManagers remove method
+            ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
+            //Sets the data of the command to the entity
+            ((ICommandOneParam<IEntity>)removeCommand).SetData = tempEntity;
+            //Sets the removeMe Command to Command
+            ((IEntityInternal)tempEntity).RemoveMe = removeCommand;
+            //Sets the action to _entityManagers Temerinate
+            ((ICommandOneParam<IEntity>)terminateCommand).SetAction = _entityManager.Temerinate;
+            //Sets the data of the command to the entity
+            ((ICommandOneParam<IEntity>)terminateCommand).SetData = tempEntity;
+            //Sets the TerminateMe Command to Command
+            ((IEntityInternal)tempEntity).TerminateMe = terminateCommand;
+            //Sets the ScheduleCommand property to _commandSchedulers method ExecuteCommand
+            ((ICommandSender)tempEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
+            
             ///
             // PADDLE 1 INITIALISE
             /// 
@@ -139,7 +171,22 @@ namespace COMP2451Project
 
             // CALL 'AddEntity' method inside SceneManager to ADD entity to scene
             _sceneManager.addEntity(tempEntity);
-
+            /*
+            //Sets the action of the command to _sceneManagers remove method
+            ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
+            //Sets the data of the command to the entity
+            ((ICommandOneParam<IEntity>)removeCommand).SetData = tempEntity;
+            //Sets the removeMe Command to Command
+            ((IEntityInternal)tempEntity).RemoveMe = removeCommand;
+            //Sets the action to _entityManagers Temerinate
+            ((ICommandOneParam<IEntity>)terminateCommand).SetAction = _entityManager.Temerinate;
+            //Sets the data of the command to the entity
+            ((ICommandOneParam<IEntity>)terminateCommand).SetData = tempEntity;
+            //Sets the TerminateMe Command to Command
+            ((IEntityInternal)tempEntity).TerminateMe = terminateCommand;
+            //Sets the ScheduleCommand property to _commandSchedulers method ExecuteCommand
+            ((ICommandSender)tempEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
+            */
             ///
             // PADDLE 2 INITIALISE
             ///
@@ -158,6 +205,22 @@ namespace COMP2451Project
 
             // CALL 'AddEntity' method inside SceneManager to ADD entity to scene
             _sceneManager.addEntity(tempEntity);
+            /*
+            //Sets the action of the command to _sceneManagers remove method
+            ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
+            //Sets the data of the command to the entity
+            ((ICommandOneParam<IEntity>)removeCommand).SetData = tempEntity;
+            //Sets the removeMe Command to Command
+            ((IEntityInternal)tempEntity).RemoveMe = removeCommand;
+            //Sets the action to _entityManagers Temerinate
+            ((ICommandOneParam<IEntity>)terminateCommand).SetAction = _entityManager.Temerinate;
+            //Sets the data of the command to the entity
+            ((ICommandOneParam<IEntity>)terminateCommand).SetData = tempEntity;
+            //Sets the TerminateMe Command to Command
+            ((IEntityInternal)tempEntity).TerminateMe = terminateCommand;
+            //Sets the ScheduleCommand property to _commandSchedulers method ExecuteCommand
+            ((ICommandSender)tempEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
+            */
         }
 
         /// <summary>

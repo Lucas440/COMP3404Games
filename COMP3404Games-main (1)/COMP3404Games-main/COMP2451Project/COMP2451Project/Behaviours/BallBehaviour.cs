@@ -33,6 +33,7 @@ namespace COMP2451Project.Behaviours
             // INITIALISE the ball's velocity
             _velocity = new Vector2();
 
+
             // INITALIZES mSpeed
             mSpeed = 5;
 

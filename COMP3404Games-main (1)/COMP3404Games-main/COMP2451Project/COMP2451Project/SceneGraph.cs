@@ -54,5 +54,14 @@ namespace COMP2451Project
                 catch (Exception e) { }
             }
         }
+        /// <summary>
+        /// A method used to remove an entity from the scene graph
+        /// </summary>
+        /// <param name="pEntity">The entity being removed</param>
+        public void Remove(IEntity pEntity) 
+        {
+            //Removes pEntity from the list
+            _entityList.Remove(pEntity);
+        }
     }
 }

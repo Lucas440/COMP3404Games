@@ -104,7 +104,7 @@ namespace COMP3451Project.Managers
                 entity = _ballFactory.Create<Ball>();
 
                 // CALL Initialise inside Ball class - passing location
-                ((Ball)entity).Intalise(pLocation);
+                ((Ball)entity).Initialise(pLocation);
 
                 // CALL Content inside PongEntity class - passing texture
                 ((PongEntity)entity).Content(pTexture);
@@ -115,6 +115,15 @@ namespace COMP3451Project.Managers
 
             // RETURN entity
             return entity;
+        }
+        /// <summary>
+        /// A method used to temerinate entites
+        /// </summary>
+        /// <param name="pEntity">the entity being terminated</param>
+        public void Temerinate(IEntity pEntity) 
+        {
+            //Removes pEntity from the list
+            entities.Remove(pEntity);
         }
     }
 }

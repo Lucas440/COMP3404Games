@@ -27,6 +27,8 @@ namespace COMP2451Project
         // DECLARES a delegate for an UpdateEvent
         public delegate void OnUpdateEvent(object source, UpdateEventArgs args);
 
+        int score;
+
         /// <summary>
         /// This is the constructor for the ball
         /// </summary>
@@ -62,6 +64,8 @@ namespace COMP2451Project
             _state = new BallState();
             ((State)_state)._entity = this;
             ((State)_state)._behaviour = _behaviour;
+
+            score = -1;
         }
 
 
@@ -178,8 +182,18 @@ namespace COMP2451Project
             // if the ball's x position is less than 0 or greater than the screens width then this is true
             if (EntityLocn.X < 0 || EntityLocn.X > Width - 45) 
             {
-                // calls the serve method
+                //Calls the serve Method
                 serve();
+                //Increments score By 1
+                score++;
+                //If score is 3 then this is true
+                if (score == 3) 
+                {
+                    //Inokes the Command Schuldar Passing RemoveME
+                    ScheduleCommand.Invoke(RemoveMe);
+                    //Inokes the Command Schuldar Passing TerminateMe
+                    ScheduleCommand.Invoke(TerminateMe);
+                }
             }
         }
 

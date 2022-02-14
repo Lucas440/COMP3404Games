@@ -48,8 +48,10 @@
     <Compile Include="Behaviours\PaddleBehaviour.cs" />
     <Compile Include="Behaviours\PongBehaviour.cs" />
     <Compile Include="Behaviours\UpdateEventArgs.cs" />
+    <Compile Include="Command\CommandOneParam.cs" />
     <Compile Include="Command\CommandScheduler.cs" />
     <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\ICommandOneParam.cs" />
     <Compile Include="Command\ICommandScheduler.cs" />
     <Compile Include="Command\ICommandSender.cs" />
     <Compile Include="EngineManager.cs" />
@@ -84,6 +86,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\SceneManager.cs" />
     <Compile Include="SceneGraph.cs" />
+    <Compile Include="States\BallState.cs" />
+    <Compile Include="States\IState.cs" />
+    <Compile Include="States\PaddleState.cs" />
+    <Compile Include="States\PongState.cs" />
+    <Compile Include="States\State.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
