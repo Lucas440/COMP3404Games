@@ -9,12 +9,15 @@ using Microsoft.Xna.Framework.Input;
 using COMP3451.Command;
 using COMP3451.Behaviours;
 using COMP3451.States;
-
+/// <summary>
+/// AUTHOR: Lucas Brennan & Flynn Osborne
+/// DATE: 07/02/2022
+/// </summary>
 namespace COMP3451.Entities
 {
-    // AUTHOR: Lucas Brennan & Flynn Osborne
-    // DATE: 07/02/2022
-
+    /// <summary>
+    /// A Class used to represen entities in the game
+    /// </summary>
     public abstract class Entity : IEntity , IEntityInternal, ICommandSender 
     {
         // A variable to hold the entity's behaviour

@@ -1,16 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using System;
 using COMP3451.Behaviours;
 using COMP3451.States;
-
+/// <summary>
+/// AUTHOR: Lucas Brennan & Flynn Osborne
+/// DATE: 07/02/2022
+/// </summary>
 namespace COMP3451.Entities
 {
-    // AUTHOR: Lucas Brennan & Flynn Osborne
-    // DATE: 07/02/2022
-
+    /// <summary>
+    /// A Class used to represent a ball object
+    /// </summary>
     public class Ball : PongEntity
     {
         // DECLARES a random variable called rnd
