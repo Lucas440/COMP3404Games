@@ -1,6 +1,7 @@
 ﻿using System;
 using COMP3451;
 using COMP3451.Factories;
+using COMP3451.Managers;
 using COMP3451Project.Managers;
 
 namespace COMP2451Project

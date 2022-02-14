@@ -21,9 +21,6 @@ namespace COMP3451Project.Managers
     /// </summary>
    public class EntityManager
     {
-        // DECLARE variable 'entity' as type IEntity
-        private IEntity _entity;
-
         // DECLARE variable 'entities' as type IList<IEntity> - stores entities
         private IList<IEntity> _entities;
 
@@ -64,11 +61,11 @@ namespace COMP3451Project.Managers
         /// <summary>
         /// METHOD 'CreateEntity'- creates entities
         /// </summary>
-        /// <param name="which"></param>
-        /// <param name="pLocation"></param>
-        /// <param name="pTexture"></param>
+        /// <param name="pEntityType">An number representing which type of entity is being created</param>
+        /// <param name="pLocation">The starting location of the entity</param>
+        /// <param name="pTexture">The texture of the entity</param>
         /// <returns></returns>
-        public IEntity CreateEntity(int which , Vector2 pLocation , Texture2D pTexture)
+        public IEntity CreateEntity(int pEntityType , Vector2 pLocation , Texture2D pTexture)
         {
             // pOrderNumber dictates which entity will be instantiated
 
@@ -80,7 +77,7 @@ namespace COMP3451Project.Managers
 
             // RETURN the chosen entity
             IEntity entity;
-            if (which == 1)
+            if (pEntityType == 1)
             {
                 //entity = new Paddle(pLocation, PlayerIndex.One);
 
@@ -89,7 +86,7 @@ namespace COMP3451Project.Managers
 
                 ((PongEntity)entity).Content(pTexture);
             }
-            else if (which == 2) 
+            else if (pEntityType == 2) 
             {
                 //entity = new Paddle(pLocation, PlayerIndex.Two);
                 entity = _paddleFactory.Create<Paddle>();

@@ -54,7 +54,7 @@ namespace COMP3451.Managers
         /// Adds an Entity to the list
         /// </summary>
         /// <param name="entity">An IEntity to be stored</param>
-        public void addEntity(IEntity entity)
+        public void AddEntity(IEntity entity)
         {
             // ADD entity parameter passed through to entityList
             _entityList.Add(entity);
@@ -66,7 +66,7 @@ namespace COMP3451.Managers
         /// <param name="pHeight">Screen Height</param>
         /// <param name="pWidth">Screen Width </param>
         /// <returns>A list of entitys</returns>
-        public void update(double pHeight, double pWidth)
+        public void Update(double pHeight, double pWidth)
         {
             // SET ScreenWidth to pWidth
             ScreenWidth = pWidth;

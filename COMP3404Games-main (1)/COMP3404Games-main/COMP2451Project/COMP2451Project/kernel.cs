@@ -1,4 +1,5 @@
 ﻿using COMP3451.Factories;
+using COMP3451.Managers;
 using COMP3451Project.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

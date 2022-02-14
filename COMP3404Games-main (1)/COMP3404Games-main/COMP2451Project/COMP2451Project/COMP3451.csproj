@@ -54,7 +54,7 @@
     <Compile Include="Command\ICommandOneParam.cs" />
     <Compile Include="Command\ICommandScheduler.cs" />
     <Compile Include="Command\ICommandSender.cs" />
-    <Compile Include="EngineManager.cs" />
+    <Compile Include="Managers\EngineManager.cs" />
     <Compile Include="Entities\Ball.cs" />
     <Compile Include="Entities\IEntityInternal.cs" />
     <Compile Include="Factories\Factory.cs" />
@@ -68,7 +68,6 @@
     <Compile Include="InputEvents\InputEventArgs.cs" />
     <Compile Include="InputEvents\InputManager.cs" />
     <Compile Include="Managers\ColisionManager.cs" />
-    <Compile Include="Collidable.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Entities\ICollidable.cs" />

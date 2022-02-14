@@ -12,8 +12,5 @@ namespace COMP3451.Factories
     /// <summary>
     /// An interface used to represent Services
     /// </summary>
-    public interface IService
-    {
-
-    }
+    public interface IService { }
 }
