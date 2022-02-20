@@ -1,4 +1,5 @@
-﻿using COMP3451.Entities;
+﻿
+using Engine.EngineEntitys;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,7 +10,7 @@ using System.Collections.Generic;
 /// 
 /// Date 14/02/22
 /// </summary>
-namespace COMP3451.Managers
+namespace Engine.Managers
 {
     /// <summary>
     /// CLASS 'SceneManager'

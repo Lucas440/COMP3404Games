@@ -1,4 +1,5 @@
-﻿using COMP3451.Entities;
+﻿
+using Engine.EngineEntitys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 /// 
 /// Date 14/02/22
 /// </summary>
-namespace COMP3451.Managers
+namespace Engine.Managers
 {
     /// <summary>
     /// A class used to detect any collisions between colibable objects

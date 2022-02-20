@@ -1,5 +1,5 @@
-﻿using COMP3451.Factories;
-using COMP3451.Managers;
+﻿using Engine.Factories;
+using Engine.Managers;
 using COMP3451Project.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +14,7 @@ using System.Collections.Generic;
 /// DATE: 07/02/2022
 /// </summary>
 
-namespace COMP3451
+namespace Engine
 {
     /// <summary>
     /// CLASS 'Kernel' - Main class for the engine - inherits from 'Game'

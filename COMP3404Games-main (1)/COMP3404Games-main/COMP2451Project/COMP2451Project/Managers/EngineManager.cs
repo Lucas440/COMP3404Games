@@ -8,17 +8,19 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-using COMP3451.Managers;
-using COMP3451.Factories;
-using COMP3451.InputEvents;
-using COMP3451.Command;
-using COMP3451.Entities;
+using Engine.Managers;
+using Engine.Factories;
+using Engine.InputEvents;
+using Engine.Command;
+using Engine.EngineEntitys;
+using PongGame.Entities;
+
 /// <summary>
 /// CLASS 'EngineManager' - manages game engine
 /// AUTHOR: Will Eardley
 /// DATE: 07/02/22
 /// </summary>
-namespace COMP3451.Managers
+namespace Engine.Managers
 {
     public class EngineManager
     {
@@ -55,7 +57,6 @@ namespace COMP3451.Managers
 
             // INSTANTIATE '_collisionManager' as new CollisionManager
             _collisionManager = (_factoryLocator.Get<ColisionManager>() as IFactory<ColisionManager>).Create<ColisionManager>();
-
             // INSTANTIATE '_entityManager' as new EntityManager
             _entityManager = new EntityManager(_factoryLocator.Get<Paddle>() as IFactory<Paddle>, _factoryLocator.Get<Ball>() as IFactory<Ball>);
             //INSTANTIATE _commandScheduler as new CommandSchedular

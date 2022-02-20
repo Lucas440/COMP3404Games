@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using COMP2451Project;
-using COMP3451.Entities;
-using COMP3451.Factories;
+using Engine.EngineEntitys;
+using Engine.Factories;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PongGame.Entities;
 
 /// <summary>
 /// AUTHOR: Flynn Osborne

@@ -1,8 +1,7 @@
 ﻿using System;
-using COMP3451;
-using COMP3451.Factories;
-using COMP3451.Managers;
-using COMP3451Project.Managers;
+using Engine;
+using Engine.Factories;
+using Engine.Managers;
 
 namespace COMP2451Project
 {
