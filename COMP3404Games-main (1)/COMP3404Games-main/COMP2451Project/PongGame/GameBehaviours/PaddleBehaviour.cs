@@ -1,10 +1,6 @@
 ﻿using Engine.Behaviours;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 /// <summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
 /// 
@@ -23,7 +19,7 @@ namespace PongGame.Behaviours
         /// <summary>
         /// The Default constructor for PaddleBehaviour
         /// </summary>
-        public PaddleBehaviour() 
+        public PaddleBehaviour()
         {
             // INITALISES _velocity
             _velocity = new Vector2();
@@ -37,22 +33,22 @@ namespace PongGame.Behaviours
         /// </summary>
         /// <param name="sender">The object that sent the event</param>
         /// <param name="UpdateEventArgs">The event argument</param>
-        public override void OnUpdate(Object sender , UpdateEventArgs UpdateEventArgs) 
+        public override void OnUpdate(Object sender, UpdateEventArgs UpdateEventArgs)
         {
             //If the ActiveBehaviour is "up" then this is true
-            if (UpdateEventArgs.ActiveBehaviour.ToLower() == "up") 
+            if (UpdateEventArgs.ActiveBehaviour.ToLower() == "up")
             {
                 //Sets the Y velocity to -1
                 _velocity.Y = -1;
             }
             //If the ActiveBehaviour is "down" then this is true
-            else if (UpdateEventArgs.ActiveBehaviour.ToLower() == "down") 
+            else if (UpdateEventArgs.ActiveBehaviour.ToLower() == "down")
             {
                 //Sets the Y velocity to 1
                 _velocity.Y = 1;
             }
             //If the ActiveBehaviour is "stopped" then this is true
-            else if (UpdateEventArgs.ActiveBehaviour.ToLower() == "stopped") 
+            else if (UpdateEventArgs.ActiveBehaviour.ToLower() == "stopped")
             {
                 //Sets the Y velocity to 0
                 _velocity.Y = 0;
@@ -72,7 +68,7 @@ namespace PongGame.Behaviours
                 // Stop the paddle from moving off the bottom of the screen
                 _location.Y = (float)_height;
             }
-            
+
         }
 
         /// <summary>

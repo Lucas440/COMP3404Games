@@ -1,9 +1,6 @@
 ﻿
 using Engine.EngineEntitys;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 /// <summary>
 /// Author Lucas Brennan
@@ -45,10 +42,11 @@ namespace Engine.Managers
         /// <summary>
         /// Method 'Initialise' - Initialises Scene Manager
         /// </summary>
-        public void Initialise()
+        /// <param name="pSpriteFont">A Font for text</param>
+        public void Initialise(SpriteFont pSpriteFont)
         {
             // CALL Initialise inside SceneGraph class - passing entityList
-            _sceneGraph.Initialise(_entityList);
+            _sceneGraph.Initialise(_entityList, pSpriteFont);
         }
 
         /// <summary>
@@ -71,10 +69,10 @@ namespace Engine.Managers
         {
             // SET ScreenWidth to pWidth
             ScreenWidth = pWidth;
-            
+
             // SET screenHeight to pHeight
             ScreenHeight = pHeight;
-            
+
             // FOR LOOP which loops over each item in the array
             for (int i = 0; i < _entityList.Count; i++)
             {

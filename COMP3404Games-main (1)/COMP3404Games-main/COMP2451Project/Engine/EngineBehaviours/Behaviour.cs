@@ -1,10 +1,6 @@
 ﻿using Engine.EngineEntitys;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 ///<summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
 /// 
@@ -15,7 +11,7 @@ namespace Engine.Behaviours
     /// <summary>
     /// A Class to represent the behaviour of objects
     /// </summary>
-    public class Behaviour: IBehaviour
+    public class Behaviour : IBehaviour
     {
         //DECLARES a Vector2 called _velocity
         protected Vector2 _velocity;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 /// <summary>
 /// Author Lucas Brennan
@@ -23,7 +22,7 @@ namespace Engine.InputEvents
         /// <param name="index">The Current player</param>
         /// <param name="playerVelocity">The loaction and current veloicty of the player</param>
         /// <returns>Direction - The current players velocity</returns>
-        public static Vector2 GetKeyBoardInputDirection(PlayerIndex index , Vector2 playerVelocity) 
+        public static Vector2 GetKeyBoardInputDirection(PlayerIndex index, Vector2 playerVelocity)
         {
             // Sets the X direction to the players x velocity
             Direction.X = playerVelocity.X;
@@ -40,12 +39,12 @@ namespace Engine.InputEvents
                 if (keyboardstate.IsKeyDown(Keys.W))
                 {
                     // if the Y direction is less than 0 and greater than -10 then this is true
-                    if (Direction.Y < 0 && Direction.Y > -10) 
+                    if (Direction.Y < 0 && Direction.Y > -10)
                     {
                         // the Y direction is Deincrmented by 1
                         Direction.Y -= 1F;
                     }
-                    else 
+                    else
                     {
                         // Sets the Y direction to -1
                         Direction.Y = -1;
@@ -73,7 +72,7 @@ namespace Engine.InputEvents
                 }
             }
             // Else if the current player is player 2 this is true
-            else if (PlayerIndex.Two == index) 
+            else if (PlayerIndex.Two == index)
             {
                 // is the current key down is the UP arrow then this is true
                 if (keyboardstate.IsKeyDown(Keys.Up))

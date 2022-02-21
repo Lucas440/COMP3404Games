@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 /// <summary>
 /// Author Lucas Brennan
 /// 
@@ -20,7 +16,7 @@ namespace Engine.Command
         /// <summary>
         /// The defualt constructor
         /// </summary>
-        public CommandScheduler() 
+        public CommandScheduler()
         {
             //INTIALSE the list
             _commandList = new List<ICommand>();
@@ -30,7 +26,7 @@ namespace Engine.Command
         /// A method used for scheduling commands
         /// </summary>
         /// <param name="pCommand">The command being scheduled</param>
-        public void ExecuteCommand(ICommand pCommand) 
+        public void ExecuteCommand(ICommand pCommand)
         {
             //Adds the command to the list
             _commandList.Add(pCommand);
@@ -38,7 +34,7 @@ namespace Engine.Command
         /// <summary>
         /// A MEthod that updates the commandScheduler
         /// </summary>
-        public void Update() 
+        public void Update()
         {
             //loops through each command in the list and Executes it
             foreach (ICommand c in _commandList)

@@ -1,10 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-/// <summary>
+﻿/// <summary>
 /// AUTHOR Lucas Brennan
 ///
 /// Date 14/02/22
@@ -21,6 +15,6 @@ namespace Engine.InputEvents
         /// </summary>
         /// <param name="sorce">the source of the event</param>
         /// <param name="args">the event argument</param>
-         void OnNewClick(object sorce , ClickEventArgs args);
+        void OnNewClick(object sorce, ClickEventArgs args);
     }
 }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Engine.Behaviours;
 using Engine.Command;
-using Engine.Behaviours;
 using Engine.EngineStates;
+using Microsoft.Xna.Framework;
+using System;
 /// <summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
 /// DATE: 07/02/2022
@@ -18,11 +12,11 @@ namespace Engine.EngineEntitys
     /// <summary>
     /// A Class used to represen entities in the game
     /// </summary>
-    public abstract class Entity : IEntity , IEntityInternal, ICommandSender 
+    public abstract class Entity : IEntity, IEntityInternal, ICommandSender
     {
         // A variable to hold the entity's behaviour
         protected IBehaviour _behaviour;
-        
+
         // A variable to hold the entity's current state
         protected IState _state;
 
@@ -43,6 +37,10 @@ namespace Engine.EngineEntitys
             // Returns the entity's location
             return _entityLocn;
         }
+        /// <summary>
+        /// A Property that returns the state as a text
+        /// </summary>
+        public string StateText { get; set; }
 
         /// <summary>
         /// Changes the entity's state 
@@ -66,7 +64,7 @@ namespace Engine.EngineEntitys
         /// A property used to store a Terminate Method
         /// </summary>
         public ICommand TerminateMe { get; set; }
-        
+
         /// <summary>
         /// A Property used to Store a Remove MEthod
         /// </summary>

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Engine.EngineEntitys;
+﻿using Engine.EngineEntitys;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 /// <summary>
 /// Author Lucas Brennan
 /// 
@@ -21,6 +18,8 @@ namespace Engine
     {
         // DECLARE variable '_entityList' as type IEntity - List to store entities
         private List<IEntity> _entityList;
+        //DECLARE variable _spriteFont to store the font of the program
+        private SpriteFont _spriteFont;
 
         /// <summary>
         /// CONSTRUCTOR for 'SceneGraph' - Called upon creation
@@ -34,10 +33,14 @@ namespace Engine
         /// <summary>
         /// METHOD 'Initialise' - Initialises SceneGraph
         /// </summary>
-        public void Initialise(List<IEntity> plist)
+        /// <param name="plist">The List of entitys to draw</param>
+        /// <param name="pSpriteFont">A font for text</param>
+        public void Initialise(List<IEntity> plist , SpriteFont pSpriteFont)
         {
             // SET _entityList to pList parameter
             _entityList = plist;
+            //SET _sprteFont to pSpriteFont parameter
+            _spriteFont = pSpriteFont;
         }
 
         /// <summary>
@@ -53,6 +56,17 @@ namespace Engine
                 {
                     // CALL Draw method for each IDrawable entity in the _entityList
                     spriteBatch.Draw(((EngineEntitys.IDrawable)_entityList[i]).texture(), _entityList[i].position(), Color.AntiqueWhite);
+                    //If the x position is less than 700 this is true
+                    if (_entityList[i].position().X < 700)
+                    {
+                        //Draws text on the screen for the current entity
+                        spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].position().X, 800), Color.Black);
+                    }
+                    else 
+                    {
+                        //Draws text on the screen for the current entity
+                        spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].position().X - 200, 800), Color.Black);
+                    }
                 }
                 // IF TRY fails then throw exception
                 catch (Exception e) { }
@@ -62,7 +76,7 @@ namespace Engine
         /// A method used to remove an entity from the scene graph
         /// </summary>
         /// <param name="pEntity">The entity being removed</param>
-        public void Remove(IEntity pEntity) 
+        public void Remove(IEntity pEntity)
         {
             //Removes pEntity from the list
             _entityList.Remove(pEntity);

@@ -1,13 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-
-using Engine.Behaviours;
-
+﻿using Engine.Behaviours;
 using Engine.EngineStates;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using PongGame.Behaviours;
 using PongGame.States;
+using System;
 /// <summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
 /// DATE: 07/02/2022
@@ -37,7 +34,7 @@ namespace PongGame.Entities
         /// <summary>
         /// This is the constructor for the ball
         /// </summary>
-        public Ball() 
+        public Ball()
         {
 
         }
@@ -46,7 +43,7 @@ namespace PongGame.Entities
         /// The method that initialises the ball's variables
         /// </summary>
         /// <param name="pBallVector">The starting location of the ball</param>
-        public void Initialise(Vector2 pBallVector) 
+        public void Initialise(Vector2 pBallVector)
         {
             //INITALIZES objectType in the parent class
             objectType = "square";
@@ -97,7 +94,7 @@ namespace PongGame.Entities
         /// <summary>
         /// Used to serve the ball from the middle of the screen in a random direction
         /// </summary>
-        public void serve() 
+        public void serve()
         {
             // These place the ball in the center of the screen
             // Places the ball at 450, in the x-axis
@@ -168,12 +165,12 @@ namespace PongGame.Entities
             base.update();
             // calls check wall Colision
             checkWallColision();
-            
+
         }
         /// <summary>
         /// Checks the colision between the wall and the Ball
         /// </summary>
-        public override void checkWallColision() 
+        public override void checkWallColision()
         {
             /*
             // if the ball's y position is less than 0 or greater than the screens height then this is true
@@ -185,14 +182,14 @@ namespace PongGame.Entities
             */
 
             // if the ball's x position is less than 0 or greater than the screens width then this is true
-            if (_entityLocn.X < 0 || _entityLocn.X > Width - 45) 
+            if (_entityLocn.X < 0 || _entityLocn.X > Width - 45)
             {
                 //Calls the serve Method
                 serve();
                 //Increments score By 1
                 _score++;
                 //If score is 3 then this is true
-                if (_score == 3) 
+                if (_score == 3)
                 {
                     //Inokes the Command Schuldar Passing RemoveME
                     ScheduleCommand.Invoke(RemoveMe);
@@ -205,11 +202,11 @@ namespace PongGame.Entities
         /// <summary>
         /// A method that responds when coliding with an object
         /// </summary>
-        public override void colision() 
+        public override void colision()
         {
             // Reverse the horizontal direction of the ball
             //Velocity.X *= -1;
-            
+
             // Update the ball's location
             //EntityLocn.X += Velocity.X;
 
@@ -227,7 +224,7 @@ namespace PongGame.Entities
         public void Colision(Vector2 paddleDirection)
         {
             // multiply the x velocity by -1;
-            
+
             _velocity.X *= -1;
 
             // if the paddle's y direction is greater than 0 this is true
@@ -237,7 +234,7 @@ namespace PongGame.Entities
                 _velocity.Y += (paddleDirection.Y + 1.5F);
             }
             // else if the paddles y direction is less than 0 this is true
-            else if (paddleDirection.Y < 0) 
+            else if (paddleDirection.Y < 0)
             {
                 // subbtracts the paddles y direction plus 1.5 from the y velocity
                 _velocity.Y -= (paddleDirection.Y + 1.5F);

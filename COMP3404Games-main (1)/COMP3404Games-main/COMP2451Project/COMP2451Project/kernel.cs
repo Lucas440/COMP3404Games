@@ -1,12 +1,8 @@
 ﻿using Engine.Factories;
 using Engine.Managers;
-using COMP3451Project.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-using System;
-using System.Collections.Generic;
 
 /// <summary>
 /// AUTHOR: Lucas Brennan
@@ -74,8 +70,10 @@ namespace Engine
         /// </summary>
         protected override void Initialize()
         {
-            // CALL Initialise method inside EngineManager
-            _engineManager.Initialise();
+            //Creates a new spriteFont and loads a default text font into it
+            SpriteFont spriteFont = Content.Load<SpriteFont>("Text");
+            // CALL Initialise method inside EngineManager - Passes the spriteFont
+            _engineManager.Initialise(spriteFont);
 
             // CALL Initiaise method inside base class
             base.Initialize();
@@ -128,7 +126,7 @@ namespace Engine
             ScreenWidth = GraphicsDevice.Viewport.Width;
 
             // CALL 'Update' method inside EngineManager - passing screen width and height
-            _engineManager.Update(ScreenHeight , ScreenWidth);
+            _engineManager.Update(ScreenHeight, ScreenWidth);
 
             // CALL Update in base class
             base.Update(gameTime);
@@ -143,7 +141,7 @@ namespace Engine
         {
             // CALL 'Clear' method inside GraphicsDevice
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            
+
             // CALL 'Begin' method for spriteBatch
             spriteBatch.Begin();
 

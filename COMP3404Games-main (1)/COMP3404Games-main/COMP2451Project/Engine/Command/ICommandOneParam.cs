@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Engine.Command
 {
@@ -15,6 +11,6 @@ namespace Engine.Command
         /// <summary>
         /// A parameter that sets a Action
         /// </summary>
-       Action<T> SetAction { set; }
+        Action<T> SetAction { set; }
     }
 }

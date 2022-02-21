@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
 /// <summary>
 /// Author Lucas Brennan
 /// 
@@ -28,5 +21,9 @@ namespace Engine.EngineEntitys
         /// </summary>
         /// <returns>The entity current position</returns>
         Vector2 position();
+        /// <summary>
+        /// A property that returns the state the program is in as a string
+        /// </summary>
+        string StateText { get; set; }
     }
 }

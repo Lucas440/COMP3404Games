@@ -1,5 +1,4 @@
-﻿
-using Engine.Behaviours;
+﻿using Engine.Behaviours;
 using Engine.EngineStates;
 using Engine.InputEvents;
 using Microsoft.Xna.Framework;
@@ -7,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PongGame.Behaviours;
 using PongGame.States;
-using System.Collections.Generic;
 /// <summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
 /// DATE: 07/02/2022
@@ -54,7 +52,7 @@ namespace PongGame.Entities
         /// </summary>
         /// <param name="paddleLocation">The locatiob of the paddle</param>
         /// <param name="pIndex">the player index</param>
-        public void Initalise(Vector2 paddleLocation, PlayerIndex pIndex) 
+        public void Initalise(Vector2 paddleLocation, PlayerIndex pIndex)
         {
             //INITALZIES objectType in the parent class
             objectType = "paddle";
@@ -183,6 +181,7 @@ namespace PongGame.Entities
 
                     // Change the state to the 'up' state
                     SetState(_upState);
+                    StateText = "The Current State Is UP";
                 }
                 //If the S Key is Pressed this is true
                 else if (e.keyboardState.IsKeyDown(Keys.S))
@@ -192,6 +191,7 @@ namespace PongGame.Entities
 
                     // Change the state to the 'down' state
                     SetState(_downState);
+                    StateText = "The Current State Is Down";
                 }
                 else
                 {
@@ -200,6 +200,7 @@ namespace PongGame.Entities
 
                     // Change the state to the default state
                     SetState(_defaultState);
+                    StateText = "The Current State Is Default";
                 }
             }
             // If the current paddle is Player is Player 2
@@ -213,6 +214,7 @@ namespace PongGame.Entities
 
                     // Change the state to the 'up' state
                     SetState(_upState);
+                    StateText = "The Current State Is UP";
                 }
                 //If the currebt key down is down this is true
                 else if (e.keyboardState.IsKeyDown(Keys.Down))
@@ -222,6 +224,7 @@ namespace PongGame.Entities
 
                     // Change the state to the 'down' state
                     SetState(_downState);
+                    StateText = "The Current State Is Down";
                 }
                 else
                 {
@@ -230,6 +233,7 @@ namespace PongGame.Entities
 
                     // Change the state to the default state
                     SetState(_defaultState);
+                    StateText = "The Current State Is Default";
                 }
             }
         }

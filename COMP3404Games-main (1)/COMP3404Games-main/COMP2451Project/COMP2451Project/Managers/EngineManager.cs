@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using COMP3451Project.Managers;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using Engine.Managers;
-using Engine.Factories;
-using Engine.InputEvents;
+﻿using COMP3451Project.Managers;
 using Engine.Command;
 using Engine.EngineEntitys;
+using Engine.Factories;
+using Engine.InputEvents;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using PongGame.Entities;
+using System;
 
 /// <summary>
 /// CLASS 'EngineManager' - manages game engine
@@ -66,7 +60,8 @@ namespace Engine.Managers
         /// <summary>
         /// METHOD 'Initialise' - Initialises the Engine Manager
         /// </summary>
-        public void Initialise()
+        /// <param name="pSpriteFont">A Font for text</param>
+        public void Initialise(SpriteFont pSpriteFont)
         {
             // Call Initialise method for Entity Manager
             _entityManager.Initialise();
@@ -74,8 +69,8 @@ namespace Engine.Managers
             // CALL Initialise method for Collision Manager
             _collisionManager.Initialize(_entityManager.EntityList);
 
-            // CALL Initialise method for Scene Manager
-            _sceneManager.Initialise();
+            // CALL Initialise method for Scene Manager passes pSpriteFont
+            _sceneManager.Initialise(pSpriteFont);
         }
 
         /// <summary>
@@ -83,7 +78,7 @@ namespace Engine.Managers
         /// </summary>
         /// <param name="pHeight">The Height of the Screen</param>
         /// <param name="pWidth">The Width of the Screen</param>
-        public void Update(double pHeight , double pWidth) 
+        public void Update(double pHeight, double pWidth)
         {
             // CALL Update method inside InputManager class
             _inputManager.update();
@@ -92,7 +87,7 @@ namespace Engine.Managers
             _collisionManager.update();
 
             // CALL Update method inside SceneManager class
-            _sceneManager.Update(pHeight , pWidth);
+            _sceneManager.Update(pHeight, pWidth);
             //CALL update method inside _commandSceduler
             _commandScheduler.Update();
         }
@@ -101,7 +96,7 @@ namespace Engine.Managers
         /// METHOD 'LoadContent' - loads content
         /// </summary>
         /// <param name="pContent"></param>
-        public void LoadContent(ContentManager pContent) 
+        public void LoadContent(ContentManager pContent)
         {
             ///
             // BALL INITIALISE
@@ -109,19 +104,19 @@ namespace Engine.Managers
 
             // DECLARE variable 'temptTexture' as type Texture2D - load 'square' texture onto ball
             Texture2D tempTexture = pContent.Load<Texture2D>("square");
-            
+
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
-            
+
             // DECLARE AND INSTANTIATE variable 'v' as new Vector2
             Vector2 _vector = new Vector2();
 
             // SET 'vector' X coordinate to 500
             _vector.X = 500;
-            
+
             // SET 'vector' Y coordinate to 500
             _vector.Y = 500;
-            
+
             // SET 'tempEntity' to value returned from CreateEntity method inside EntityManager
             tempEntity = _entityManager.CreateEntity(3, _vector, tempTexture);
 
@@ -135,7 +130,7 @@ namespace Engine.Managers
             //Creates a new ICOmmand called schedualCommand
             ICommand schedualCommand = (_factoryLocator.Get<ICommandOneParam<Action>>() as IFactory<ICommandOneParam<Action>>).Create<CommandOneParam<Action>>();
 
-            
+
 
             //Sets the action of the command to _sceneManagers remove method
             ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
@@ -151,7 +146,7 @@ namespace Engine.Managers
             ((IEntityInternal)tempEntity).TerminateMe = terminateCommand;
             //Sets the ScheduleCommand property to _commandSchedulers method ExecuteCommand
             ((ICommandSender)tempEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
-            
+
             ///
             // PADDLE 1 INITIALISE
             /// 
@@ -229,7 +224,7 @@ namespace Engine.Managers
         /// A Method that draws entities onto the screen
         /// </summary>
         /// <param name="spriteBatch">The SpriteBatch</param>
-        public void Draw(SpriteBatch spriteBatch) 
+        public void Draw(SpriteBatch spriteBatch)
         {
             // CALL 'Draw' method inside SceneManager
             _sceneManager.draw(spriteBatch);

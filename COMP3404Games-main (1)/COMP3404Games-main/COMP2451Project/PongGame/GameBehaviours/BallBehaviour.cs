@@ -1,10 +1,6 @@
 ﻿using Engine.Behaviours;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 /// <summary>
 /// AUTHOR: Flynn Osborne & Lucas Brennan
 /// DATE: 07/02/2022
@@ -14,7 +10,7 @@ namespace PongGame.Behaviours
     /// <summary>
     /// A class used to represent the balls behavour
     /// </summary>
-    class BallBehaviour: PongBehaviour, IUpdateListener
+    class BallBehaviour : PongBehaviour, IUpdateListener
     {
         // A property to get the ball's velocity
         public override Vector2 Velocity { get => _velocity; }
@@ -49,7 +45,7 @@ namespace PongGame.Behaviours
         /// </summary>
         /// <param name="sender">The object that triggered the method</param>
         /// <param name="UpdateEventArgs">The event arguments</param>
-        public override void OnUpdate(Object sender, UpdateEventArgs UpdateEventArgs) 
+        public override void OnUpdate(Object sender, UpdateEventArgs UpdateEventArgs)
         {
             // Moves the ball along the x-axis by the ball's x velocity
             //EntityLocn.X += _behaviour.Velocity.X;

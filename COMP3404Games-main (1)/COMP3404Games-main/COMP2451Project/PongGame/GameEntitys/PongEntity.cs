@@ -1,13 +1,12 @@
 ﻿using Engine.EngineEntitys;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 using System;
 
 namespace PongGame.Entities
 {
-    public abstract class PongEntity : Entity , ICollidable , Engine.EngineEntitys.IDrawable
+    public abstract class PongEntity : Entity, ICollidable, Engine.EngineEntitys.IDrawable
     {
 
         //--------------------------------------------- IEntity Implementation ---------------------------------------------
@@ -17,7 +16,7 @@ namespace PongGame.Entities
         /// Returns the Type of object the Entity is
         /// </summary>
         /// <returns>objectType - What the object is</returns>
-        public string getObjectType() 
+        public string getObjectType()
         {
             //Returns objectType
             return objectType;
@@ -26,7 +25,7 @@ namespace PongGame.Entities
         /// <summary>
         /// Updates the entity on each loop
         /// </summary>
-        public override void update() 
+        public override void update()
         {
             createHitbox();
         }
@@ -48,7 +47,7 @@ namespace PongGame.Entities
 
         //Creates a 2D Texture Varibable called _Entity
         protected Texture2D _Entity;
-        
+
 
         public Rectangle createHitbox()
         {
@@ -130,7 +129,7 @@ namespace PongGame.Entities
         }
 
     }
-        
+
 
 }
 

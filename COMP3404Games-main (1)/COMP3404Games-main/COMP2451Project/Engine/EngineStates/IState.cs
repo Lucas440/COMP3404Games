@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Engine.EngineStates
+﻿namespace Engine.EngineStates
 {
     // AUTHOR: Flynn Osborne
     // DATE: 31/01/2022

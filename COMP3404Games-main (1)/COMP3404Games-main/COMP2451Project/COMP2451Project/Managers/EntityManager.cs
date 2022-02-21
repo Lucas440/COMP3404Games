@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Engine.EngineEntitys;
+﻿using Engine.EngineEntitys;
 using Engine.Factories;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PongGame.Entities;
+using System.Collections.Generic;
 
 /// <summary>
 /// AUTHOR: Flynn Osborne
@@ -20,13 +15,13 @@ namespace COMP3451Project.Managers
     /// <summary>
     /// CLASS 'EntityManager' - Manages entities
     /// </summary>
-   public class EntityManager
+    public class EntityManager
     {
         // DECLARE variable 'entities' as type IList<IEntity> - stores entities
         private IList<IEntity> _entities;
 
         // DECLARE variable '_entityList' as type IList<IEntity>
-        public IList<IEntity> EntityList {  get => _entities; }
+        public IList<IEntity> EntityList { get => _entities; }
 
         // DECLARE variable '_paddleFactory' as type IFactory<Paddle>
         private IFactory<Paddle> _paddleFactory;
@@ -39,7 +34,7 @@ namespace COMP3451Project.Managers
         /// </summary>
         /// <param name="pPaddleFactory"></param>
         /// <param name="pBallFactory"></param>
-        public EntityManager(IFactory<Paddle> pPaddleFactory, IFactory<Ball> pBallFactory) 
+        public EntityManager(IFactory<Paddle> pPaddleFactory, IFactory<Ball> pBallFactory)
         {
             // INSTANTIATE a new entity list
             _entities = new List<IEntity>();
@@ -56,7 +51,7 @@ namespace COMP3451Project.Managers
         /// </summary>
         public void Initialise()
         {
-            
+
         }
 
         /// <summary>
@@ -66,7 +61,7 @@ namespace COMP3451Project.Managers
         /// <param name="pLocation">The starting location of the entity</param>
         /// <param name="pTexture">The texture of the entity</param>
         /// <returns></returns>
-        public IEntity CreateEntity(int pEntityType , Vector2 pLocation , Texture2D pTexture)
+        public IEntity CreateEntity(int pEntityType, Vector2 pLocation, Texture2D pTexture)
         {
             // pOrderNumber dictates which entity will be instantiated
 
@@ -87,7 +82,7 @@ namespace COMP3451Project.Managers
 
                 ((PongEntity)entity).Content(pTexture);
             }
-            else if (pEntityType == 2) 
+            else if (pEntityType == 2)
             {
                 //entity = new Paddle(pLocation, PlayerIndex.Two);
                 entity = _paddleFactory.Create<Paddle>();
@@ -98,8 +93,8 @@ namespace COMP3451Project.Managers
                 // CALL Content inside PongEntity class - passing texture
                 ((PongEntity)entity).Content(pTexture);
             }
-            else 
-            {                
+            else
+            {
                 // CREATE a new ball using _ballFactory - SET to entity 
                 entity = _ballFactory.Create<Ball>();
 
@@ -120,7 +115,7 @@ namespace COMP3451Project.Managers
         /// A method used to temerinate entites
         /// </summary>
         /// <param name="pEntity">the entity being terminated</param>
-        public void Temerinate(IEntity pEntity) 
+        public void Temerinate(IEntity pEntity)
         {
             //Removes pEntity from the list
             _entities.Remove(pEntity);

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 
 /// <summary>
 /// Author Lucas Brennan
@@ -17,7 +10,7 @@ namespace Engine.InputEvents
     /// <summary>
     /// A class used to respond to inputs and publish those events
     /// </summary>
-    public class InputManager : IEventPublisher , IInputPublisher , IClickPublisher
+    public class InputManager : IEventPublisher, IInputPublisher, IClickPublisher
     {
         // A KeyboardState called keyboardstate
         KeyboardState _keyBoardState;
@@ -38,7 +31,7 @@ namespace Engine.InputEvents
                 OnNewInput();
             }
             // If mouse state is not the same as current mousestate this is true
-            if (_mouseState != Mouse.GetState()) 
+            if (_mouseState != Mouse.GetState())
             {
                 //Updates mouseState
                 _mouseState = Mouse.GetState();
@@ -56,26 +49,26 @@ namespace Engine.InputEvents
             if (NewInput != null)
             {
                 //  Raises the events and passes through the arugments
-                NewInput(this, new InputEventArgs(){keyboardState = this._keyBoardState });
+                NewInput(this, new InputEventArgs() { keyboardState = this._keyBoardState });
             }
         }
         /// <summary>
         /// A method that raises the NewClick event
         /// </summary>
-        protected virtual void OnNewClick() 
+        protected virtual void OnNewClick()
         {
             // If NewCLick is not null this is true
-            if (NewClick != null) 
+            if (NewClick != null)
             {
                 //Raises the event and passes this and the mousestate
-                NewClick(this, new ClickEventArgs() {mouseState = this._mouseState });
+                NewClick(this, new ClickEventArgs() { mouseState = this._mouseState });
             }
         }
 
-            /// <summary>
-            /// The constructor for the class
-            /// </summary>
-            public InputManager() 
+        /// <summary>
+        /// The constructor for the class
+        /// </summary>
+        public InputManager()
         {
             // INTALIZES the keyboardstate to the current state of the keyboard
             _keyBoardState = Keyboard.GetState();
@@ -100,7 +93,7 @@ namespace Engine.InputEvents
         /// Subscribes a listener
         /// </summary>
         /// <param name="listener">The object being subscribed</param>
-        public void subscribe(IKeyListener listener) 
+        public void subscribe(IKeyListener listener)
         {
             //Subscribes the listener to NewInput
             NewInput += listener.OnNewInput;
@@ -110,7 +103,7 @@ namespace Engine.InputEvents
         /// Removes a listener
         /// </summary>
         /// <param name="keyListener">listener being removed</param>
-        public void unSubscribe(IKeyListener keyListener) 
+        public void unSubscribe(IKeyListener keyListener)
         {
             //Unsubscribes the listener from the event
             NewInput -= keyListener.OnNewInput;
