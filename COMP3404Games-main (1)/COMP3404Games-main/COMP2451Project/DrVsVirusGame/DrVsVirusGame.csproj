@@ -49,15 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameBehaviours\DrVsVirusBehaviour.cs" />
+    <Compile Include="GameBehaviours\EnemyBehaviour\VirusBehaviour.cs" />
     <Compile Include="GameEntities\DrVsVirusEntity.cs" />
     <Compile Include="GameEntities\Enemy.cs" />
     <Compile Include="GameEntities\Virus.cs" />
+    <Compile Include="GameStates\DrVsVirusState.cs" />
+    <Compile Include="GameStates\VirusStates\VirusState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GameBehaviours\" />
-    <Folder Include="GameStates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.csproj">
       <Project>{368d4a46-e55b-4a8f-bb14-33d55ddc249e}</Project>

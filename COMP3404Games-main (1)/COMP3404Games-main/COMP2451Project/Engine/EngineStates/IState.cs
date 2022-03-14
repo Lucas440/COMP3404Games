@@ -1,4 +1,6 @@
-﻿namespace Engine.EngineStates
+﻿using Engine.EngineEntitys;
+
+namespace Engine.EngineStates
 {
     // AUTHOR: Flynn Osborne
     // DATE: 31/01/2022
@@ -14,5 +16,8 @@
         /// The method triggered when the entity collides
         /// </summary>
         void Collide();
+
+        // A property to set an return a state's linked entity
+        IEntity _entity { set; get; }
     }
 }
