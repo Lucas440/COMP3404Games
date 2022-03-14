@@ -1,4 +1,5 @@
 ﻿using COMP3451Project.Managers;
+using DrVsVirusGame.GameEntities;
 using Engine.Command;
 using Engine.EngineEntitys;
 using Engine.Factories;
@@ -32,8 +33,11 @@ namespace Engine.Managers
 
         // DECLARE a private variable calld_inputManager as IEventPublisher
         private IEventPublisher _inputManager;
-
+        //DCLARE a private variable called _commandScheduler as ICommandScheduler
         private ICommandScheduler _commandScheduler;
+
+        //DECLARE two Doubles pHeight and pWidth
+        double _height, _width;
 
         /// <summary>
         /// CONSTRUCTOR for EngineManager
@@ -61,10 +65,13 @@ namespace Engine.Managers
         /// METHOD 'Initialise' - Initialises the Engine Manager
         /// </summary>
         /// <param name="pSpriteFont">A Font for text</param>
-        public void Initialise(SpriteFont pSpriteFont)
+        public void Initialise(SpriteFont pSpriteFont, double pHeight, double pWidth)
         {
+            //sets
+            _height = pHeight;
+            _width = pWidth;
             // Call Initialise method for Entity Manager
-            _entityManager.Initialise();
+            _entityManager.Initialise(_factoryLocator);
 
             // CALL Initialise method for Collision Manager
             _collisionManager.Initialize(_entityManager.EntityList);
@@ -98,9 +105,6 @@ namespace Engine.Managers
         /// <param name="pContent"></param>
         public void LoadContent(ContentManager pContent)
         {
-            ///
-            // BALL INITIALISE
-            ///
 
             // DECLARE variable 'temptTexture' as type Texture2D - load 'square' texture onto ball
             Texture2D tempTexture = pContent.Load<Texture2D>("square");
@@ -117,107 +121,16 @@ namespace Engine.Managers
             // SET 'vector' Y coordinate to 500
             _vector.Y = 500;
 
-            // SET 'tempEntity' to value returned from CreateEntity method inside EntityManager
-            tempEntity = _entityManager.CreateEntity(3, _vector, tempTexture);
-
-            // CALL 'AddEntity' method inside SceneManager - passing tempEntity
+            //Creates a new Virus Entity
+            tempEntity = _entityManager.CreateEntity<Virus>();
+            //Sets the boundarys for tempEntity
+            ((ICollidable)tempEntity).setBoundaries(_width , _height);
+            //Sets the texture of tempEntity to tempTexture
+            ((EngineEntitys.IDrawable)tempEntity).Content(tempTexture);
+            //Sets the starting location to _vector
+            ((DrVsVirusEntity)tempEntity).StartingLocation(_vector);
+            //Adds tempEntity to the screen
             _sceneManager.AddEntity(tempEntity);
-
-            //Creates a new ICOmmand called removeCommand
-            ICommand removeCommand = (_factoryLocator.Get<ICommandOneParam<IEntity>>() as IFactory<ICommandOneParam<IEntity>>).Create<CommandOneParam<IEntity>>();
-            //Creates a new ICOmmand called terminateCommand
-            ICommand terminateCommand = (_factoryLocator.Get<ICommandOneParam<IEntity>>() as IFactory<ICommandOneParam<IEntity>>).Create<CommandOneParam<IEntity>>();
-            //Creates a new ICOmmand called schedualCommand
-            ICommand schedualCommand = (_factoryLocator.Get<ICommandOneParam<Action>>() as IFactory<ICommandOneParam<Action>>).Create<CommandOneParam<Action>>();
-
-
-
-            //Sets the action of the command to _sceneManagers remove method
-            ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
-            //Sets the data of the command to the entity
-            ((ICommandOneParam<IEntity>)removeCommand).SetData = tempEntity;
-            //Sets the removeMe Command to Command
-            ((IEntityInternal)tempEntity).RemoveMe = removeCommand;
-            //Sets the action to _entityManagers Temerinate
-            ((ICommandOneParam<IEntity>)terminateCommand).SetAction = _entityManager.Temerinate;
-            //Sets the data of the command to the entity
-            ((ICommandOneParam<IEntity>)terminateCommand).SetData = tempEntity;
-            //Sets the TerminateMe Command to Command
-            ((IEntityInternal)tempEntity).TerminateMe = terminateCommand;
-            //Sets the ScheduleCommand property to _commandSchedulers method ExecuteCommand
-            ((ICommandSender)tempEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
-
-            ///
-            // PADDLE 1 INITIALISE
-            /// 
-
-            // SET 'tempTexture' to 'paddle' texture from 'Load' method - assign paddle texture to paddles
-            tempTexture = pContent.Load<Texture2D>("paddle");
-
-            // SET '_vector' X coordinate to 0
-            _vector.X = 0;
-
-            // SET '_vector' Y coordinate to 0
-            _vector.Y = 0;
-
-            // SET 'tempEntity' to value returned from CreateEntity method inside EntityManager
-            tempEntity = _entityManager.CreateEntity(1, _vector, tempTexture);
-
-            // CALL Subscribe method inside InputManager - subscribes to an input publisher
-            ((IInputPublisher)_inputManager).subscribe(((IKeyListener)tempEntity));
-
-            // CALL 'AddEntity' method inside SceneManager to ADD entity to scene
-            _sceneManager.AddEntity(tempEntity);
-            /*
-            //Sets the action of the command to _sceneManagers remove method
-            ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
-            //Sets the data of the command to the entity
-            ((ICommandOneParam<IEntity>)removeCommand).SetData = tempEntity;
-            //Sets the removeMe Command to Command
-            ((IEntityInternal)tempEntity).RemoveMe = removeCommand;
-            //Sets the action to _entityManagers Temerinate
-            ((ICommandOneParam<IEntity>)terminateCommand).SetAction = _entityManager.Temerinate;
-            //Sets the data of the command to the entity
-            ((ICommandOneParam<IEntity>)terminateCommand).SetData = tempEntity;
-            //Sets the TerminateMe Command to Command
-            ((IEntityInternal)tempEntity).TerminateMe = terminateCommand;
-            //Sets the ScheduleCommand property to _commandSchedulers method ExecuteCommand
-            ((ICommandSender)tempEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
-            */
-            ///
-            // PADDLE 2 INITIALISE
-            ///
-
-            // SET '_vector' X coordinate to 850
-            _vector.X = 850;
-
-            // SET '_vector' Y coordinate to 0
-            _vector.Y = 0;
-
-            // SET 'tempEntity' to value returned from CreateEntity method inside EntityManager
-            tempEntity = _entityManager.CreateEntity(2, _vector, tempTexture);
-
-            // CALL 'Subscribe' method inside InputManager - subscribes to an input publisher
-            ((IInputPublisher)_inputManager).subscribe(((IKeyListener)tempEntity));
-
-            // CALL 'AddEntity' method inside SceneManager to ADD entity to scene
-            _sceneManager.AddEntity(tempEntity);
-            /*
-            //Sets the action of the command to _sceneManagers remove method
-            ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
-            //Sets the data of the command to the entity
-            ((ICommandOneParam<IEntity>)removeCommand).SetData = tempEntity;
-            //Sets the removeMe Command to Command
-            ((IEntityInternal)tempEntity).RemoveMe = removeCommand;
-            //Sets the action to _entityManagers Temerinate
-            ((ICommandOneParam<IEntity>)terminateCommand).SetAction = _entityManager.Temerinate;
-            //Sets the data of the command to the entity
-            ((ICommandOneParam<IEntity>)terminateCommand).SetData = tempEntity;
-            //Sets the TerminateMe Command to Command
-            ((IEntityInternal)tempEntity).TerminateMe = terminateCommand;
-            //Sets the ScheduleCommand property to _commandSchedulers method ExecuteCommand
-            ((ICommandSender)tempEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
-            */
         }
 
         /// <summary>

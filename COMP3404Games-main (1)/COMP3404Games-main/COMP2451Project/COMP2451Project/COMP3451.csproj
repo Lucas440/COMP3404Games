@@ -64,6 +64,10 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DrVsVirusGame\DrVsVirusGame.csproj">
+      <Project>{486e8c85-7636-49d7-9a62-13fcc4176afd}</Project>
+      <Name>DrVsVirusGame</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Engine\Engine.csproj">
       <Project>{368d4a46-e55b-4a8f-bb14-33d55ddc249e}</Project>
       <Name>Engine</Name>

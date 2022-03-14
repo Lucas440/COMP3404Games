@@ -63,3 +63,5 @@ C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Game
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP2451Project.exe
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP2451Project.pdb
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Text.xnb
+C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\DrVsVirusGame.dll
+C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\DrVsVirusGame.pdb

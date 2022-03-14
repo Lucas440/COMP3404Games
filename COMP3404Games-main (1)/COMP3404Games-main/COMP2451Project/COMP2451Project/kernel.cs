@@ -70,10 +70,15 @@ namespace Engine
         /// </summary>
         protected override void Initialize()
         {
+            // SET ScreenHeight to viewport height - height of the screen
+            ScreenHeight = GraphicsDevice.Viewport.Height;
+
+            // SET ScreenWidth to viewport width - width of the screen
+            ScreenWidth = GraphicsDevice.Viewport.Width;
             //Creates a new spriteFont and loads a default text font into it
             SpriteFont spriteFont = Content.Load<SpriteFont>("Text");
             // CALL Initialise method inside EngineManager - Passes the spriteFont
-            _engineManager.Initialise(spriteFont);
+            _engineManager.Initialise(spriteFont , ScreenHeight , ScreenWidth);
 
             // CALL Initiaise method inside base class
             base.Initialize();

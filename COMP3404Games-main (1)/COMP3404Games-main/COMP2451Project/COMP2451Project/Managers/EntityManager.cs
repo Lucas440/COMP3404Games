@@ -3,6 +3,7 @@ using Engine.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PongGame.Entities;
+using System;
 using System.Collections.Generic;
 
 /// <summary>
@@ -23,11 +24,7 @@ namespace COMP3451Project.Managers
         // DECLARE variable '_entityList' as type IList<IEntity>
         public IList<IEntity> EntityList { get => _entities; }
 
-        // DECLARE variable '_paddleFactory' as type IFactory<Paddle>
-        private IFactory<Paddle> _paddleFactory;
-
-        // DECLARE variable '_ballFactory' as type IFactory<Ball>
-        private IFactory<Ball> _ballFactory;
+        IFactoryLocator _factoryLocator;
 
         /// <summary>
         /// CONSTRUCTOR 'EntityManager' - called upon Instantiation
@@ -39,77 +36,29 @@ namespace COMP3451Project.Managers
             // INSTANTIATE a new entity list
             _entities = new List<IEntity>();
 
-            // SET _paddleFactory to pPaddleFactory
-            _paddleFactory = pPaddleFactory;
-
-            // SET _ballFactory to pBallFactory parameter
-            _ballFactory = pBallFactory;
         }
+
 
         /// <summary>
         /// METHOD 'Initialise' - Intialises EntityManager
         /// </summary>
-        public void Initialise()
+        /// <param name="pLocator">A FactoryLocator</param>
+        public void Initialise(IFactoryLocator pLocator)
         {
-
+            //Sets _factoryLocator to pLocator
+            _factoryLocator = pLocator;
         }
+
 
         /// <summary>
         /// METHOD 'CreateEntity'- creates entities
         /// </summary>
-        /// <param name="pEntityType">An number representing which type of entity is being created</param>
-        /// <param name="pLocation">The starting location of the entity</param>
-        /// <param name="pTexture">The texture of the entity</param>
-        /// <returns></returns>
-        public IEntity CreateEntity(int pEntityType, Vector2 pLocation, Texture2D pTexture)
+        /// <typeparam name="C">The Child Class of IEntity</typeparam>
+        /// <returns>A New object of type IEntity</returns>
+        public IEntity CreateEntity<C>() where C : IEntity, new()
         {
-            // pOrderNumber dictates which entity will be instantiated
-
-            /////////////////////////////
-            // 1 = Paddle (Player 1)
-            // 2 = Paddle (Player 2)
-            // other = Ball
-            /////////////////////////////
-
-            // RETURN the chosen entity
-            IEntity entity;
-            if (pEntityType == 1)
-            {
-                //entity = new Paddle(pLocation, PlayerIndex.One);
-
-                entity = _paddleFactory.Create<Paddle>();
-                ((Paddle)entity).Initalise(pLocation, PlayerIndex.One);
-
-                ((PongEntity)entity).Content(pTexture);
-            }
-            else if (pEntityType == 2)
-            {
-                //entity = new Paddle(pLocation, PlayerIndex.Two);
-                entity = _paddleFactory.Create<Paddle>();
-
-                // CALL Initialise inside Paddle class - passing location and player index
-                ((Paddle)entity).Initalise(pLocation, PlayerIndex.Two);
-
-                // CALL Content inside PongEntity class - passing texture
-                ((PongEntity)entity).Content(pTexture);
-            }
-            else
-            {
-                // CREATE a new ball using _ballFactory - SET to entity 
-                entity = _ballFactory.Create<Ball>();
-
-                // CALL Initialise inside Ball class - passing location
-                ((Ball)entity).Initialise(pLocation);
-
-                // CALL Content inside PongEntity class - passing texture
-                ((PongEntity)entity).Content(pTexture);
-            }
-
-            // ADD entity to 'entities' list
-            _entities.Add(entity);
-
-            // RETURN entity
-            return entity;
+            //Creates and Returns a new IEntity using _factoryLoactor
+            return (_factoryLocator.Get<IEntity>() as IFactory<IEntity>).Create<C>();
         }
         /// <summary>
         /// A method used to temerinate entites

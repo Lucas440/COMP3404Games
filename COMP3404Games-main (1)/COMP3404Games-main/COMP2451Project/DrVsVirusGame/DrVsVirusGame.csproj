@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameEntities\DrVsVirusEntity.cs" />
+    <Compile Include="GameEntities\Enemy.cs" />
+    <Compile Include="GameEntities\Virus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
