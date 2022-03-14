@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "..\Engine\Engine.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongGame", "..\PongGame\PongGame.csproj", "{C7483879-6157-42AF-B965-36DF1594BCAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrVsVirusGame", "..\DrVsVirusGame\DrVsVirusGame.csproj", "{486E8C85-7636-49D7-9A62-13FCC4176AFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{C7483879-6157-42AF-B965-36DF1594BCAC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7483879-6157-42AF-B965-36DF1594BCAC}.Release|x86.ActiveCfg = Release|Any CPU
 		{C7483879-6157-42AF-B965-36DF1594BCAC}.Release|x86.Build.0 = Release|Any CPU
+		{486E8C85-7636-49D7-9A62-13FCC4176AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{486E8C85-7636-49D7-9A62-13FCC4176AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{486E8C85-7636-49D7-9A62-13FCC4176AFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{486E8C85-7636-49D7-9A62-13FCC4176AFD}.Debug|x86.Build.0 = Debug|Any CPU
+		{486E8C85-7636-49D7-9A62-13FCC4176AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{486E8C85-7636-49D7-9A62-13FCC4176AFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{486E8C85-7636-49D7-9A62-13FCC4176AFD}.Release|x86.ActiveCfg = Release|Any CPU
+		{486E8C85-7636-49D7-9A62-13FCC4176AFD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

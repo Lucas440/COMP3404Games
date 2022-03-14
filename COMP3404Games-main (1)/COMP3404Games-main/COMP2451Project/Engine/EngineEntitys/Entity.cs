@@ -23,6 +23,11 @@ namespace Engine.EngineEntitys
         // Creates a vector called ballLocn
         protected Vector2 _entityLocn;
 
+        //DECLARE a double called _screenWidth
+        protected double _screenWidth;
+        //DECLARE a double called _screenHight
+        protected double _screenHight;
+
         /// <summary>
         /// Updates the entity on each loop
         /// </summary>
