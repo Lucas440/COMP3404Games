@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
 /// <summary>
-/// Author Lucas Brennan
+/// AUTHOR: Lucas Brennan
+/// MODIFIED BY: Flynn Osborne
 /// 
-/// Date 14/02/22
+/// DATE: 14/03/2022
 /// </summary>
 namespace Engine.InputEvents
 {
@@ -14,7 +15,7 @@ namespace Engine.InputEvents
     {
         // A KeyboardState called keyboardstate
         KeyboardState _keyBoardState;
-        //A MouseState called mouseState
+        // A MouseState called mouseState
         MouseState _mouseState;
 
         /// <summary>
@@ -31,12 +32,17 @@ namespace Engine.InputEvents
                 OnNewInput();
             }
             // If mouse state is not the same as current mousestate this is true
-            if (_mouseState != Mouse.GetState())
+            if (_mouseState.LeftButton != Mouse.GetState().LeftButton)
             {
-                //Updates mouseState
+                if (_mouseState.LeftButton == ButtonState.Released)
+                {
+                    // Calls OnNewClick method
+                    OnNewClick();
+                }
+
+                // Updates mouseState
                 _mouseState = Mouse.GetState();
-                //Calls onNewCLick method
-                OnNewClick();
+
             }
 
         }
@@ -109,7 +115,7 @@ namespace Engine.InputEvents
             NewInput -= keyListener.OnNewInput;
         }
 
-        // ------------------------------------------------- IClickPublisher implemntation -----------------------------------------------
+        // ------------------------------------------------- IClickPublisher implementation -----------------------------------------------
 
         /// <summary>
         /// A delagate for the mouseclick event
