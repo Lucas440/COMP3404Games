@@ -8,7 +8,7 @@ namespace Engine.InputEvents
     /// <summary>
     /// An interface used to reprsent an object that publishes Clicks
     /// </summary>
-    interface IClickPublisher
+    public interface IClickPublisher
     {
         /// <summary>
         /// Subscribes a listener

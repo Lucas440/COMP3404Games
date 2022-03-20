@@ -51,13 +51,15 @@ namespace Engine
             graphics.PreferredBackBufferHeight = 900;
 
             // Sets the screen width to 900
-            graphics.PreferredBackBufferWidth = 900;
+            graphics.PreferredBackBufferWidth = 1600;
 
             // SET _engineManager to the parameter value passed from Program
             _engineManager = pengineManager;
 
             // INSTANTIATE '_factories' as new FactoryLocator
             _factories = new FactoryLocator();
+
+            IsMouseVisible = true;
         }
 
         /// <summary>

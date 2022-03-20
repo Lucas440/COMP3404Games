@@ -27,3 +27,4 @@ C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Game
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\Engine\obj\Debug\Engine.csproj.CopyComplete
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\Engine\obj\Debug\Engine.dll
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\Engine\obj\Debug\Engine.pdb
+C:\Users\lucas\source\repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\Engine\obj\Debug\Engine.csproj.AssemblyReference.cache

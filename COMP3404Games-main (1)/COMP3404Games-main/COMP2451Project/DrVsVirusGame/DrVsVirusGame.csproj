@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="GameBehaviours\DrVsVirusBehaviour.cs" />
     <Compile Include="GameBehaviours\EnemyBehaviour\VirusBehaviour.cs" />
+    <Compile Include="GameEntities\Cannon.cs" />
+    <Compile Include="GameEntities\CannonBall.cs" />
     <Compile Include="GameEntities\DrVsVirusEntity.cs" />
     <Compile Include="GameEntities\Enemy.cs" />
     <Compile Include="GameEntities\Virus.cs" />

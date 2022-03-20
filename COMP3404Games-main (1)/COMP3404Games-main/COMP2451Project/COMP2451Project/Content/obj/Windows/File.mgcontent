@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/lucas/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/File.spritefont</SourceFile>
+  <SourceFile>C:/Users/lucas/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/File.spritefont</SourceFile>
   <SourceTime>2022-03-15T13:24:28.9186938+00:00</SourceTime>
-  <DestFile>C:/Users/lucas/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/bin/Windows/File.xnb</DestFile>
-  <DestTime>2022-03-15T13:27:29.4593944+00:00</DestTime>
+  <DestFile>C:/Users/lucas/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/bin/Windows/File.xnb</DestFile>
+  <DestTime>2022-03-20T14:02:40.9305054+00:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-03-30T07:36:08+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

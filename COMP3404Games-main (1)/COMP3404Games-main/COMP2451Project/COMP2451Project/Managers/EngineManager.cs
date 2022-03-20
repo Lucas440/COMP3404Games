@@ -112,25 +112,30 @@ namespace Engine.Managers
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
 
-            // DECLARE AND INSTANTIATE variable 'v' as new Vector2
-            Vector2 _vector = new Vector2();
 
-            // SET 'vector' X coordinate to 500
-            _vector.X = 500;
-
-            // SET 'vector' Y coordinate to 500
-            _vector.Y = 500;
 
             //Creates a new Virus Entity
             tempEntity = _entityManager.CreateEntity<Virus>();
+
+            InitaliseEntity(tempEntity , tempTexture , new Vector2(-1 , -1));
+
+            tempEntity = _entityManager.CreateEntity<Cannon>();
+
+            InitaliseEntity(tempEntity , tempTexture , new Vector2(-1, -1));
+            ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
+
+        }
+
+        private void InitaliseEntity(IEntity pEntity , Texture2D pTexture , Vector2 pPosition) 
+        {
             //Sets the boundarys for tempEntity
-            ((ICollidable)tempEntity).setBoundaries(_width , _height);
+            ((ICollidable)pEntity).setBoundaries(_width, _height);
             //Sets the texture of tempEntity to tempTexture
-            ((EngineEntitys.IDrawable)tempEntity).Content(tempTexture);
-            //Sets the starting location to _vector
-            ((DrVsVirusEntity)tempEntity).StartingLocation(_vector);
+            ((EngineEntitys.IDrawable)pEntity).Content(pTexture);
+                //Sets the starting location to _vector
+                ((DrVsVirusEntity)pEntity).StartingLocation(pPosition); 
             //Adds tempEntity to the screen
-            _sceneManager.AddEntity(tempEntity);
+            _sceneManager.AddEntity(pEntity);
         }
 
         /// <summary>

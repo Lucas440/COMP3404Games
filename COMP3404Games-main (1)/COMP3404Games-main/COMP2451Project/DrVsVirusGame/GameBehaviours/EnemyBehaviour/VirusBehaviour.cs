@@ -16,6 +16,18 @@ namespace DrVsVirusGame.GameBehaviours.EnemyBehaviour
     /// </summary>
     public class VirusBehaviour : DrVsVirusBehaviour
     {
+        //The speed of the Virus
+        private int speed;
+
+        /// <summary>
+        /// The Default Constructor
+        /// </summary>
+        public VirusBehaviour() 
+        {
+            //Sets the Virus speed to 5
+            speed = -3;
+        }
+
         /// <summary>
         /// A Method the responds to a updates
         /// </summary>
@@ -29,7 +41,7 @@ namespace DrVsVirusGame.GameBehaviours.EnemyBehaviour
             if (UpdateEventArgs.ActiveBehaviour.ToLower() == "moving") 
             {
                 //_location is reduced by 1
-                _location.X--;
+                _location.X += speed;
             }
         }
     }
