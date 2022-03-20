@@ -73,7 +73,7 @@ namespace DrVsVirusGame.GameEntities
                                 float X = (top.X + bottom.X) / 2;
                                 float Y = (top.Y + bottom.Y) / 2;
 
-                                _ball.StartMoving(new Vector2(X , Y));
+                                _ball.StartMoving(new Vector2(args.mouseState.X , args.mouseState.Y));
 
                             }
                         }

@@ -73,9 +73,15 @@ namespace DrVsVirusGame.GameEntities
                     yReached = true;
                 }
 
+                if (_entityLocn.Y <= _moveToo.Y - 10 && _entityLocn.Y >= _moveToo.Y + 10)
+                {
+                    yReached = true;
+                }
+
                 if (xReached && yReached) 
                 {
                     _moving = false;
+                    _entityLocn = new Vector2();
                 }
             }
         }
