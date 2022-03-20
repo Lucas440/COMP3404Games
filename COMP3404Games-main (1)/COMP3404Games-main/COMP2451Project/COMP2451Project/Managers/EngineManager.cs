@@ -123,7 +123,9 @@ namespace Engine.Managers
 
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1, -1));
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
-
+            IEntity tempCannonBall = _entityManager.CreateEntity<CannonBall>();
+            InitaliseEntity(tempCannonBall , tempTexture , new Vector2());
+            ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
         }
 
         private void InitaliseEntity(IEntity pEntity , Texture2D pTexture , Vector2 pPosition) 

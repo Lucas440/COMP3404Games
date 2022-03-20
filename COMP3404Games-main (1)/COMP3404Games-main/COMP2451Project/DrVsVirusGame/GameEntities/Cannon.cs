@@ -20,6 +20,7 @@ namespace DrVsVirusGame.GameEntities
     {
         Vector2[,] _cannonLanding;
 
+        CannonBall _ball;
 
         /// <summary>
         /// A Method which sets the screens boundarys
@@ -44,6 +45,11 @@ namespace DrVsVirusGame.GameEntities
             }
         }
 
+        public void SetCannonBall(CannonBall pBall) 
+        {
+            _ball = pBall;
+        }
+
         // ---------------------------------------- IClick Listener Implenetation ------------------------------------------------
 
         /// <summary>
@@ -64,8 +70,10 @@ namespace DrVsVirusGame.GameEntities
                             if (args.mouseState.Y > top.Y && args.mouseState.Y < bottom.Y) 
                             {
 
-                                double X = (top.X + bottom.X) / 2;
-                                double Y = (top.Y + bottom.Y) / 2;
+                                float X = (top.X + bottom.X) / 2;
+                                float Y = (top.Y + bottom.Y) / 2;
+
+                                _ball.StartMoving(new Vector2(X , Y));
 
                             }
                         }
