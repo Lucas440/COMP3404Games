@@ -83,7 +83,7 @@ namespace DrVsVirusGame.GameEntities
 
             if (_entityLocn.X < 0) 
             {
-                Environment.Exit(1);
+                //Environment.Exit(1);
             }
         }
     }

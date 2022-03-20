@@ -59,7 +59,7 @@ namespace DrVsVirusGame.GameEntities
         /// <param name="args">The event argument</param>
         public void OnNewClick(object sender , ClickEventArgs args) 
         {
-            if (args.mouseState.LeftButton == ButtonState.Released)
+            if (args.mouseState.LeftButton == ButtonState.Pressed)
             {
                 foreach (Vector2 top in _cannonLanding)
                 {

@@ -116,18 +116,27 @@ namespace Engine.Managers
 
             //Creates a new Virus Entity
             tempEntity = _entityManager.CreateEntity<Virus>();
-
+            //Calls intialise entity
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1 , -1));
-
+            //Creates a new Cannon Entity
             tempEntity = _entityManager.CreateEntity<Cannon>();
-
+            //Intialises canoon
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1, -1));
+            //Subscribes cannon to _inputManager
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
+            //CREATEs a new Entity calld tempCannonBall
             IEntity tempCannonBall = _entityManager.CreateEntity<CannonBall>();
+            //Initalises tempCannonBall
             InitaliseEntity(tempCannonBall , tempTexture , new Vector2());
+            //Passes TempCannonBall to the cannon entity
             ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
         }
-
+        /// <summary>
+        /// A Method that intialises entitys
+        /// </summary>
+        /// <param name="pEntity">The Entity being intialised</param>
+        /// <param name="pTexture">The Texture of the entity</param>
+        /// <param name="pPosition">the Position of the entity</param>
         private void InitaliseEntity(IEntity pEntity , Texture2D pTexture , Vector2 pPosition) 
         {
             //Sets the boundarys for tempEntity

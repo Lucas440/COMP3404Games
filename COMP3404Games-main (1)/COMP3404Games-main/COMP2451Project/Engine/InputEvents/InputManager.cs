@@ -34,7 +34,7 @@ namespace Engine.InputEvents
             // If mouse state is not the same as current mousestate this is true
             if (_mouseState.LeftButton != Mouse.GetState().LeftButton)
             {
-                if (_mouseState.LeftButton == ButtonState.Released)
+                if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
                     // Calls OnNewClick method
                     OnNewClick();
