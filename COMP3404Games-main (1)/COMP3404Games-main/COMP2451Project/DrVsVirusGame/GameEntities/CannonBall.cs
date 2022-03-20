@@ -37,6 +37,8 @@ namespace DrVsVirusGame.GameEntities
         {
             _moveToo = pMoveToo;
             _moving = true;
+            xReached = false;
+            yReached = false;
         }
 
         public override void update()
@@ -81,7 +83,8 @@ namespace DrVsVirusGame.GameEntities
                 if (xReached && yReached) 
                 {
                     _moving = false;
-                    _entityLocn = new Vector2();
+                    _entityLocn.Y = 0;
+                    _entityLocn.X = 0;
                 }
             }
         }
