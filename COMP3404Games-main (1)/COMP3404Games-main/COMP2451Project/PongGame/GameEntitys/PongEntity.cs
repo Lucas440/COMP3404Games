@@ -119,15 +119,6 @@ namespace PongGame.Entities
             _Entity = texture;
         }
 
-        /// <summary>
-        /// Returns the objects Position
-        /// </summary>
-        /// <returns>The entity current position</returns>
-        public override Vector2 position()
-        {
-            return _entityLocn;
-        }
-
     }
 
 

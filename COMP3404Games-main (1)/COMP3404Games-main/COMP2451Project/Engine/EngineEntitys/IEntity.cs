@@ -19,8 +19,7 @@ namespace Engine.EngineEntitys
         /// <summary>
         /// Returns the objects Position
         /// </summary>
-        /// <returns>The entity current position</returns>
-        Vector2 position();
+        Vector2 Position { get; }
         /// <summary>
         /// A property that returns the state the program is in as a string
         /// </summary>

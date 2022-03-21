@@ -36,7 +36,7 @@ namespace DrVsVirusGame.GameBehaviours.EnemyBehaviour
         public override void OnUpdate(object sender, UpdateEventArgs UpdateEventArgs)
         {
             //Sets _location to the entitys position
-            _location = _myEntity.position();
+            _location = _myEntity.Position;
             //If the Argument is "moving" this is true
             if (UpdateEventArgs.ActiveBehaviour.ToLower() == "moving") 
             {

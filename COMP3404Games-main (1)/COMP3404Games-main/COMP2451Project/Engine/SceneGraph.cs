@@ -55,17 +55,17 @@ namespace Engine
                 try
                 {
                     // CALL Draw method for each IDrawable entity in the _entityList
-                    spriteBatch.Draw(((EngineEntitys.IDrawable)_entityList[i]).texture(), _entityList[i].position(), Color.AntiqueWhite);
+                    spriteBatch.Draw(((EngineEntitys.IDrawable)_entityList[i]).texture(), _entityList[i].Position, Color.AntiqueWhite);
                     //If the x position is less than 700 this is true
-                    if (_entityList[i].position().X < 700)
+                    if (_entityList[i].Position.X < 700)
                     {
                         //Draws text on the screen for the current entity
-                        spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].position().X, 800), Color.Black);
+                        spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].Position.X, 800), Color.Black);
                     }
                     else 
                     {
                         //Draws text on the screen for the current entity
-                        spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].position().X - 200, 800), Color.Black);
+                        spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].Position.X - 200, 800), Color.Black);
                     }
                 }
                 // IF TRY fails then throw exception

@@ -36,12 +36,7 @@ namespace Engine.EngineEntitys
         /// <summary>
         /// Returns the objects Position
         /// </summary>
-        /// <returns>The entity current position</returns>
-        public virtual Vector2 position()
-        {
-            // Returns the entity's location
-            return _entityLocn;
-        }
+        public Vector2 Position { get => _entityLocn; }
         /// <summary>
         /// A Property that returns the state as a text
         /// </summary>

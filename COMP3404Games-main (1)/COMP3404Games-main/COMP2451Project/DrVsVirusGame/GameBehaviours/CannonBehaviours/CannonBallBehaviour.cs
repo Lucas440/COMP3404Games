@@ -51,8 +51,8 @@ namespace DrVsVirusGame.GameBehaviours.CannonBehaviours
         private void CalculateSpeed(CannonBall pCannonBall) 
         {
             //Calculates the speed by using the distance from the target divided by the time
-            _xSpeed = pCannonBall.Target.X / _time;
-            _ySpeed = pCannonBall.Target.Y / _time;
+            _xSpeed = (pCannonBall.Target.X - _location.X) / _time;
+            _ySpeed = (pCannonBall.Target.Y - _location.Y) / _time;
         }
 
         /// <summary>
@@ -65,6 +65,10 @@ namespace DrVsVirusGame.GameBehaviours.CannonBehaviours
             //DECLARES xReached and yReached flags and sets them to false
             bool _xReached = false;
             bool _yReached = false;
+
+            //Sets _location to the sender position
+            _location = ((IEntity)sender).Position;
+
             //If xSpeed and _ySpeed are 0 this is true
             if (_xSpeed == 0 && _ySpeed == 0) 
             {
@@ -72,8 +76,6 @@ namespace DrVsVirusGame.GameBehaviours.CannonBehaviours
                 CalculateSpeed((CannonBall)sender);
             }
 
-            //Sets _location to the sender position
-            _location = ((IEntity)sender).position();
 
             //If the entites X position is less than the X position it needs to move to
             // And xReached flag is false, This is true
