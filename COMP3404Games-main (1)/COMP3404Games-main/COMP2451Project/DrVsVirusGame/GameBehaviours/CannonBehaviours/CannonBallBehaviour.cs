@@ -40,7 +40,7 @@ namespace DrVsVirusGame.GameBehaviours.CannonBehaviours
             _ySpeed = 0;
             _xSpeed = 0;
             //Sets time to 60 frames of 1 second
-            _time = 60;
+            _time = 180;
         }
 
         /// <summary>

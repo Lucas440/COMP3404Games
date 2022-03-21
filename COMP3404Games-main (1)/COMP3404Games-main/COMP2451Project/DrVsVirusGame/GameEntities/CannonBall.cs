@@ -64,6 +64,7 @@ namespace DrVsVirusGame.GameEntities
         /// <param name="pTarget">The target of the cannonball</param>
         public void StartMoving(Vector2 pTarget)
         {
+
             //Sets the _target to pTarget
             _target = pTarget;
             //sets _isMoving to true
