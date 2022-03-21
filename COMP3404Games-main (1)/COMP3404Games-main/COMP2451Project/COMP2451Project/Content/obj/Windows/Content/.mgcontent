@@ -4,12 +4,12 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/brel1_19/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/File.spritefont</File>
     <File>C:/Users/brel1_19/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/paddle.png</File>
     <File>C:/Users/brel1_19/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/square.png</File>
+    <File>C:/Users/brel1_19/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/File.spritefont</File>
   </SourceFiles>
   <DestFiles>
-    <File>Text.spritefont</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

@@ -21,8 +21,9 @@ namespace DrVsVirusGame.GameEntities
         //DECLARE a Bool called _moving
         bool _moving;
 
-        bool xReached = false;
-        bool yReached = false;
+        bool xReached;
+        bool yReached;
+
         /// <summary>
         /// The Default Constructor
         /// </summary>
@@ -40,7 +41,9 @@ namespace DrVsVirusGame.GameEntities
             xReached = false;
             yReached = false;
         }
-
+        /// <summary>
+        /// A method used to update the object
+        /// </summary>
         public override void update()
         {
             base.update();
@@ -57,7 +60,7 @@ namespace DrVsVirusGame.GameEntities
                     _entityLocn.X--;
                 }
 
-                if (_entityLocn.X  <= _moveToo.X - 10 && _entityLocn.X >= _moveToo.X + 10) 
+                if (_entityLocn.X  >= _moveToo.X - 10 && _entityLocn.X <= _moveToo.X + 10) 
                 {
                     xReached = true;
                 }
@@ -75,7 +78,7 @@ namespace DrVsVirusGame.GameEntities
                     yReached = true;
                 }
 
-                if (_entityLocn.Y <= _moveToo.Y - 10 && _entityLocn.Y >= _moveToo.Y + 10)
+                if (_entityLocn.Y >= _moveToo.Y - 10 && _entityLocn.Y <= _moveToo.Y + 10)
                 {
                     yReached = true;
                 }
