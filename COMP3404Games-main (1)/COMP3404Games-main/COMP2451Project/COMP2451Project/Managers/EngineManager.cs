@@ -36,7 +36,7 @@ namespace Engine.Managers
         //DCLARE a private variable called _commandScheduler as ICommandScheduler
         private ICommandScheduler _commandScheduler;
 
-        //DECLARE two Doubles pHeight and pWidth
+        //DECLARE two Doubles _height and _width
         double _height, _width;
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Engine.Managers
             // INSTANTIATE '_collisionManager' as new CollisionManager
             _collisionManager = (_factoryLocator.Get<ColisionManager>() as IFactory<ColisionManager>).Create<ColisionManager>();
             // INSTANTIATE '_entityManager' as new EntityManager
-            _entityManager = new EntityManager(_factoryLocator.Get<Paddle>() as IFactory<Paddle>, _factoryLocator.Get<Ball>() as IFactory<Ball>);
+            _entityManager = (_factoryLocator.Get<EntityManager>() as IFactory<EntityManager>).Create<EntityManager>();
             //INSTANTIATE _commandScheduler as new CommandSchedular
             _commandScheduler = (_factoryLocator.Get<ICommandScheduler>() as IFactory<ICommandScheduler>).Create<CommandScheduler>();
         }
@@ -65,6 +65,8 @@ namespace Engine.Managers
         /// METHOD 'Initialise' - Initialises the Engine Manager
         /// </summary>
         /// <param name="pSpriteFont">A Font for text</param>
+        /// <param name="pHeight">The hight of the screen</param>
+        /// <param name="pWidth">The width of the screen</param>
         public void Initialise(SpriteFont pSpriteFont, double pHeight, double pWidth)
         {
             //sets
@@ -111,8 +113,6 @@ namespace Engine.Managers
 
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
-
-
 
             //Creates a new Virus Entity
             tempEntity = _entityManager.CreateEntity<Virus>();

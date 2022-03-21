@@ -48,7 +48,7 @@ namespace Engine.EngineEntitys
         /// <param name="pState">The state the entity must change to</param>
         public virtual void SetState(IState pState)
         {
-
+            _state = pState;
         }
 
         //----------------------------------------------------------------- ICommandSender Implementation ----------------------------------

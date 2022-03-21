@@ -31,7 +31,7 @@ namespace COMP3451Project.Managers
         /// </summary>
         /// <param name="pPaddleFactory"></param>
         /// <param name="pBallFactory"></param>
-        public EntityManager(IFactory<Paddle> pPaddleFactory, IFactory<Ball> pBallFactory)
+        public EntityManager()
         {
             // INSTANTIATE a new entity list
             _entities = new List<IEntity>();

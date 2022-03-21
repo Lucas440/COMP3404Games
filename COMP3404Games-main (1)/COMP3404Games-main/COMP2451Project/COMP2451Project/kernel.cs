@@ -59,7 +59,10 @@ namespace Engine
             // INSTANTIATE '_factories' as new FactoryLocator
             _factories = new FactoryLocator();
 
+            //Allows the user to see the mouse
             IsMouseVisible = true;
+            //Sets the mouse Cursor to a crosshair
+            Mouse.PlatformSetCursor( MouseCursor.Crosshair);
         }
 
         /// <summary>

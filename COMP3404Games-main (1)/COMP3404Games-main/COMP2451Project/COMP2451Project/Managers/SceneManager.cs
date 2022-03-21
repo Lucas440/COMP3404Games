@@ -16,16 +16,16 @@ namespace Engine.Managers
     public class SceneManager
     {
         // DECLARE a new List called entityList
-        List<IEntity> _entityList;
+        private List<IEntity> _entityList;
 
         // DECLARE private variable '_sceneGraph' as type SceneGraph
         private SceneGraph _sceneGraph;
 
         // DECLARE a new double called screenWidth
-        double ScreenWidth;
+        private double _screenWidth;
 
         // DECLARE a new double called screenHeight
-        double ScreenHeight;
+        private double _screenHeight;
 
         /// <summary>
         /// CONSTRUCTOR 'SceneManager' - called upon Instantiation
@@ -68,10 +68,10 @@ namespace Engine.Managers
         public void Update(double pHeight, double pWidth)
         {
             // SET ScreenWidth to pWidth
-            ScreenWidth = pWidth;
+            _screenWidth = pWidth;
 
             // SET screenHeight to pHeight
-            ScreenHeight = pHeight;
+            _screenHeight = pHeight;
 
             // FOR LOOP which loops over each item in the array
             for (int i = 0; i < _entityList.Count; i++)
@@ -80,7 +80,7 @@ namespace Engine.Managers
                 _entityList[i].update();
 
                 // CALL the SetBoundaries method - passing the screenWidth and ScreenHeight
-                ((ICollidable)_entityList[i]).setBoundaries(ScreenWidth, ScreenHeight);
+                ((ICollidable)_entityList[i]).setBoundaries(_screenWidth, _screenHeight);
             }
         }
 
