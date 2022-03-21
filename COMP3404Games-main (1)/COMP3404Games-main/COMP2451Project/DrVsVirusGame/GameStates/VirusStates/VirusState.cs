@@ -31,7 +31,7 @@ namespace DrVsVirusGame.GameStates.VirusStates
         public override void Collide()
         {
             //Triggers _behaviour OnCollision method
-            _behaviour.OnCollision(_entity, new UpdateEventArgs {ActiveBehaviour = ""});
+            Behaviour.OnCollision(_entity, new UpdateEventArgs {ActiveBehaviour = ""});
         }
         /// <summary>
         /// A Method used to update the state
@@ -39,7 +39,7 @@ namespace DrVsVirusGame.GameStates.VirusStates
         public override void Update()
         {
             //triggers _behaviours OnUpdate Method
-            _behaviour.OnUpdate(_entity , new UpdateEventArgs {ActiveBehaviour = _identifier });
+            Behaviour.OnUpdate(_entity , new UpdateEventArgs {ActiveBehaviour = _identifier });
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Engine.EngineEntitys;
+﻿using Engine.Behaviours;
+using Engine.EngineEntitys;
 
 namespace Engine.EngineStates
 {
@@ -19,5 +20,9 @@ namespace Engine.EngineStates
 
         // A property to set an return a state's linked entity
         IEntity _entity { set; get; }
+
+        // A property to set an return a state's linked behaviour
+        IBehaviour Behaviour { set; get; }
+
     }
 }

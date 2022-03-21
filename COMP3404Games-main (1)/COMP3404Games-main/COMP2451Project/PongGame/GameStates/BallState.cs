@@ -14,7 +14,7 @@ namespace PongGame.States
         public override void Update()
         {
             // Triggers the ball's update behaviour
-            _behaviour.OnUpdate(_entity, new UpdateEventArgs() { ActiveBehaviour = "" });
+            Behaviour.OnUpdate(_entity, new UpdateEventArgs() { ActiveBehaviour = "" });
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace PongGame.States
         public override void Collide()
         {
             // Triggers the ball's collision behaviour
-            _behaviour.OnCollision(_entity, new UpdateEventArgs() { ActiveBehaviour = "" });
+            Behaviour.OnCollision(_entity, new UpdateEventArgs() { ActiveBehaviour = "" });
         }
     }
 }

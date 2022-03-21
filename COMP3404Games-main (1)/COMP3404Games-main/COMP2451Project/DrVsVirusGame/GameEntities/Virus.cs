@@ -63,7 +63,7 @@ namespace DrVsVirusGame.GameEntities
             _movingState = new VirusState("Moving");
             //Sets MovingState Entity to this
             _movingState._entity = this;
-            ((State)_movingState)._behaviour = _behaviour;
+            ((State)_movingState).Behaviour = _behaviour;
             //_currentState
             _currentState = _movingState;
 

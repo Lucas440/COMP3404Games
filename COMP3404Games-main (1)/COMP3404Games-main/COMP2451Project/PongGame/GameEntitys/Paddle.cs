@@ -71,17 +71,17 @@ namespace PongGame.Entities
             // INITIALISE the default state
             _defaultState = new PaddleState("stopped");
             ((State)_defaultState)._entity = this;
-            ((State)_defaultState)._behaviour = _behaviour;
+            ((State)_defaultState).Behaviour = _behaviour;
 
             // INITIALISE the up state
             _upState = new PaddleState("up");
             ((State)_upState)._entity = this;
-            ((State)_upState)._behaviour = _behaviour;
+            ((State)_upState).Behaviour = _behaviour;
 
             // INITIALISE the down state
             _downState = new PaddleState("down");
             ((State)_downState)._entity = this;
-            ((State)_downState)._behaviour = _behaviour;
+            ((State)_downState).Behaviour = _behaviour;
 
             // SET the default state as the starting state
             _state = _defaultState;

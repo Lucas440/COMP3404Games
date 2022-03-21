@@ -65,7 +65,7 @@ namespace PongGame.Entities
             // INITIALISES the ball's state
             _state = new BallState();
             ((State)_state)._entity = this;
-            ((State)_state)._behaviour = _behaviour;
+            _state.Behaviour = _behaviour;
             //Sets score to -1
             _score = -1;
         }

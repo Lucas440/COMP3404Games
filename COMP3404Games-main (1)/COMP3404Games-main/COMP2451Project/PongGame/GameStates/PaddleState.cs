@@ -27,7 +27,7 @@ namespace PongGame.States
         {
             // Calls the behaviour's update method
             // The identifier is used to decide the behaviour's actions
-            _behaviour.OnUpdate(_entity, new UpdateEventArgs() { ActiveBehaviour = identifier });
+            Behaviour.OnUpdate(_entity, new UpdateEventArgs() { ActiveBehaviour = identifier });
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace PongGame.States
         public override void Collide()
         {
             // Triggers the state's collision behaviour
-            _behaviour.OnCollision(_entity, new UpdateEventArgs() { ActiveBehaviour = "" });
+            Behaviour.OnCollision(_entity, new UpdateEventArgs() { ActiveBehaviour = "" });
         }
     }
 }

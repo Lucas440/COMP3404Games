@@ -16,8 +16,8 @@ namespace Engine.EngineStates
         // A property to set an return a state's linked entity
         public IEntity _entity { set; get; }
 
-        // A variable to hold the entity's linked behavior
-        public IBehaviour _behaviour;
+        // A property to hold the entity's linked behavior
+        public IBehaviour Behaviour { get; set; }
 
         /// <summary>
         /// The method used to update the entity's state

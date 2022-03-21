@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameBehaviours\CannonBehaviours\CannonBallBehaviour.cs" />
     <Compile Include="GameBehaviours\DrVsVirusBehaviour.cs" />
     <Compile Include="GameBehaviours\EnemyBehaviour\VirusBehaviour.cs" />
     <Compile Include="GameEntities\Cannon.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="GameEntities\DrVsVirusEntity.cs" />
     <Compile Include="GameEntities\Enemy.cs" />
     <Compile Include="GameEntities\Virus.cs" />
+    <Compile Include="GameStates\CannonBallState.cs" />
     <Compile Include="GameStates\DrVsVirusState.cs" />
     <Compile Include="GameStates\VirusStates\VirusState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
