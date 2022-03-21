@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DrVsVirusGame.GameBehaviours.CannonBehaviours;
+using DrVsVirusGame.GameStates;
+using Engine.Behaviours;
+using Engine.EngineStates;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,30 +20,55 @@ namespace DrVsVirusGame.GameEntities
     /// </summary>
     public class CannonBall : DrVsVirusEntity
     {
-        //DECLARE A Vector2 called _moveToo
-        Vector2 _moveToo;
         //DECLARE a Bool called _moving
-        bool _moving;
+        private bool _isMoving;
 
-        bool xReached = false;
-        bool yReached = false;
+        //DECLARE A Vector2 called _moveToo
+        private Vector2 _target;
 
+        /// <summary>
+        /// A Property used to return the cannonballs target
+        /// </summary>
+        public Vector2 Target { get => _target; }
+
+        //DECLARE an IState called _movingState
+        IState _movingState;
         /// <summary>
         /// The Default Constructor
         /// </summary>
-        public CannonBall() 
+        public CannonBall()
         {
+            //Sets the location to -1 -1
             _entityLocn.X = -1;
             _entityLocn.Y = -1;
-            _moving = false;
+            //Sets _isMoving to false
+            _isMoving = false;
+
+            //INTIALISE a new CannonBallState
+            _movingState = new CannonBallState();
+
+            //INTIALISE _behaviour
+            _behaviour = new CannonBallBehaviour();
+            //Sets the behviours entity to this
+            ((Behaviour)_behaviour)._myEntity = this;
+            //Sets the states entity to this
+            _movingState._entity = this;
+            //sets the states Behaviour to _behaviour
+            _movingState.Behaviour = _behaviour;
+
         }
 
-        public void StartMoving(Vector2 pMoveToo) 
+        /// <summary>
+        /// A method used to start the cannonball moving
+        /// </summary>
+        /// <param name="pTarget">The target of the cannonball</param>
+        public void StartMoving(Vector2 pTarget)
         {
-            _moveToo = pMoveToo;
-            _moving = true;
-            xReached = false;
-            yReached = false;
+            //Sets the _target to pTarget
+            _target = pTarget;
+            //sets _isMoving to true
+            _isMoving = true;
+            ((CannonBallBehaviour)_behaviour).IsMoving = true;
         }
 
         /// <summary>
@@ -89,45 +118,16 @@ namespace DrVsVirusGame.GameEntities
         {
             base.update();
 
-            if (_moving == true) 
+            //If the moving flag is true this is true
+            if (_isMoving == true)
             {
+                //Updates _movingState
+                _movingState.Update();
+                //Sets _entityLocn to _behaviours location
+                _entityLocn = _behaviour.Location;
 
-                if (_entityLocn.X <= _moveToo.X && xReached == false) 
-                {
-                    _entityLocn.X++;
-                }
-                else if (_entityLocn.X > _moveToo.X && xReached == false) 
-                {
-                    _entityLocn.X--;
-                }
-
-                if (_entityLocn.X  <= _moveToo.X - 10 && _entityLocn.X >= _moveToo.X + 10) 
-                {
-                    xReached = true;
-                }
-
-                if (_entityLocn.Y <= _moveToo.Y) 
-                {
-                    _entityLocn.Y++;
-                }
-                else if (_entityLocn.Y > _moveToo.Y)
-                {
-                    _entityLocn.Y--;
-                }
-                else 
-                {
-                    yReached = true;
-                }
-
-                if (_entityLocn.Y <= _moveToo.Y - 10 && _entityLocn.Y >= _moveToo.Y + 10)
-                {
-                    yReached = true;
-                }
-
-                if (xReached && yReached) 
-                {
-                    _moving = false;
-                }
+                //sets _isMoving to _behaviours moving property
+                _isMoving = ((CannonBallBehaviour)_behaviour).IsMoving;
             }
 
             UpdateGridLocation();
