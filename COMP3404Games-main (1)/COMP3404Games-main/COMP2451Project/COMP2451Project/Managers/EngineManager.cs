@@ -11,9 +11,10 @@ using PongGame.Entities;
 using System;
 
 /// <summary>
-/// CLASS 'EngineManager' - manages game engine
+/// CLASS: 'EngineManager' - manages game engine
 /// AUTHOR: Will Eardley
-/// DATE: 07/02/22
+/// MODIFIED BY: Flynn Osborne
+/// DATE: 21/03/22
 /// </summary>
 namespace Engine.Managers
 {
@@ -33,11 +34,19 @@ namespace Engine.Managers
 
         // DECLARE a private variable calld_inputManager as IEventPublisher
         private IEventPublisher _inputManager;
+
         //DCLARE a private variable called _commandScheduler as ICommandScheduler
         private ICommandScheduler _commandScheduler;
 
         //DECLARE two Doubles pHeight and pWidth
         double _height, _width;
+
+        // DECLARE two arrays to contain the grid
+        int[] _gridX;
+        int[] _gridY;
+
+        // DECLARE two variables to hold the number of rows and columns in the grid
+        int _gridXLength, _gridYLength;
 
         /// <summary>
         /// CONSTRUCTOR for EngineManager
@@ -55,10 +64,18 @@ namespace Engine.Managers
 
             // INSTANTIATE '_collisionManager' as new CollisionManager
             _collisionManager = (_factoryLocator.Get<ColisionManager>() as IFactory<ColisionManager>).Create<ColisionManager>();
+
             // INSTANTIATE '_entityManager' as new EntityManager
-            _entityManager = new EntityManager(_factoryLocator.Get<Paddle>() as IFactory<Paddle>, _factoryLocator.Get<Ball>() as IFactory<Ball>);
+            _entityManager = new EntityManager();
+
             //INSTANTIATE _commandScheduler as new CommandSchedular
             _commandScheduler = (_factoryLocator.Get<ICommandScheduler>() as IFactory<ICommandScheduler>).Create<CommandScheduler>();
+
+            // Set the amount of columns and rows in the grid
+            _gridXLength = 7;
+            _gridYLength = 5;
+            _gridX = new int[_gridXLength];
+            _gridY = new int[_gridYLength];
         }
 
         /// <summary>
@@ -67,9 +84,18 @@ namespace Engine.Managers
         /// <param name="pSpriteFont">A Font for text</param>
         public void Initialise(SpriteFont pSpriteFont, double pHeight, double pWidth)
         {
+            // DECLARE two local variables to hold the width and height of the columns and rows
+            int gridXAdd;
+            int gridYAdd;
+            
             //sets
             _height = pHeight;
             _width = pWidth;
+
+            // SET the width and height of the rows and columns
+            gridXAdd = (int)_width / _gridXLength;
+            gridYAdd = (int)_height / _gridYLength;
+
             // Call Initialise method for Entity Manager
             _entityManager.Initialise(_factoryLocator);
 
@@ -78,6 +104,22 @@ namespace Engine.Managers
 
             // CALL Initialise method for Scene Manager passes pSpriteFont
             _sceneManager.Initialise(pSpriteFont);
+
+            // ADD the first row and column to the grid
+            _gridX[0] = 0;
+            _gridY[0] = 0;
+
+            // ADD the rest of the columns to the grid
+            for (int i = 1; i < _gridXLength; i++)
+            {
+                _gridX[i] = _gridX[i - 1] + gridXAdd;
+            }
+
+            // ADD the rest of the rows to the grid
+            for (int i = 1; i < _gridYLength; i++)
+            {
+                _gridY[i] = _gridY[i - 1] + gridYAdd;
+            }
         }
 
         /// <summary>
@@ -95,6 +137,7 @@ namespace Engine.Managers
 
             // CALL Update method inside SceneManager class
             _sceneManager.Update(pHeight, pWidth);
+
             //CALL update method inside _commandSceduler
             _commandScheduler.Update();
         }
@@ -112,18 +155,18 @@ namespace Engine.Managers
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
 
-
-
             //Creates a new Virus Entity
             tempEntity = _entityManager.CreateEntity<Virus>();
             //Calls intialise entity
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1 , -1));
+
             //Creates a new Cannon Entity
             tempEntity = _entityManager.CreateEntity<Cannon>();
-            //Intialises canoon
+            //Intialises cannon
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1, -1));
             //Subscribes cannon to _inputManager
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
+
             //CREATEs a new Entity calld tempCannonBall
             IEntity tempCannonBall = _entityManager.CreateEntity<CannonBall>();
             //Initalises tempCannonBall
@@ -141,10 +184,16 @@ namespace Engine.Managers
         {
             //Sets the boundarys for tempEntity
             ((ICollidable)pEntity).setBoundaries(_width, _height);
+
             //Sets the texture of tempEntity to tempTexture
             ((EngineEntitys.IDrawable)pEntity).Content(pTexture);
-                //Sets the starting location to _vector
-                ((DrVsVirusEntity)pEntity).StartingLocation(pPosition); 
+
+            //Sets the starting location to _vector
+            ((DrVsVirusEntity)pEntity).StartingLocation(pPosition);
+
+            // PASS the grid to the entity
+            ((DrVsVirusEntity)pEntity).SetGrid(_gridX, _gridY);
+
             //Adds tempEntity to the screen
             _sceneManager.AddEntity(pEntity);
         }
