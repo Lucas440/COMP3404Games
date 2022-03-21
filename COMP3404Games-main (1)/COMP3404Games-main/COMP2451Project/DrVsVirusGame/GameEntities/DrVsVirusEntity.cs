@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 /// <summary>
-/// Authors Lucas Brennan, Flynn Osborne & Will Eardley
+/// AUTHORS: Lucas Brennan, Flynn Osborne & Will Eardley
 /// 
-/// Date 14/03/2022
+/// DATE: 21/03/2022
 /// </summary>
 namespace DrVsVirusGame.GameEntities
 {
@@ -19,6 +19,12 @@ namespace DrVsVirusGame.GameEntities
     /// </summary>
     public abstract class DrVsVirusEntity : Entity, ICollidable, Engine.EngineEntitys.IDrawable
     {
+        public int[] _gridX;
+        public int[] _gridY;
+
+        public int gridXLocation;
+        public int gridYLocation;
+
         // -------------------------------------------------------- ICollidable Implemation -------------------------------------------------------------
         //DECLARE a Rectangle called _hitBox
         protected Rectangle _hitBox;
@@ -87,6 +93,17 @@ namespace DrVsVirusGame.GameEntities
         public virtual void StartingLocation(Vector2 pLocn) 
         {
             _entityLocn = pLocn;
+        }
+
+        /// <summary>
+        /// A method that passes the grid to the entity
+        /// </summary>
+        /// <param name="pGridX">The array of columns</param>
+        /// <param name="pGridY">The array of rows</param>
+        public virtual void SetGrid(int[] pGridX, int[] pGridY)
+        {
+            _gridX = pGridX;
+            _gridY = pGridY;
         }
     }
 }

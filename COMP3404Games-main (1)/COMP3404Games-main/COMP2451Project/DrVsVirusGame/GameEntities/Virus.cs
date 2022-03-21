@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Authors Lucas Brennan, Flynn Osborne & Will Eardley
+/// AUTHORS: Lucas Brennan, Flynn Osborne & Will Eardley
 /// 
-/// Date 14/03/2022
+/// DATE: 21/03/2022
 /// </summary>
 namespace DrVsVirusGame.GameEntities
 {
@@ -28,6 +28,7 @@ namespace DrVsVirusGame.GameEntities
 
         //DECLARE a new event called _currentBehaviour
         public event OnUpdateEvent _currentBehaviour;
+
         /// <summary>
         /// A Delegate for an event which happens when the class is updated
         /// </summary>
@@ -63,7 +64,7 @@ namespace DrVsVirusGame.GameEntities
             _movingState = new VirusState("Moving");
             //Sets MovingState Entity to this
             _movingState._entity = this;
-            ((State)_movingState).Behaviour = _behaviour;
+            ((State)_movingState)._behaviour = _behaviour;
             //_currentState
             _currentState = _movingState;
 
@@ -71,6 +72,50 @@ namespace DrVsVirusGame.GameEntities
             _currentBehaviour += _behaviour.OnUpdate;
 
         }
+
+        /// <summary>
+        /// A method which keeps track of the entity's location within the grid
+        /// </summary>
+        public void UpdateGridLocation()
+        {
+            // Observes the horizontal grid position
+            for (int i = 0; i < _gridX.Length - 1; i++)
+            {
+                // Check each column to find the entity
+                if (_entityLocn.X >= _gridX[i] && _entityLocn.X < _gridX[i + 1])
+                {
+                    // Set the horizontal grid location and break the loop
+                    gridXLocation = i + 1;
+                    break;
+                }
+                else
+                {
+                    // Confirm that the entity is in the last column
+                    gridXLocation = _gridX.Length;
+                }
+            }
+
+            // Observes the vertical grid position
+            for (int i = 0; i < _gridY.Length - 1; i++)
+            {
+                // Check each row to find the entity
+                if (_entityLocn.Y >= _gridY[i] && _entityLocn.Y < _gridY[i + 1])
+                {
+                    // Set the vertical grid location and break the loop
+                    gridYLocation = i + 1;
+                    break;
+                }
+                else
+                {
+                    // Confirm that the entity is in the last row
+                    gridYLocation = _gridY.Length;
+                }
+            }
+
+            // Updates the entity's StateText to output the current grid position
+            StateText = "Current Grid X: " + gridXLocation + " Current Grid Y: " + gridYLocation;
+        }
+
         /// <summary>
         /// Updates the Virus
         /// </summary>
@@ -85,6 +130,8 @@ namespace DrVsVirusGame.GameEntities
             {
                 //Environment.Exit(1);
             }
+
+            UpdateGridLocation();
         }
     }
 }
