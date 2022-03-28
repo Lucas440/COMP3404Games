@@ -20,40 +20,45 @@ namespace DrVsVirusGame.GameEntities
     /// </summary>
     public class CannonBall : DrVsVirusEntity
     {
-        //DECLARE a Bool called _moving
+        // DECLARE a Bool called _moving
         private bool _isMoving;
 
-        //DECLARE A Vector2 called _moveToo
+        // DECLARE a property to return the ball's state
+        public bool Moving { get => _isMoving; }
+
+        // DECLARE A Vector2 called _target
         private Vector2 _target;
 
         /// <summary>
-        /// A Property used to return the cannonballs target
+        /// A Property used to return the cannonball's target
         /// </summary>
         public Vector2 Target { get => _target; }
 
-        //DECLARE an IState called _movingState
+        // DECLARE an IState called _movingState
         IState _movingState;
+
         /// <summary>
         /// The Default Constructor
         /// </summary>
         public CannonBall()
         {
-            //Sets the location to -1 -1
+            // SETS the location to -1 -1
             _entityLocn.X = -1;
             _entityLocn.Y = -1;
-            //Sets _isMoving to false
+
+            // SETS _isMoving to false
             _isMoving = false;
 
-            //INTIALISE a new CannonBallState
+            //INITIALISE a new CannonBallState
             _movingState = new CannonBallState();
 
-            //INTIALISE _behaviour
+            //INITIALISE _behaviour
             _behaviour = new CannonBallBehaviour();
-            //Sets the behviours entity to this
+            // SETS the behviour's entity to this
             ((Behaviour)_behaviour)._myEntity = this;
-            //Sets the states entity to this
+            // SETS the state's entity to this
             _movingState._entity = this;
-            //sets the states Behaviour to _behaviour
+            // SETS the state's Behaviour to _behaviour
             _movingState.Behaviour = _behaviour;
 
         }
@@ -65,9 +70,9 @@ namespace DrVsVirusGame.GameEntities
         public void StartMoving(Vector2 pTarget)
         {
 
-            //Sets the _target to pTarget
+            // SETS the _target to pTarget
             _target = pTarget;
-            //sets _isMoving to true
+            // SETS _isMoving to true
             _isMoving = true;
             ((CannonBallBehaviour)_behaviour).IsMoving = true;
         }
@@ -119,18 +124,19 @@ namespace DrVsVirusGame.GameEntities
         {
             base.update();
 
-            //If the moving flag is true this is true
+            // IF the ball is currently moving:
             if (_isMoving == true)
             {
-                //Updates _movingState
+                // UPDATES _movingState
                 _movingState.Update();
-                //Sets _entityLocn to _behaviours location
+                // SETS _entityLocn to _behaviour's location
                 _entityLocn = _behaviour.Location;
 
-                //sets _isMoving to _behaviours moving property
+                // SETS _isMoving to _behaviour's IsMoving property
                 _isMoving = ((CannonBallBehaviour)_behaviour).IsMoving;
             }
 
+            // Output the ball's current grid location
             UpdateGridLocation();
         }
     }
