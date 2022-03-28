@@ -48,7 +48,7 @@ namespace DrVsVirusGame.GameEntities
         /// A Method that returns the HitBox
         /// </summary>
         /// <returns>The objects hitbox</returns>
-        public Rectangle getHitBox() 
+        public virtual Rectangle getHitBox() 
         {
             //Creates a new Rectangle based on the entities location and the dimentions of the texture
             _hitBox = new Rectangle(Convert.ToInt32(_entityLocn.X), Convert.ToInt32(_entityLocn.Y), _texture.Width, _texture.Height);
@@ -57,7 +57,7 @@ namespace DrVsVirusGame.GameEntities
         /// <summary>
         /// A Method that responds to colision
         /// </summary>
-        public virtual void colision() { }
+        public virtual void Colision(ICollidable pCollidedEntity) { }
 
         // --------------------------------------------------------- IDrawable Implementaion ----------------------------------------------------------------------------
 

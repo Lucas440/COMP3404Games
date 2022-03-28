@@ -27,6 +27,7 @@ namespace Engine.EngineEntitys
         /// <summary>
         /// A method that responds to a colision
         /// </summary>
-        void colision();
+        /// <param name="pCollidedEntity">The Entity that it collides with</param>
+        void Colision(ICollidable pCollidedEntity);
     }
 }

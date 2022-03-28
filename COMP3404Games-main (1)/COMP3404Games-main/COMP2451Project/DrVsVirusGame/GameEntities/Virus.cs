@@ -1,6 +1,7 @@
 ﻿using DrVsVirusGame.GameBehaviours.EnemyBehaviour;
 using DrVsVirusGame.GameStates.VirusStates;
 using Engine.Behaviours;
+using Engine.EngineEntitys;
 using Engine.EngineStates;
 using Microsoft.Xna.Framework;
 using System;
@@ -52,7 +53,8 @@ namespace DrVsVirusGame.GameEntities
             Random rnd = new Random();
 
             //Sets _entityLocn X position to _screenWidth + 50
-            _entityLocn.X = (float)(_screenWidth + 50);
+            //_entityLocn.X = (float)(_screenWidth + 50);
+            _entityLocn.X = 250;
             //Sets _entityLocon Y to a random number between 0 and _screenHeight
             _entityLocn.Y = rnd.Next(0 , Convert.ToInt32(_screenHight));
 
@@ -124,7 +126,7 @@ namespace DrVsVirusGame.GameEntities
             //Updates the current state
             _currentState.Update();
             //sets the location to the behaviours location
-            _entityLocn = _behaviour.Location;
+            //_entityLocn = _behaviour.Location;
 
             if (_entityLocn.X < 0) 
             {
@@ -133,5 +135,20 @@ namespace DrVsVirusGame.GameEntities
 
             UpdateGridLocation();
         }
+        /// <summary>
+        /// A Method that responds to collisions
+        /// </summary>
+        /// <param name="pCollidedEntity">The entity the object collided with</param>
+        public override void Colision(ICollidable pCollidedEntity) 
+        {
+            //If the Collided entity is a Cannonball this is true
+            if (pCollidedEntity is CannonBall) 
+            {
+                //Scedule commands to Remove and Terminate this
+                ScheduleCommand.Invoke(RemoveMe);
+                ScheduleCommand.Invoke(TerminateMe);
+            }
+        }
+
     }
 }

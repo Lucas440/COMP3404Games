@@ -160,6 +160,8 @@ namespace Engine.Managers
             tempEntity = _entityManager.CreateEntity<Virus>();
             //Calls intialise entity
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1 , -1));
+            //Calls SetCommands
+            SetCommands(tempEntity);
 
             //Creates a new Cannon Entity
             tempEntity = _entityManager.CreateEntity<Cannon>();
@@ -175,6 +177,38 @@ namespace Engine.Managers
             //Passes TempCannonBall to the cannon entity
             ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
         }
+        /// <summary>
+        /// A Method which sets the commands for an Entity
+        /// </summary>
+        /// <param name="pEntity">The entity the commands will be set for</param>
+        private void SetCommands(IEntity pEntity) 
+        {
+
+            //Creates a new ICOmmand called removeCommand
+            ICommand removeCommand = (_factoryLocator.Get<ICommandOneParam<IEntity>>() as IFactory<ICommandOneParam<IEntity>>).Create<CommandOneParam<IEntity>>();
+            //Creates a new ICOmmand called terminateCommand
+            ICommand terminateCommand = (_factoryLocator.Get<ICommandOneParam<IEntity>>() as IFactory<ICommandOneParam<IEntity>>).Create<CommandOneParam<IEntity>>();
+            //Creates a new ICOmmand called schedualCommand
+            ICommand schedualCommand = (_factoryLocator.Get<ICommandOneParam<Action>>() as IFactory<ICommandOneParam<Action>>).Create<CommandOneParam<Action>>();
+
+            //Sets the action of the removeCommand to _secneManagers Remove method
+            ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
+            //Sets the data of the command to the Entity
+            ((ICommandOneParam<IEntity>)removeCommand).SetData = pEntity;
+            //Sets the RemoveMe command to removeCommand
+            ((IEntityInternal)pEntity).RemoveMe = removeCommand;
+
+            //Sets the action of the terminateCommand to _entityManagers Temerinate method
+            ((ICommandOneParam<IEntity>)terminateCommand).SetAction = _entityManager.Temerinate;
+            //Sets the data of the command to the Entity
+            ((ICommandOneParam<IEntity>)terminateCommand).SetData = pEntity;
+            //Sets the TerminateMe command to terminateCommand
+            ((IEntityInternal)pEntity).TerminateMe = terminateCommand;
+
+            //Sets ScheduleCommand to _commandScheduler ExecuteCommand Method
+            ((ICommandSender)pEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
+        }
+
         /// <summary>
         /// A Method that intialises entitys
         /// </summary>

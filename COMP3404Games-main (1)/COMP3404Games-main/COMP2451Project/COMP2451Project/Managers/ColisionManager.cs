@@ -54,8 +54,8 @@ namespace Engine.Managers
                     if (collidables[i].getHitBox().Intersects(collidables[j].getHitBox()))
                     {
                         //Call collision on each object
-                        collidables[i].colision();
-                        collidables[j].colision();
+                        collidables[i].Colision(collidables[j]);
+                        collidables[j].Colision(collidables[i]);
                     }
                 }
             }

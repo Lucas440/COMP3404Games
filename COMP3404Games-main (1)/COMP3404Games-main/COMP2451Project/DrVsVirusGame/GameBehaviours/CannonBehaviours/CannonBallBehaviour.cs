@@ -124,10 +124,6 @@ namespace DrVsVirusGame.GameBehaviours.CannonBehaviours
             //If both flags are true this is true
             if (_xReached && _yReached)
             {
-                //Sets the entity back to 0 0 
-                _location.Y = 0;
-                _location.X = 0;
-
                 //Sets _xSpeed and _ySpeed back to 0
                 _ySpeed = 0;
                 _xSpeed = 0;
