@@ -35,6 +35,8 @@ namespace Engine
         // DECLARE a factory locator named _factories
         IFactoryLocator _factories;
 
+        private Texture2D _background;
+
         /// <summary>
         /// CONSTRUCTOR 'Kernel' - called upon Instantiation
         /// </summary>
@@ -59,6 +61,8 @@ namespace Engine
             // INSTANTIATE '_factories' as new FactoryLocator
             _factories = new FactoryLocator();
 
+            
+
             //Allows the user to see the mouse
             IsMouseVisible = true;
             //Sets the mouse Cursor to a crosshair
@@ -80,8 +84,12 @@ namespace Engine
 
             // SET ScreenWidth to viewport width - width of the screen
             ScreenWidth = GraphicsDevice.Viewport.Width;
+
             //Creates a new spriteFont and loads a default text font into it
             SpriteFont spriteFont = Content.Load<SpriteFont>("Text");
+
+            _background = Content.Load<Texture2D>("DrsVsVirusesBackground");
+
             // CALL Initialise method inside EngineManager - Passes the spriteFont
             _engineManager.Initialise(spriteFont , ScreenHeight , ScreenWidth);
 
@@ -154,6 +162,9 @@ namespace Engine
 
             // CALL 'Begin' method for spriteBatch
             spriteBatch.Begin();
+
+            // CALL 'Draw' method for sprite batch, drawing the background onto the screen
+            spriteBatch.Draw(_background, new Rectangle(0, 0, (int)(double)ScreenWidth, (int)(double)ScreenHeight), Color.White);
 
             // CALL 'Draw' method inside EngineManager class - passing spriteBatch
             _engineManager.Draw(spriteBatch);

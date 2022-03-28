@@ -4,8 +4,17 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/lucas/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/paddle.png</File>
-    <File>C:/Users/lucas/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/square.png</File>
-    <File>C:/Users/lucas/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/File.spritefont</File>
+    <File>C:/Users/earw1_19/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/Attack_SpriteSheet.png</File>
+    <File>C:/Users/earw1_19/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/DrsVsVirusesBackground.png</File>
+    <File>C:/Users/earw1_19/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/File.spritefont</File>
+    <File>C:/Users/earw1_19/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/paddle.png</File>
+    <File>C:/Users/earw1_19/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/square.png</File>
   </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
 </SourceFileCollection>

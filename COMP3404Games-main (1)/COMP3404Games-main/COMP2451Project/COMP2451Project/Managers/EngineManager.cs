@@ -149,7 +149,6 @@ namespace Engine.Managers
         /// <param name="pContent"></param>
         public void LoadContent(ContentManager pContent)
         {
-
             // DECLARE variable 'temptTexture' as type Texture2D - load 'square' texture onto ball
             Texture2D tempTexture = pContent.Load<Texture2D>("square");
 
@@ -158,13 +157,16 @@ namespace Engine.Managers
 
             //Creates a new Virus Entity
             tempEntity = _entityManager.CreateEntity<Virus>();
+
             //Calls intialise entity
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1 , -1));
 
             //Creates a new Cannon Entity
             tempEntity = _entityManager.CreateEntity<Cannon>();
+
             //Intialises cannon
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1, -1));
+
             //Subscribes cannon to _inputManager
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
 
