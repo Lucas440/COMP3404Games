@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 /// <summary>
-/// Author Lucas Brennan
-/// 
-/// Date 14/02/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 28/03/22
 /// </summary>
 namespace Engine.EngineEntitys
 {
@@ -12,22 +11,22 @@ namespace Engine.EngineEntitys
     public interface ICollidable
     {
         /// <summary>
-        /// Sets the boundies of the screen
+        /// A method that sets the boundaries of the screen
         /// </summary>
-        /// <param name="pWidth">The screens width</param>
-        /// <param name="pHeight">the screens height</param>
+        /// <param name="pWidth">The screen's width</param>
+        /// <param name="pHeight">the screen's height</param>
         void setBoundaries(double pWidth, double pHeight);
 
         /// <summary>
-        /// Gets the Objects HitBox
+        /// GETS the object's HitBox
         /// </summary>
-        /// <returns>The hit box</returns>
+        /// <returns>The hitbox</returns>
         Rectangle getHitBox();
 
         /// <summary>
         /// A method that responds to a colision
         /// </summary>
-        /// <param name="pCollidable">the entity being collided with</param>
+        /// <param name="pCollidable">The entity being collided with</param>
         void colision(ICollidable pCollidable);
     }
 }
