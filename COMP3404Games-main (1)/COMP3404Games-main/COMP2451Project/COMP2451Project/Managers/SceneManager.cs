@@ -1,16 +1,14 @@
-﻿
-using Engine.EngineEntitys;
+﻿using Engine.EngineEntitys;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 /// <summary>
-/// Author Lucas Brennan
-/// 
-/// Date 14/02/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 14/02/22
 /// </summary>
 namespace Engine.Managers
 {
     /// <summary>
-    /// CLASS 'SceneManager'
+    /// CLASS: 'SceneManager'
     /// MODIFIED BY: William Eardley 07/02/2022
     /// </summary>
     public class SceneManager
@@ -18,7 +16,7 @@ namespace Engine.Managers
         // DECLARE a new List called entityList
         private List<IEntity> _entityList;
 
-        // DECLARE private variable '_sceneGraph' as type SceneGraph
+        // DECLARE a private variable '_sceneGraph' as type SceneGraph
         private SceneGraph _sceneGraph;
 
         // DECLARE a new double called screenWidth
@@ -32,20 +30,20 @@ namespace Engine.Managers
         /// </summary>
         public SceneManager()
         {
-            // INSTANTIATE entityList as new List
+            // INSTANTIATE entityList as a new List
             _entityList = new List<IEntity>();
 
-            // INSTANTIATE  _sceneGraph as new SceneGraph
+            // INSTANTIATE  _sceneGraph as a new SceneGraph
             _sceneGraph = new SceneGraph();
         }
 
         /// <summary>
-        /// Method 'Initialise' - Initialises Scene Manager
+        /// Method 'Initialise' - Initialises the Scene Manager
         /// </summary>
         /// <param name="pSpriteFont">A Font for text</param>
         public void Initialise(SpriteFont pSpriteFont)
         {
-            // CALL Initialise inside SceneGraph class - passing entityList
+            // CALL Initialise inside SceneGraph class - passing entityList and the SpriteFont
             _sceneGraph.Initialise(_entityList, pSpriteFont);
         }
 
@@ -55,12 +53,12 @@ namespace Engine.Managers
         /// <param name="entity">An IEntity to be stored</param>
         public void AddEntity(IEntity entity)
         {
-            // ADD entity parameter passed through to entityList
+            // ADD the entity to the list of entities
             _entityList.Add(entity);
         }
 
         /// <summary>
-        /// Updates the items in the list
+        /// A method that updates the items in the list
         /// </summary>
         /// <param name="pHeight">Screen Height</param>
         /// <param name="pWidth">Screen Width </param>
@@ -85,14 +83,15 @@ namespace Engine.Managers
         }
 
         /// <summary>
-        /// Draws the Entitys on the screen
+        /// A method that draws the entities onto the screen
         /// </summary>
         /// <param name="spriteBatch">A spritebatch used to draw</param>
         public void draw(SpriteBatch spriteBatch)
         {
-            // CALL Draw method inside SceneGraph
+            // CALL the Draw method inside SceneGraph
             _sceneGraph.Draw(spriteBatch);
         }
+
         // -------------------------------------------------------- Command Pattern ----------------------------------------------------------
         /// <summary>
         /// A method used to remove an entity from the scene
@@ -100,9 +99,10 @@ namespace Engine.Managers
         /// <param name="pEntity">The entity being removed</param>
         public void Remove(IEntity pEntity)
         {
-            //Calls remove in _sceneGraph
+            // CALL remove in _sceneGraph
             _sceneGraph.Remove(pEntity);
-            //Removes pEntity from the entityList
+
+            // REMOVE pEntity from the entityList
             _entityList.Remove(pEntity);
         }
     }

@@ -14,7 +14,7 @@ using System;
 /// CLASS: 'EngineManager' - manages game engine
 /// AUTHOR: Will Eardley
 /// MODIFIED BY: Flynn Osborne
-/// DATE: 21/03/22
+/// DATE: 21/03/2022
 /// </summary>
 namespace Engine.Managers
 {
@@ -35,10 +35,10 @@ namespace Engine.Managers
         // DECLARE a private variable calld_inputManager as IEventPublisher
         private IEventPublisher _inputManager;
 
-        //DCLARE a private variable called _commandScheduler as ICommandScheduler
+        // DECLARE a private variable called _commandScheduler as ICommandScheduler
         private ICommandScheduler _commandScheduler;
 
-        //DECLARE two Doubles _height and _width
+        // DECLARE two doubles _height and _width
         double _height, _width;
 
         // DECLARE two arrays to contain the grid
@@ -56,7 +56,7 @@ namespace Engine.Managers
             // SET _factoryLocator to pfactoryLocator parameter
             _factoryLocator = pfactoryLocator;
 
-            //INTALISES _inputManager
+            // INITIALISE _inputManager
             _inputManager = (_factoryLocator.Get<IEventPublisher>() as IFactory<IEventPublisher>).Create<InputManager>();
 
             // INSTANTIATE '_sceneManager' as new SceneManager
@@ -67,10 +67,11 @@ namespace Engine.Managers
 
             // INSTANTIATE '_entityManager' as new EntityManager
             _entityManager = (_factoryLocator.Get<EntityManager>() as IFactory<EntityManager>).Create<EntityManager>();
-            //INSTANTIATE _commandScheduler as new CommandSchedular
+
+            // INSTANTIATE _commandScheduler as new CommandSchedular
             _commandScheduler = (_factoryLocator.Get<ICommandScheduler>() as IFactory<ICommandScheduler>).Create<CommandScheduler>();
 
-            // Set the amount of columns and rows in the grid
+            // SET the amount of columns and rows in the grid
             _gridXLength = 7;
             _gridYLength = 5;
             _gridX = new int[_gridXLength];
@@ -89,21 +90,21 @@ namespace Engine.Managers
             int gridXAdd;
             int gridYAdd;
             
-            //sets
+            // SET the width and height of the screen
             _height = pHeight;
             _width = pWidth;
 
-            // SET the width and height of the rows and columns
+            // SET the width and height of the grid's rows and columns
             gridXAdd = (int)_width / _gridXLength;
             gridYAdd = (int)_height / _gridYLength;
 
-            // Call Initialise method for Entity Manager
+            // CALL Initialise method for Entity Manager
             _entityManager.Initialise(_factoryLocator);
 
             // CALL Initialise method for Collision Manager
             _collisionManager.Initialize(_entityManager.EntityList);
 
-            // CALL Initialise method for Scene Manager passes pSpriteFont
+            // CALL Initialise method for Scene Manager (passing pSpriteFont)
             _sceneManager.Initialise(pSpriteFont);
 
             // ADD the first row and column to the grid
@@ -172,17 +173,19 @@ namespace Engine.Managers
             //Creates a new Cannon Entity
             tempEntity = _entityManager.CreateEntity<Cannon>();
 
-            //Intialises cannon
+            // INITIALISE the cannon
             InitaliseEntity(tempEntity , tempTexture , new Vector2(-1, -1));
 
-            //Subscribes cannon to _inputManager
+            // SUBSCRIBE the cannon to _inputManager
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
 
-            //CREATEs a new Entity calld tempCannonBall
+            // CREATE a new Entity called tempCannonBall
             IEntity tempCannonBall = _entityManager.CreateEntity<CannonBall>();
-            //Initalises tempCannonBall
+
+            // INITIALISE tempCannonBall
             InitaliseEntity(tempCannonBall , tempTexture , new Vector2());
-            //Passes TempCannonBall to the cannon entity
+
+            // PASS tempCannonBall to the cannon entity
             ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
         }
 
@@ -193,52 +196,52 @@ namespace Engine.Managers
         private void SetCommands(IEntity pEntity)
         {
 
-            //Creates a new ICOmmand called removeCommand
+            // CREATE a new ICommand called removeCommand
             ICommand removeCommand = (_factoryLocator.Get<ICommandOneParam<IEntity>>() as IFactory<ICommandOneParam<IEntity>>).Create<CommandOneParam<IEntity>>();
-            //Creates a new ICOmmand called terminateCommand
+            // CREATE a new ICommand called terminateCommand
             ICommand terminateCommand = (_factoryLocator.Get<ICommandOneParam<IEntity>>() as IFactory<ICommandOneParam<IEntity>>).Create<CommandOneParam<IEntity>>();
-            //Creates a new ICOmmand called schedualCommand
+            // CREATE a new ICommand called schedualCommand
             ICommand schedualCommand = (_factoryLocator.Get<ICommandOneParam<Action>>() as IFactory<ICommandOneParam<Action>>).Create<CommandOneParam<Action>>();
 
-            //Sets the action of the removeCommand to _secneManagers Remove method
+            // SET the action of the removeCommand to _secneManager's Remove method
             ((ICommandOneParam<IEntity>)removeCommand).SetAction = _sceneManager.Remove;
-            //Sets the data of the command to the Entity
+            // SET the data of the command to the Entity
             ((ICommandOneParam<IEntity>)removeCommand).SetData = pEntity;
-            //Sets the RemoveMe command to removeCommand
+            // SET the RemoveMe command to removeCommand
             ((IEntityInternal)pEntity).RemoveMe = removeCommand;
 
-            //Sets the action of the terminateCommand to _entityManagers Temerinate method
+            // SET the action of the terminateCommand to _entityManager's Temerinate method
             ((ICommandOneParam<IEntity>)terminateCommand).SetAction = _entityManager.Temerinate;
-            //Sets the data of the command to the Entity
+            // SET the data of the command to the Entity
             ((ICommandOneParam<IEntity>)terminateCommand).SetData = pEntity;
-            //Sets the TerminateMe command to terminateCommand
+            // SET the TerminateMe command to terminateCommand
             ((IEntityInternal)pEntity).TerminateMe = terminateCommand;
 
-            //Sets ScheduleCommand to _commandScheduler ExecuteCommand Method
+            // SET ScheduleCommand to _commandScheduler ExecuteCommand Method
             ((ICommandSender)pEntity).ScheduleCommand = _commandScheduler.ExecuteCommand;
         }
 
         /// <summary>
-        /// A Method that intialises entitys
+        /// A Method that intialises entities
         /// </summary>
-        /// <param name="pEntity">The Entity being intialised</param>
+        /// <param name="pEntity">The Entity being initialised</param>
         /// <param name="pTexture">The Texture of the entity</param>
         /// <param name="pPosition">the Position of the entity</param>
         private void InitaliseEntity(IEntity pEntity , Texture2D pTexture , Vector2 pPosition) 
         {
-            //Sets the boundarys for tempEntity
+            // SET the boundaries for tempEntity
             ((ICollidable)pEntity).setBoundaries(_width, _height);
 
-            //Sets the texture of tempEntity to tempTexture
+            // SET the texture of tempEntity to tempTexture
             ((EngineEntitys.IDrawable)pEntity).Content(pTexture);
 
-            //Sets the starting location to _vector
+            // SET the starting location to _vector
             ((DrVsVirusEntity)pEntity).StartingLocation(pPosition);
 
             // PASS the grid to the entity
             ((DrVsVirusEntity)pEntity).SetGrid(_gridX, _gridY);
 
-            //Adds tempEntity to the screen
+            // ADD tempEntity to the screen
             _sceneManager.AddEntity(pEntity);
         }
 

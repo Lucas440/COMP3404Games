@@ -24,6 +24,7 @@ namespace COMP3451Project.Managers
         // DECLARE variable '_entityList' as type IList<IEntity>
         public IList<IEntity> EntityList { get => _entities; }
 
+        // DECLARE a variable to hold an instance of FactoryLocator
         IFactoryLocator _factoryLocator;
 
         /// <summary>
@@ -35,9 +36,7 @@ namespace COMP3451Project.Managers
         {
             // INSTANTIATE a new entity list
             _entities = new List<IEntity>();
-
         }
-
 
         /// <summary>
         /// METHOD 'Initialise' - Intialises EntityManager
@@ -45,33 +44,34 @@ namespace COMP3451Project.Managers
         /// <param name="pLocator">A FactoryLocator</param>
         public void Initialise(IFactoryLocator pLocator)
         {
-            //Sets _factoryLocator to pLocator
+            // SET _factoryLocator to pLocator
             _factoryLocator = pLocator;
         }
-
 
         /// <summary>
         /// METHOD 'CreateEntity'- creates entities
         /// </summary>
         /// <typeparam name="C">The Child Class of IEntity</typeparam>
-        /// <returns>A New object of type IEntity</returns>
+        /// <returns>A new object of type IEntity</returns>
         public IEntity CreateEntity<C>() where C : IEntity, new()
         {
-            //Creates a new IEntity called Temp
+            // CREATE a new IEntity called temp
             IEntity temp = (_factoryLocator.Get<IEntity>() as IFactory<IEntity>).Create<C>();
-            //Adds it to the entity list
+
+            // ADD temp to the entity list
             _entities.Add(temp);
 
-            //Returns temp
+            // RETURN temp
             return temp;
         }
+
         /// <summary>
-        /// A method used to temerinate entites
+        /// A method used to terminate entites
         /// </summary>
-        /// <param name="pEntity">the entity being terminated</param>
+        /// <param name="pEntity">The entity being terminated</param>
         public void Temerinate(IEntity pEntity)
         {
-            //Removes pEntity from the list
+            // REMOVE pEntity from the entity list
             _entities.Remove(pEntity);
         }
     }

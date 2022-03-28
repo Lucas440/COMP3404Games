@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 /// <summary>
-/// Author Lucas Brennan
-/// 
-/// Date 14/02/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 28/03/22
 /// </summary>
 namespace Engine.Managers
 {
@@ -13,8 +12,9 @@ namespace Engine.Managers
     /// </summary>
     class ColisionManager
     {
-        //DECLARES an List Called entity that stores IEntitys
+        // DECLARES an List Called entity that stores IEntitys
         IList<IEntity> _entityList;
+
         /// <summary>
         /// A method that stores a reference to the entity list
         /// </summary>
@@ -27,33 +27,33 @@ namespace Engine.Managers
         /// <summary>
         /// A method that updates the ColisionManager
         /// </summary>
-        /// <param name="pList">A List of entitys to be updated</param>
+        /// <param name="pList">A list of entities to be updated</param>
         public void update()
         {
-            //DECLARES and INATANIATES a list that stores IColliables called collidables
+            // DECLARES and INSTANTIATES a list that stores IColliables called collidables
             List<ICollidable> collidables = new List<ICollidable>();
 
-            //Loops over each IEntity in the list Entity
+            // LOOP over each IEntity in the entity list
             foreach (IEntity e in _entityList)
             {
-                // If the entity is a ICollidable type
+                // IF the entity is a ICollidable type:
                 if (e is ICollidable)
                 {
-                    //Adds the item to the collidables list
+                    // ADD the item to the collidables list
                     collidables.Add((ICollidable)e);
                 }
             }
 
-            // Loops over each item on the list
+            // LOOP over each item on the list
             for (int i = 0; i < collidables.Count(); i++)
             {
-                // Loops ahead by one item
+                // LOOP ahead by one item
                 for (int j = i + 1; j < collidables.Count(); j++)
                 {
-                    //If the current item in the loops hitboxs are intersecting
+                    // IF the current items' hitboxs are intersecting:
                     if (collidables[i].getHitBox().Intersects(collidables[j].getHitBox()))
                     {
-                        //Call collision on each object
+                        // CALL collision on each object
                         collidables[i].colision(collidables[j]);
                         collidables[j].colision(collidables[i]);
                     }
