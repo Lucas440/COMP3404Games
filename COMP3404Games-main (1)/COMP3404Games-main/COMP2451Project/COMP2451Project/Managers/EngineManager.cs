@@ -170,6 +170,16 @@ namespace Engine.Managers
                 //Calls SetCommands
                 SetCommands(tempEntity);
             }
+
+            //Creates a new Virus Entity
+            tempEntity = _entityManager.CreateEntity<Virus>();
+
+            //Calls intialise entity giving a random hight and distance from the goal
+            InitaliseEntity(tempEntity, tempTexture, new Vector2(1650 , 200));
+
+            //Calls SetCommands
+            SetCommands(tempEntity);
+
             //Creates a new Cannon Entity
             tempEntity = _entityManager.CreateEntity<Cannon>();
 
@@ -187,6 +197,32 @@ namespace Engine.Managers
 
             // PASS tempCannonBall to the cannon entity
             ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
+
+
+            tempEntity = _entityManager.CreateEntity<Defender>();
+
+            tempTexture = pContent.Load<Texture2D>("DefenderProjectile");
+
+            IEntity tempProjectile = _entityManager.CreateEntity<DefenderProjectile>();
+            ((EngineEntitys.IDrawable)tempProjectile).Content(tempTexture);
+
+            tempTexture = pContent.Load<Texture2D>("square");
+
+            ((Defender)tempEntity).SetProjectile = (DefenderProjectile)tempProjectile;
+
+            IEntity tempSight = _entityManager.CreateEntity<EntitySight>();
+
+            ((Defender)tempEntity).SetSight = (EntitySight)tempSight;
+
+
+            InitaliseEntity(tempEntity, tempTexture, new Vector2(200, 200));
+
+            // ADD tempEntity to the screen
+            _sceneManager.AddEntity(tempSight);
+                        // ADD tempEntity to the screen
+            _sceneManager.AddEntity(tempProjectile);
+
+
         }
 
         /// <summary>

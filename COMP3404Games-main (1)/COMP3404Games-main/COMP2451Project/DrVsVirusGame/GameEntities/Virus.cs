@@ -143,7 +143,7 @@ namespace DrVsVirusGame.GameEntities
         public override void colision(ICollidable pCollidedEntity)
         {
             //If the Collided entity is a Cannonball this is true
-            if (pCollidedEntity is CannonBall)
+            if (pCollidedEntity is CannonBall || pCollidedEntity is DefenderProjectile)
             {
                 //Scedule commands to Remove and Terminate this
                 ScheduleCommand.Invoke(RemoveMe);

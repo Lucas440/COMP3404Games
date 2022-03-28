@@ -55,8 +55,10 @@
     <Compile Include="GameEntities\Cannon.cs" />
     <Compile Include="GameEntities\CannonBall.cs" />
     <Compile Include="GameEntities\Defender.cs" />
+    <Compile Include="GameEntities\DefenderProjectile.cs" />
     <Compile Include="GameEntities\DrVsVirusEntity.cs" />
     <Compile Include="GameEntities\Enemy.cs" />
+    <Compile Include="GameEntities\EntitySight.cs" />
     <Compile Include="GameEntities\Virus.cs" />
     <Compile Include="GameStates\CannonBallState.cs" />
     <Compile Include="GameStates\DrVsVirusState.cs" />
