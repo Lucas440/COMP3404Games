@@ -1,17 +1,16 @@
 ﻿/// <summary>
-/// AUTHOR Lucas Brennan
-///
-/// Date 14/02/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 14/02/22
 /// </summary>
 namespace Engine.InputEvents
 {
     /// <summary>
-    /// An interface used to Listen for Key inputs
+    /// An interface used to listen for Keyboard inputs
     /// </summary>
     public interface IKeyListener
     {
         /// <summary>
-        /// A method the responds to the keyboard event
+        /// A method that responds to keyboard events
         /// </summary>
         /// <param name="source">Where the event was sent from</param>
         /// <param name="args">The event argument</param>

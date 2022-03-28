@@ -1,7 +1,6 @@
 ﻿/// <summary>
-/// AUTHOR Lucas Brennan
-///
-/// Date 14/02/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 14/02/22
 /// </summary>
 namespace Engine.InputEvents
 {
@@ -11,7 +10,7 @@ namespace Engine.InputEvents
     public interface IEventPublisher
     {
         /// <summary>
-        /// Updates the Event Publisher
+        /// A method that updates the Event Publisher
         /// </summary>
         void update();
     }

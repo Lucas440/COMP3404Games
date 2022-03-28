@@ -3,7 +3,6 @@
 /// <summary>
 /// AUTHOR: Lucas Brennan
 /// MODIFIED BY: Flynn Osborne
-/// 
 /// DATE: 14/03/2022
 /// </summary>
 namespace Engine.InputEvents
@@ -13,34 +12,38 @@ namespace Engine.InputEvents
     /// </summary>
     public class InputManager : IEventPublisher, IInputPublisher, IClickPublisher
     {
-        // A KeyboardState called keyboardstate
+        // DECLARE a variable to hold a KeyboardState
         KeyboardState _keyBoardState;
-        // A MouseState called mouseState
+
+        // DECLARE a variable to hold a MouseState
         MouseState _mouseState;
 
         /// <summary>
-        /// Updates the input Manager
+        /// A method that updates the input manager
         /// </summary>
         public void update()
         {
-            // if the state of the keyboard is not equal to the current state this is true
+            // IF the held keyboardState is not equal to the keyboard's current state:
             if (_keyBoardState != Keyboard.GetState())
             {
-                //Updates the state of the keyboard
+                // UPDATE the held keyboardState
                 _keyBoardState = Keyboard.GetState();
-                // Calls the OnNewInput method
+
+                // CALL the OnNewInput method
                 OnNewInput();
             }
-            // If mouse state is not the same as current mousestate this is true
+
+            // IF the held mouseState is not equal to the mouse's current state:
             if (_mouseState.LeftButton != Mouse.GetState().LeftButton)
             {
+                // IF the left mouse button has been pressed:
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    // Calls OnNewClick method
+                    // CALL OnNewClick method
                     OnNewClick();
                 }
 
-                // Updates mouseState
+                // UPDATE the mouseState
                 _mouseState = Mouse.GetState();
 
             }
@@ -51,22 +54,23 @@ namespace Engine.InputEvents
         /// </summary>
         protected virtual void OnNewInput()
         {
-            // If NewInput is not null this is true
+            // IF NewInput is not null:
             if (NewInput != null)
             {
-                //  Raises the events and passes through the arugments
+                // RAISE the events and pass through the arugments
                 NewInput(this, new InputEventArgs() { keyboardState = this._keyBoardState });
             }
         }
+
         /// <summary>
         /// A method that raises the NewClick event
         /// </summary>
         protected virtual void OnNewClick()
         {
-            // If NewCLick is not null this is true
+            // If NewClick is not null:
             if (NewClick != null)
             {
-                //Raises the event and passes this and the mousestate
+                // RAISE the event and pass this and the mouseState
                 NewClick(this, new ClickEventArgs() { mouseState = this._mouseState });
             }
         }
@@ -76,9 +80,10 @@ namespace Engine.InputEvents
         /// </summary>
         public InputManager()
         {
-            // INTALIZES the keyboardstate to the current state of the keyboard
+            // INITIALISE the keyboardState to the current state of the keyboard
             _keyBoardState = Keyboard.GetState();
-            //INTALISES mouse state with the current state of the mouse
+
+            // INITIALISE the mouseState to the current state of the mouse
             _mouseState = Mouse.GetState();
         }
 
@@ -86,64 +91,65 @@ namespace Engine.InputEvents
         //------------------------------------------------------ IInputPublisher Implementation ------------------------------------------
 
         /// <summary>
-        /// A delegate For the Event 
+        /// A delegate for the Event 
         /// </summary>
         /// <param name="source">What is sending the event</param>
         /// <param name="args">The data of the event</param>
         public delegate void InputEventHandler(object source, InputEventArgs args);
 
-        // NewInput is raised each time A new input happens
+        // RAISE a new Input event
         public event InputEventHandler NewInput;
 
         /// <summary>
-        /// Subscribes a listener
+        /// A method to subscribe a listener
         /// </summary>
         /// <param name="listener">The object being subscribed</param>
         public void subscribe(IKeyListener listener)
         {
-            //Subscribes the listener to NewInput
+            // SUBSCRIBE the listener to NewInput
             NewInput += listener.OnNewInput;
         }
 
         /// <summary>
-        /// Removes a listener
+        /// A method to remove a listener
         /// </summary>
-        /// <param name="keyListener">listener being removed</param>
+        /// <param name="keyListener">The listener being removed</param>
         public void unSubscribe(IKeyListener keyListener)
         {
-            //Unsubscribes the listener from the event
+            // UNSUBSCRIBE the listener from the event
             NewInput -= keyListener.OnNewInput;
         }
 
         // ------------------------------------------------- IClickPublisher implementation -----------------------------------------------
 
         /// <summary>
-        /// A delagate for the mouseclick event
+        /// A delegate for the mouseClick event
         /// </summary>
-        /// <param name="source">where the method is called from</param>
-        /// <param name="args">the event data</param>
+        /// <param name="source">Where the method is called from</param>
+        /// <param name="args">The event data</param>
         public delegate void MouseEventHandler(object source, ClickEventArgs args);
-        //NewClick is raised when ever there is a new mouse clic
+
+        // RAISE a new mouseClick event
         public event MouseEventHandler NewClick;
 
 
         /// <summary>
-        /// Subscribes a listener
+        /// A method that subscribes a listener
         /// </summary>
         /// <param name="listener">The object being subscribed</param>
         public void subscribe(IClickListener listener)
         {
-            //Subscribes the listener to NewClick
+            // SUBSCRIBE the listener to NewClick
             NewClick += listener.OnNewClick;
         }
 
         /// <summary>
-        /// Removes a listener
+        /// A method that removes a listener
         /// </summary>
-        /// <param name="keyListener">listener being removed</param>
+        /// <param name="keyListener">The listener being removed</param>
         public void unSubscribe(IClickListener keyListener)
         {
-            //UnSubscribes the listener to NewInput
+            // REMOVE the listener from NewInput
             NewClick -= keyListener.OnNewClick;
         }
 
