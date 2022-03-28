@@ -1,25 +1,24 @@
 ﻿/// <summary>
-/// AUTHOR Lucas Brennan
-///
-/// Date 14/02/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 14/02/22
 /// </summary>
 namespace Engine.InputEvents
 {
     /// <summary>
-    /// An interface used to reprsent an object that publishes Clicks
+    /// An interface used to represent an object that publishes clicks
     /// </summary>
     public interface IClickPublisher
     {
         /// <summary>
-        /// Subscribes a listener
+        /// A method that subscribes a listener to an input publisher
         /// </summary>
         /// <param name="listener">The object being subscribed</param>
         void subscribe(IClickListener listener);
 
         /// <summary>
-        /// Removes a listener
+        /// A method that unsubscribes a listener from an input publisher
         /// </summary>
-        /// <param name="keyListener">listener being removed</param>
+        /// <param name="keyListener">The listener being removed</param>
         void unSubscribe(IClickListener keyListener);
     }
 }
