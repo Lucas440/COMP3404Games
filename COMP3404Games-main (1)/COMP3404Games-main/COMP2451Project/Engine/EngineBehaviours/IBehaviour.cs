@@ -2,17 +2,17 @@
 using System;
 /// <summary>
 /// AUTHOR: Lucas Brennan & Flynn Osborne
-/// DATE 07/02/22
+/// DATE: 07/02/22
 /// </summary>
 namespace Engine.Behaviours
 {
     /// <summary>
-    /// An interface used to represent the Behaviour of objects
+    /// An interface used to represent the behaviour of objects
     /// </summary>
     public interface IBehaviour
     {
         /// <summary>
-        /// A Property which returns a Velocity
+        /// A property which returns an entity's velocity
         /// </summary>
         Vector2 Velocity { get; }
 

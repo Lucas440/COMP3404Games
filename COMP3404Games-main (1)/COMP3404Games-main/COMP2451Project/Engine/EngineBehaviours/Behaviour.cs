@@ -2,25 +2,24 @@
 using Microsoft.Xna.Framework;
 using System;
 ///<summary>
-/// AUTHOR: Lucas Brennan & Flynn Osborne
-/// 
-/// DATE 07/02/2022
+/// AUTHORS: Lucas Brennan & Flynn Osborne
+/// DATE: 07/02/2022
 /// </summary>
 namespace Engine.Behaviours
 {
     /// <summary>
-    /// A Class to represent the behaviour of objects
+    /// A class to represent the behaviour of objects
     /// </summary>
     public class Behaviour : IBehaviour
     {
-        //DECLARES a Vector2 called _velocity
+        // DECLARES a Vector2 called _velocity
         protected Vector2 _velocity;
 
         // DECLARES a vector called _location
         protected Vector2 _location;
 
         /// <summary>
-        /// A property that returns a velocity
+        /// A property that returns an entity's velocity
         /// </summary>
         public virtual Vector2 Velocity { get => _velocity; }
 
@@ -30,7 +29,7 @@ namespace Engine.Behaviours
         public virtual Vector2 Location { get => _location; }
 
         /// <summary>
-        /// A property that stores a IEntity
+        /// A property that stores an IEntity
         /// </summary>
         public IEntity _myEntity { set; get; }
 
