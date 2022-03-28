@@ -5,23 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Authors Lucas Brennan, Flynn Osborne & Will Eardley
-/// 
-/// Date 14/03/2022
+/// AUTHORS: Lucas Brennan, Flynn Osborne & Will Eardley
+/// DATE: 14/03/2022
 /// </summary>
 namespace DrVsVirusGame.GameStates.VirusStates
 {
     public class VirusState : DrVsVirusState
     {
-        //DECLARE a new string called _identifier
+        // DECLARE a new string called _identifier
         private string _identifier;
 
         /// <summary>
         /// The recommended constructor for VirusState
         /// </summary>
-        /// <param name="pIdentifier">The Defult identifier string</param>
+        /// <param name="pIdentifier">The Default identifier string</param>
         public VirusState(string pIdentifier) 
         {
+            // SET the identifier to pIdentifier
             _identifier = pIdentifier;
         }
 
@@ -30,7 +30,7 @@ namespace DrVsVirusGame.GameStates.VirusStates
         /// </summary>
         public override void Collide()
         {
-            //Triggers _behaviour OnCollision method
+            // TRIGGER _behaviour's OnCollision method
             Behaviour.OnCollision(_entity, new UpdateEventArgs {ActiveBehaviour = ""});
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace DrVsVirusGame.GameStates.VirusStates
         /// </summary>
         public override void Update()
         {
-            //triggers _behaviours OnUpdate Method
+            // Trigger _behaviour's OnUpdate method
             Behaviour.OnUpdate(_entity , new UpdateEventArgs {ActiveBehaviour = _identifier });
         }
     }
