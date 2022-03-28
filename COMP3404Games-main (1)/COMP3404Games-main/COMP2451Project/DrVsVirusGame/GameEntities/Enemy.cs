@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Authors Lucas Brennan, Flynn Osborne & Will Eardley
-/// 
-/// Date 14/03/2022
+/// AUTHORS: Lucas Brennan, Flynn Osborne & Will Eardley
+/// DATE: 14/03/2022
 /// </summary>
 namespace DrVsVirusGame.GameEntities
 {
     /// <summary>
-    /// A Class that represents enemies
+    /// An abstract class that represents the game's enemies
     /// </summary>
     public abstract class Enemy : DrVsVirusEntity
     {

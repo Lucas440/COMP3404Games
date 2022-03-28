@@ -9,53 +9,56 @@ using Microsoft.Xna.Framework.Graphics;
 
 /// <summary>
 /// AUTHORS: Lucas Brennan, Flynn Osborne & Will Eardley
-/// 
 /// DATE: 21/03/2022
 /// </summary>
 namespace DrVsVirusGame.GameEntities
 {
     /// <summary>
-    /// A Class that represents the A DrVsVirus entity
+    /// A Class that represents a DrVsVirus entity
     /// </summary>
     public abstract class DrVsVirusEntity : Entity, ICollidable, Engine.EngineEntitys.IDrawable
     {
+        // DECLARE arrays to hold the columns and rows of the grid
         public int[] _gridX;
         public int[] _gridY;
 
+        // DECLARE variables to hold the entity's current location in the grid
         public int gridXLocation;
         public int gridYLocation;
 
         // -------------------------------------------------------- ICollidable Implemation -------------------------------------------------------------
-        //DECLARE a Rectangle called _hitBox
+        // DECLARE a Rectangle called _hitBox
         protected Rectangle _hitBox;
         //DECLARE a Texture2D called _texture
         protected Texture2D _texture;
 
         /// <summary>
-        /// A Method which sets the screens boundarys
+        /// A Method which sets the screen's boundaries
         /// </summary>
-        /// <param name="pHight">The hight of the screen</param>
-        /// <param name="pWidth">The Width of the Screen</param>
+        /// <param name="pHight">The height of the screen</param>
+        /// <param name="pWidth">The width of the screen</param>
         public virtual void setBoundaries(double pWidth ,double pHight) 
         {
-            //Sets _screenHight to pHight
+            // SETS _screenHight to pHight
             _screenHight = pHight;
-            //Sets _screenWidth to pWidth
+            // SETS _screenWidth to pWidth
             _screenWidth = pWidth;
 
         }
         /// <summary>
         /// A Method that returns the HitBox
         /// </summary>
-        /// <returns>The objects hitbox</returns>
+        /// <returns>The object's hitbox</returns>
         public Rectangle getHitBox() 
         {
-            //Creates a new Rectangle based on the entities location and the dimentions of the texture
+            // CREATES a new Rectangle based on the entity's location and the dimensions of the texture
             _hitBox = new Rectangle(Convert.ToInt32(_entityLocn.X), Convert.ToInt32(_entityLocn.Y), _texture.Width, _texture.Height);
+
+            // RETURNS the hitbox
             return _hitBox;
         }
         /// <summary>
-        /// A Method that responds to colision
+        /// A Method that responds to collision
         /// </summary>
         public virtual void colision() { }
 
@@ -67,20 +70,22 @@ namespace DrVsVirusGame.GameEntities
         /// <param name="pTexture">The Texture being set</param>
         public void Content(Texture2D pTexture) 
         {
-            //Sets _texture to pTexture
+            // SETS _texture to pTexture
             _texture = pTexture;
         }
+
         /// <summary>
         /// A Method that draws the object onto the screen
         /// </summary>
         public void draw() { }
+
         /// <summary>
-        /// A Method That returns the Objects texture
+        /// A Method that returns the object's texture
         /// </summary>
         /// <returns></returns>
         public Texture2D texture() 
         {
-            //Returns Texture
+            // RETURNS the texture
             return _texture;
         }
 
@@ -89,9 +94,10 @@ namespace DrVsVirusGame.GameEntities
         /// <summary>
         /// A Method that sets the starting location of the entity
         /// </summary>
-        /// <param name="pLocn">The Location of the entity</param>
+        /// <param name="pLocn">The location of the entity</param>
         public virtual void StartingLocation(Vector2 pLocn) 
         {
+            // SET the entity's starting location
             _entityLocn = pLocn;
         }
 
@@ -102,6 +108,7 @@ namespace DrVsVirusGame.GameEntities
         /// <param name="pGridY">The array of rows</param>
         public virtual void SetGrid(int[] pGridX, int[] pGridY)
         {
+            // SET the rows and columns of the grid
             _gridX = pGridX;
             _gridY = pGridY;
         }

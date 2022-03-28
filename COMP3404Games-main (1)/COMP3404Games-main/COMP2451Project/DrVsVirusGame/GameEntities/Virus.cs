@@ -20,13 +20,13 @@ namespace DrVsVirusGame.GameEntities
     /// </summary>
     public class Virus : Enemy
     {
-        //DECLARE a new IState called _currentState
+        // DECLARE a new IState called _currentState
         private IState _currentState;
 
-        //DECLARE a new IState called _movingState
+        // DECLARE a new IState called _movingState
         private IState _movingState;
 
-        //DECLARE a new event called _currentBehaviour
+        // DECLARE a new event called _currentBehaviour
         public event OnUpdateEvent _currentBehaviour;
 
         /// <summary>
@@ -37,38 +37,40 @@ namespace DrVsVirusGame.GameEntities
         public delegate void OnUpdateEvent(object sender, UpdateEventArgs args);
 
         /// <summary>
-        /// The Default Contsructor
+        /// The Default Constructor
         /// </summary>
         public Virus() 
         {
+
         }
+
         /// <summary>
         /// A Method that sets the starting location of the virus
         /// </summary>
         /// <param name="pLocn">The StartingLocation (Not used in this method)</param>
         public override void StartingLocation(Vector2 pLocn)
         {
-            //Initalise a new Random called rnd
+            // INITIALISE a new Random called rnd
             Random rnd = new Random();
 
-            //Sets _entityLocn X position to _screenWidth + 50
+            // SETS _entityLocn X position to _screenWidth + 50
             _entityLocn.X = (float)(_screenWidth + 50);
-            //Sets _entityLocon Y to a random number between 0 and _screenHeight
+            // SETS _entityLocon Y to a random number between 0 and _screenHeight
             _entityLocn.Y = rnd.Next(0 , Convert.ToInt32(_screenHight));
 
-            //INITALISE class Varibles
+            // INITIALISE class variables:
             //_behaviour
             _behaviour = new VirusBehaviour();
             ((Behaviour)_behaviour)._myEntity = this;
             //_movingState
             _movingState = new VirusState("Moving");
-            //Sets MovingState Entity to this
+            // SETS _movingState's entity to this
             _movingState._entity = this;
             ((State)_movingState).Behaviour = _behaviour;
             //_currentState
             _currentState = _movingState;
 
-            //Adds _behaviours OnUpdate Method to the event
+            // ADDS _behaviour's OnUpdate Method to the event
             _currentBehaviour += _behaviour.OnUpdate;
 
         }
@@ -121,16 +123,18 @@ namespace DrVsVirusGame.GameEntities
         /// </summary>
         public override void update()
         {
-            //Updates the current state
+            // UPDATES the current state
             _currentState.Update();
-            //sets the location to the behaviours location
+            // SETS the location to the behaviours location
             _entityLocn = _behaviour.Location;
 
+            // IF the virus has gone beyond the left side of the screen
             if (_entityLocn.X < 0) 
             {
                 //Environment.Exit(1);
             }
 
+            // OUTPUT the current grid location
             UpdateGridLocation();
         }
     }
