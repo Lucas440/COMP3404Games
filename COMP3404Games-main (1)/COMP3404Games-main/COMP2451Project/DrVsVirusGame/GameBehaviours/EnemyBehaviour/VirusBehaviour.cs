@@ -5,18 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Authors Lucas Brennan, Flynn Osborne & Will Eardley
-/// 
-/// Date 14/03/2022
+/// AUTHORS: Lucas Brennan, Flynn Osborne & Will Eardley
+/// DATE: 14/03/2022
 /// </summary>
 namespace DrVsVirusGame.GameBehaviours.EnemyBehaviour
 {
     /// <summary>
-    /// A Class that represents Virus' Behaviour
+    /// A Class that represents the Virus' Behaviour
     /// </summary>
     public class VirusBehaviour : DrVsVirusBehaviour
     {
-        //The speed of the Virus
+        // DECLARE a variable to hold the speed of the Virus
         private int speed;
 
         /// <summary>
@@ -24,23 +23,24 @@ namespace DrVsVirusGame.GameBehaviours.EnemyBehaviour
         /// </summary>
         public VirusBehaviour() 
         {
-            //Sets the Virus speed to 5
+            // SET the Virus' speed
             speed = -3;
         }
 
         /// <summary>
-        /// A Method the responds to a updates
+        /// A Method to responds to updates
         /// </summary>
         /// <param name="sender">The object that called the method</param>
         /// <param name="UpdateEventArgs">The Update Event Argument / Data</param>
         public override void OnUpdate(object sender, UpdateEventArgs UpdateEventArgs)
         {
-            //Sets _location to the entitys position
+            // SET _location to the entity's position
             _location = _myEntity.Position;
-            //If the Argument is "moving" this is true
+
+            // IF the virus is "moving":
             if (UpdateEventArgs.ActiveBehaviour.ToLower() == "moving") 
             {
-                //_location is reduced by 1
+                // UPDATE the virus' location
                 _location.X += speed;
             }
         }
