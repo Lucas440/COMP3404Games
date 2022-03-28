@@ -1,27 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
 /// <summary>
-/// Author Lucas Brennan
+/// AUTHOR: Lucas Brennan
 /// 
-/// Date 22/01/22
+/// DATE: 22/01/22
 /// </summary>
 namespace Engine.EngineEntitys
 {
     /// <summary>
-    /// An interface used to repesent entitys
+    /// An interface used to repesent entities
     /// </summary>
     public interface IEntity
     {
         /// <summary>
-        /// Updates the Entity on each loop
+        /// A method that updates the entity on each loop
         /// </summary>
         void update();
 
         /// <summary>
-        /// Returns the objects Position
+        /// A property to return the object's Position
         /// </summary>
         Vector2 Position { get; }
+
         /// <summary>
-        /// A property that returns the state the program is in as a string
+        /// A property that sets and returns the state the program is in as a string
         /// </summary>
         string StateText { get; set; }
     }

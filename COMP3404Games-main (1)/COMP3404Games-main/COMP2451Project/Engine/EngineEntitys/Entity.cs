@@ -4,46 +4,47 @@ using Engine.EngineStates;
 using Microsoft.Xna.Framework;
 using System;
 /// <summary>
-/// AUTHOR: Lucas Brennan & Flynn Osborne
+/// AUTHORS: Lucas Brennan & Flynn Osborne
 /// DATE: 07/02/2022
 /// </summary>
 namespace Engine.EngineEntitys
 {
     /// <summary>
-    /// A Class used to represen entities in the game
+    /// A class used to represent the game's entities
     /// </summary>
     public abstract class Entity : IEntity, IEntityInternal, ICommandSender
     {
-        // A variable to hold the entity's behaviour
+        // DECLARE a variable to hold the entity's behaviour
         protected IBehaviour _behaviour;
 
-        // A variable to hold the entity's current state
+        // DECLARE a variable to hold the entity's current state
         protected IState _state;
 
-        // Creates a vector called ballLocn
+        // CREATE a vector called ballLocn
         protected Vector2 _entityLocn;
 
-        //DECLARE a double called _screenWidth
+        // DECLARE a double called _screenWidth
         protected double _screenWidth;
-        //DECLARE a double called _screenHight
+        // DECLARE a double called _screenHight
         protected double _screenHight;
 
         /// <summary>
-        /// Updates the entity on each loop
+        /// A method that updates the entity on each loop
         /// </summary>
         public virtual void update() { }
 
         /// <summary>
-        /// Returns the objects Position
+        /// A property that returns the object's Position
         /// </summary>
         public Vector2 Position { get => _entityLocn; }
+
         /// <summary>
-        /// A Property that returns the state as a text
+        /// A property that returns the object's state as a text
         /// </summary>
         public string StateText { get; set; }
 
         /// <summary>
-        /// Changes the entity's state 
+        /// A method that changes the entity's state 
         /// </summary>
         /// <param name="pState">The state the entity must change to</param>
         public virtual void SetState(IState pState)
@@ -54,7 +55,7 @@ namespace Engine.EngineEntitys
         //----------------------------------------------------------------- ICommandSender Implementation ----------------------------------
 
         /// <summary>
-        /// A Property used to set a ScheduleCommand action
+        /// A property used to set a ScheduleCommand action
         /// </summary>
         public Action<ICommand> ScheduleCommand { get; set; }
 
@@ -66,7 +67,7 @@ namespace Engine.EngineEntitys
         public ICommand TerminateMe { get; set; }
 
         /// <summary>
-        /// A Property used to Store a Remove MEthod
+        /// A property used to Store a Remove Method
         /// </summary>
         public ICommand RemoveMe { get; set; }
 
