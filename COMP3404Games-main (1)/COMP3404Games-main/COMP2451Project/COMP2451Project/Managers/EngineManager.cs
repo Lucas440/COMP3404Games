@@ -155,15 +155,20 @@ namespace Engine.Managers
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
 
-            //Creates a new Virus Entity
-            tempEntity = _entityManager.CreateEntity<Virus>();
+            Random rnd = new Random();
 
-            //Calls intialise entity
-            InitaliseEntity(tempEntity , tempTexture , new Vector2(-1 , -1));
+            //Creates a set amount of Virus
+            for (int x = 0; x < 10; x++) 
+            {
+                //Creates a new Virus Entity
+                tempEntity = _entityManager.CreateEntity<Virus>();
 
-            //Calls SetCommands
-            SetCommands(tempEntity);
+                //Calls intialise entity giving a random hight and distance from the goal
+                InitaliseEntity(tempEntity, tempTexture, new Vector2((float)(_width + rnd.Next(50, 150)), rnd.Next(0, Convert.ToInt32(_height))));
 
+                //Calls SetCommands
+                SetCommands(tempEntity);
+            }
             //Creates a new Cannon Entity
             tempEntity = _entityManager.CreateEntity<Cannon>();
 

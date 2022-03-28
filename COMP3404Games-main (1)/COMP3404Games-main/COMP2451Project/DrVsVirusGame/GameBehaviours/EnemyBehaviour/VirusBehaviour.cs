@@ -24,7 +24,7 @@ namespace DrVsVirusGame.GameBehaviours.EnemyBehaviour
         public VirusBehaviour() 
         {
             // SET the Virus' speed
-            speed = -3;
+            speed = -2;
         }
 
         /// <summary>

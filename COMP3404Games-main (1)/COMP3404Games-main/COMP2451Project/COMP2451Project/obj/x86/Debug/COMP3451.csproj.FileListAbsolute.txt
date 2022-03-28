@@ -141,3 +141,5 @@ C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-
 C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP3451.csproj.CopyComplete
+C:\Users\BREL1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Attack_SpriteSheet.xnb
+C:\Users\BREL1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\DrsVsVirusesBackground.xnb

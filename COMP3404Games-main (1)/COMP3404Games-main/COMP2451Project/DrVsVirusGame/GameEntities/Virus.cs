@@ -54,10 +54,7 @@ namespace DrVsVirusGame.GameEntities
             // INITIALISE a new Random called rnd
             Random rnd = new Random();
 
-            //Sets _entityLocn X position to _screenWidth + 50
-            _entityLocn.X = 250;
-            //Sets _entityLocon Y to a random number between 0 and _screenHeight
-            _entityLocn.Y = rnd.Next(0 , Convert.ToInt32(_screenHight));
+            _entityLocn = pLocn;
 
             // INITIALISE class variables:
             //_behaviour
@@ -127,7 +124,7 @@ namespace DrVsVirusGame.GameEntities
             // UPDATES the current state
             _currentState.Update();
             //sets the location to the behaviours location
-            //_entityLocn = _behaviour.Location;
+            _entityLocn = _behaviour.Location;
 
             // IF the virus has gone beyond the left side of the screen
             if (_entityLocn.X < 0) 

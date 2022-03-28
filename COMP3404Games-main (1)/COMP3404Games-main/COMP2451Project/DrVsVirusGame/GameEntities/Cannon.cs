@@ -28,9 +28,6 @@ namespace DrVsVirusGame.GameEntities
         {
             // SET the cannonball
             _ball = pBall;
-
-            _entityLocn.X = 500;
-            _entityLocn.Y = 500;
         }
 
         // ---------------------------------------- IClick Listener Implenetation ------------------------------------------------
