@@ -23,6 +23,9 @@ namespace DrVsVirusGame.GameEntities
         public void SetCannonBall(CannonBall pBall) 
         {
             _ball = pBall;
+
+            _entityLocn.X = 500;
+            _entityLocn.Y = 500;
         }
 
         // ---------------------------------------- IClick Listener Implenetation ------------------------------------------------

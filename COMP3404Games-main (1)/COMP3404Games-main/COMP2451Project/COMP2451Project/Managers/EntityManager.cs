@@ -57,8 +57,13 @@ namespace COMP3451Project.Managers
         /// <returns>A New object of type IEntity</returns>
         public IEntity CreateEntity<C>() where C : IEntity, new()
         {
-            //Creates and Returns a new IEntity using _factoryLoactor
-            return (_factoryLocator.Get<IEntity>() as IFactory<IEntity>).Create<C>();
+            //Creates a new IEntity called Temp
+            IEntity temp = (_factoryLocator.Get<IEntity>() as IFactory<IEntity>).Create<C>();
+            //Adds it to the entity list
+            _entities.Add(temp);
+
+            //Returns temp
+            return temp;
         }
         /// <summary>
         /// A method used to temerinate entites

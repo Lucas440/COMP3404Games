@@ -133,5 +133,25 @@ namespace DrVsVirusGame.GameEntities
 
             UpdateGridLocation();
         }
+
+        /// <summary>
+        /// A Method that returns the cannonballs hitbox
+        /// </summary>
+        /// <returns>A Rectangle that represents the hitbox</returns>
+        public override Rectangle getHitBox()
+        {
+            //If the entity isnt moving and
+            //If the entitys gridY and gridX location -1 is greater than or Equal to 0 this is true
+            if (_isMoving == false && (gridYLocation - 1 >= 0 && gridXLocation - 1 >= 0))
+            {
+                //Creates a new rectangle which represents the cannon balls hit box when it lands on the ground
+                _hitBox = new Rectangle(_gridX[gridXLocation - 1], _gridY[gridYLocation - 1], 100, 100);
+                //Sets the location to 0 0 
+                _entityLocn.X = 0;
+                _entityLocn.Y = 0;
+            }
+            //Returns the hit box
+            return _hitBox;
+        }
     }
 }

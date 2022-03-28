@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/earw1_19/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/File.spritefont</SourceFile>
-  <SourceTime>2022-03-28T09:19:52.1707774+01:00</SourceTime>
-  <DestFile>C:/Users/earw1_19/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/bin/Windows/Content/File.xnb</DestFile>
-  <DestTime>2022-03-28T09:21:29.0739712+01:00</DestTime>
+  <SourceFile>C:/Users/BREL1_19/Source/Repos/COMP3404Gam/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/File.spritefont</SourceFile>
+  <SourceTime>2022-03-28T11:00:17.5479011+01:00</SourceTime>
+  <DestFile>C:/Users/BREL1_19/Source/Repos/COMP3404Gam/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/bin/Windows/Content/File.xnb</DestFile>
+  <DestTime>2022-03-28T11:08:35.4096551+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2018-12-08T16:35:54+00:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
   <ProcessorTime>2018-12-08T16:35:54+00:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
   <Parameters>
     <Key>TextureFormat</Key>
     <Value>Compressed</Value>

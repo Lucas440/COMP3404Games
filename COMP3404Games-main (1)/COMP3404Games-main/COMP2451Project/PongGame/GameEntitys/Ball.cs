@@ -1,4 +1,5 @@
 ﻿using Engine.Behaviours;
+using Engine.EngineEntitys;
 using Engine.EngineStates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -202,7 +203,7 @@ namespace PongGame.Entities
         /// <summary>
         /// A method that responds when coliding with an object
         /// </summary>
-        public override void colision()
+        public override void colision(ICollidable pColliable)
         {
             // Reverse the horizontal direction of the ball
             //Velocity.X *= -1;

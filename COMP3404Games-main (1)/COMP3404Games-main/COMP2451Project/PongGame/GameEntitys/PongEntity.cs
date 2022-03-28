@@ -87,7 +87,7 @@ namespace PongGame.Entities
         /// <summary>
         /// A method that responds to a colision
         /// </summary>
-        public virtual void colision() { }
+        public virtual void colision(ICollidable pColliable) { }
 
         //--------------------------------------------------- IDrawable Implementation ---------------------------------------------
 

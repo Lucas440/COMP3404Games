@@ -43,3 +43,12 @@ C:\Users\earw1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Game
 C:\Users\earw1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\obj\Debug\PongGame.csproj.CopyComplete
 C:\Users\earw1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\obj\Debug\PongGame.dll
 C:\Users\earw1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\obj\Debug\PongGame.pdb
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\obj\Debug\PongGame.csproj.AssemblyReference.cache
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\obj\Debug\PongGame.csproj.CoreCompileInputs.cache
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\obj\Debug\PongGame.dll
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\obj\Debug\PongGame.pdb
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\bin\Debug\PongGame.dll
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\bin\Debug\PongGame.pdb
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\bin\Debug\Engine.dll
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\bin\Debug\Engine.pdb
+C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\PongGame\obj\Debug\PongGame.csproj.CopyComplete
