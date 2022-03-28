@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Authors Lucas Brennan, Flynn Osborne & Will Eardley
-/// 
-/// Date 14/03/2022
+/// AUTHORS: Lucas Brennan, Flynn Osborne & Will Eardley
+/// DATE: 14/03/2022
 /// </summary>
 namespace DrVsVirusGame.GameStates
 {
     /// <summary>
-    /// A Class the represents a DrVsVirusState
+    /// A Class that represents a state for a DrVsVirusEntity
     /// </summary>
     public abstract class DrVsVirusState : State
     {

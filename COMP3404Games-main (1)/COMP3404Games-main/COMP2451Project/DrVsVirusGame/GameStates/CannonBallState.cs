@@ -5,23 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Author Lucas Brennan
-/// 
-/// Date 21/03/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 21/03/22
 /// </summary>
 namespace DrVsVirusGame.GameStates
 {
     /// <summary>
-    /// A Class that represents the cannon balls state
+    /// A Class that represents the cannonball's state
     /// </summary>
     public class CannonBallState : DrVsVirusState
     {
         /// <summary>
-        /// A method that updates the state
+        /// A method that updates the cannonball's state
         /// </summary>
         public override void Update()
         {
-            //Calls OnUpdate method for Behaviour
+            // CALLS OnUpdate method in Behaviour
             Behaviour.OnUpdate(_entity , new UpdateEventArgs() { ActiveBehaviour = "moving" });
         }
     }
