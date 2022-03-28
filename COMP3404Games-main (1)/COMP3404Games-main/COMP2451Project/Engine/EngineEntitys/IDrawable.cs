@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 /// <summary>
-/// Author Lucas Brennan
-/// 
-/// Date 14/02/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 14/02/22
 /// </summary>
 namespace Engine.EngineEntitys
 {
@@ -14,7 +13,7 @@ namespace Engine.EngineEntitys
         /// <summary>
         /// Sets the objects texture to what is passed
         /// </summary>
-        /// <param name="texture">The Objects Texture</param>
+        /// <param name="texture">The Object's Texture</param>
         void Content(Texture2D texture);
 
         /// <summary>
@@ -26,7 +25,7 @@ namespace Engine.EngineEntitys
         /// <summary>
         /// Gets the texture of the object
         /// </summary>
-        /// <returns>Returns the entitys Texture</returns>
+        /// <returns>Returns the entity's Texture</returns>
         Texture2D texture();
     }
 }
