@@ -14,7 +14,7 @@ using System;
 /// CLASS: 'EngineManager' - manages game engine
 /// AUTHOR: Will Eardley
 /// MODIFIED BY: Flynn Osborne
-/// DATE: 21/03/2022
+/// DATE: 04/04/2022
 /// </summary>
 namespace Engine.Managers
 {
@@ -47,7 +47,14 @@ namespace Engine.Managers
 
         // DECLARE two variables to hold the number of rows and columns in the grid
         int _gridXLength, _gridYLength;
-        //DECALRE a ContentManager called _content
+
+        // DECLARE two integer variables to hold the end points of the grid
+        int _gridXEnd, _gridYEnd;
+
+        // DECLARE two integer variables to hold the start points of the grid
+        int _gridXStart, _gridYStart;
+
+        // DECLARE a ContentManager called _content
         ContentManager _content;
 
         /// <summary>
@@ -74,10 +81,18 @@ namespace Engine.Managers
             _commandScheduler = (_factoryLocator.Get<ICommandScheduler>() as IFactory<ICommandScheduler>).Create<CommandScheduler>();
 
             // SET the amount of columns and rows in the grid
-            _gridXLength = 7;
-            _gridYLength = 5;
+            _gridXLength = 6;
+            _gridYLength = 4;
             _gridX = new int[_gridXLength];
             _gridY = new int[_gridYLength];
+
+            // SET the endpoints for the grid's rows and columns
+            _gridXEnd = 1445;
+            _gridYEnd = 810;
+
+            // SET the start points for the grid
+            _gridXStart = 495;
+            _gridYStart = 115;
         }
 
         /// <summary>
@@ -97,8 +112,11 @@ namespace Engine.Managers
             _width = pWidth;
 
             // SET the width and height of the grid's rows and columns
-            gridXAdd = (int)_width / _gridXLength;
-            gridYAdd = (int)_height / _gridYLength;
+            //gridXAdd = (int)_width / _gridXLength;
+            //gridYAdd = (int)_height / _gridYLength;
+
+            gridXAdd = (_gridXEnd - _gridXStart) / _gridXLength;
+            gridYAdd = (_gridYEnd - _gridYStart) / _gridYLength;
 
             // CALL Initialise method for Entity Manager
             _entityManager.Initialise(_factoryLocator);
@@ -110,8 +128,11 @@ namespace Engine.Managers
             _sceneManager.Initialise(pSpriteFont);
 
             // ADD the first row and column to the grid
-            _gridX[0] = 0;
-            _gridY[0] = 0;
+            //_gridX[0] = 0;
+            //_gridY[0] = 0;
+
+            _gridX[0] = _gridXStart;
+            _gridY[0] = _gridYStart;
 
             // ADD the rest of the columns to the grid
             for (int i = 1; i < _gridXLength; i++)
