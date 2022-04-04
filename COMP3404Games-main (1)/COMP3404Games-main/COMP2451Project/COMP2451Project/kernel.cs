@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 /// <summary>
 /// AUTHOR: Lucas Brennan
-/// CO-AUTHOR: William Eardley, Flynn Osbourne
+/// CO-AUTHOR: William Eardley, Flynn Osborne
 /// DATE: 07/02/2022
 /// </summary>
 
