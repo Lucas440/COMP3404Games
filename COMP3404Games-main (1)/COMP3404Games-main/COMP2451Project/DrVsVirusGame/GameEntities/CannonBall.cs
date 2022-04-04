@@ -72,9 +72,41 @@ namespace DrVsVirusGame.GameEntities
 
             // SETS the _target to pTarget
             _target = pTarget;
-            // SETS _isMoving to true
-            _isMoving = true;
-            ((CannonBallBehaviour)_behaviour).IsMoving = true;
+
+            //DECLARE Bool xValid and yValid set both to false
+            bool xValid = false;
+            bool yValid = false;
+
+            // Observes the horizontal grid position
+            for (int i = 0; i < _gridX.Length - 1; i++)
+            {
+                // Check each column to find the target
+                if (_target.X >= _gridX[i] && _target.X < _gridX[i + 1])
+                {
+                    //set xValid to true
+                    xValid = true;
+                    break;
+                }
+            }
+
+            // Observes the vertical grid position
+            for (int i = 0; i < _gridY.Length - 1; i++)
+            {
+                // Check each row to find the target
+                if (_target.Y >= _gridY[i] && _target.Y < _gridY[i + 1])
+                {
+                    //Set yValid to true
+                    yValid = true;
+                    break;
+                }
+            }
+            //If xValid and yValid are true this is true
+            if (xValid && yValid) 
+            {
+                //Set isMoving to true
+                _isMoving = true;
+                ((CannonBallBehaviour)_behaviour).IsMoving = true;
+            } 
         }
 
         /// <summary>
