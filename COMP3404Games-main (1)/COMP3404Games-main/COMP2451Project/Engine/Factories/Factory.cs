@@ -6,7 +6,7 @@ namespace Engine.Factories
 {
 
     /// <summary>
-    /// A class used to create new intenaces of objects
+    /// A class used to create new instances of objects
     /// </summary>
     /// <typeparam name="I">The object type</typeparam>
     public class Factory<I> : IFactory<I>, IService

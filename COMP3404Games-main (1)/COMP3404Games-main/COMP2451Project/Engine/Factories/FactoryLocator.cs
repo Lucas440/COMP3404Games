@@ -12,28 +12,30 @@ namespace Engine.Factories
     /// </summary>
     public class FactoryLocator : IFactoryLocator
     {
-        // Dictionary to hold all factories
+        // DECLARE a dictionary to hold all the factories
         private Dictionary<Type, IService> _factoryRegister;
 
         // Constructor for the factoryLocator
         public FactoryLocator()
         {
-            // Initialises the factory dictionary
+            // INITIALISE the factory dictionary
             _factoryRegister = new Dictionary<Type, IService>();
         }
 
         // Returns a factory of the required class
         public IService Get<T>() where T : class
         {
-            // Creates a factory if one does not already exist
+            // CREATE a factory if one does not already exist
             if (!_factoryRegister.ContainsKey(typeof(T)))
             {
                 _factoryRegister.Add(typeof(T), new Factory<T>());
-
+                
+                // RETURN the created factory
                 return _factoryRegister[(typeof(T))];
             }
             else
             {
+                // RETURN the required factory
                 return _factoryRegister[(typeof(T))];
             }
         }
