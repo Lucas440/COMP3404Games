@@ -47,6 +47,8 @@ namespace Engine.Managers
 
         // DECLARE two variables to hold the number of rows and columns in the grid
         int _gridXLength, _gridYLength;
+        //DECALRE a ContentManager called _content
+        ContentManager _content;
 
         /// <summary>
         /// CONSTRUCTOR for EngineManager
@@ -150,6 +152,9 @@ namespace Engine.Managers
         /// <param name="pContent"></param>
         public void LoadContent(ContentManager pContent)
         {
+            //Sets _content to pContent
+            _content = pContent;
+
             // DECLARE variable 'temptTexture' as type Texture2D - load 'square' texture onto ball
             Texture2D tempTexture = pContent.Load<Texture2D>("square");
 
@@ -198,31 +203,58 @@ namespace Engine.Managers
             // PASS tempCannonBall to the cannon entity
             ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
 
+            //Calls the Create Defender Method
+            CreateDefender(new Vector2(200 , 200));
 
-            tempEntity = _entityManager.CreateEntity<Defender>();
+            tempEntity = _entityManager.CreateEntity<DefenderButton>();
+            InitaliseEntity(tempEntity , tempTexture , new Vector2(100 , 500));
+            SetCommands(tempEntity);
+            // SUBSCRIBE the cannon to _inputManager
+            ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
 
-            tempTexture = pContent.Load<Texture2D>("DefenderProjectile");
+            ICommand createDefender = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandOneParam<Vector2>>();
+            ((ICommandOneParam<Vector2>)createDefender).SetAction = CreateDefender;
 
+            ((DefenderButton)tempEntity).CreateDefender = createDefender;
+        }
+
+        /// <summary>
+        /// A Method used to Create a Defender
+        /// </summary>
+        /// <param name="pLocn"></param>
+        /// <param name="pContent"></param>
+        private void CreateDefender(Vector2 pLocn) 
+        {
+            //DECLARE a IEntity called tempDefender
+            IEntity tempDefender;
+            //DECLARE a Texture2D called tempTexture
+            Texture2D tempTexture;
+
+            //Create a new Defender
+            tempDefender = _entityManager.CreateEntity<Defender>();
+            //Load the defender Projectile texture
+            tempTexture = _content.Load<Texture2D>("DefenderProjectile");
+            //Create a defender Projectile
             IEntity tempProjectile = _entityManager.CreateEntity<DefenderProjectile>();
+            //Set the texture to the projectile texture
             ((EngineEntitys.IDrawable)tempProjectile).Content(tempTexture);
-
-            tempTexture = pContent.Load<Texture2D>("square");
-
-            ((Defender)tempEntity).SetProjectile = (DefenderProjectile)tempProjectile;
-
+            //Sets tempTexture to "square"
+            tempTexture = _content.Load<Texture2D>("square");
+            //Sets the defenders projectile to tempProjectile
+            ((Defender)tempDefender).SetProjectile = (DefenderProjectile)tempProjectile;
+            //Creates a new Entity sight
             IEntity tempSight = _entityManager.CreateEntity<EntitySight>();
+            //Sets the Defenders sight to tempSight
+            ((Defender)tempDefender).SetSight = (EntitySight)tempSight;
 
-            ((Defender)tempEntity).SetSight = (EntitySight)tempSight;
+            //Initalises the defender
+            InitaliseEntity(tempDefender, tempTexture, pLocn);
 
-
-            InitaliseEntity(tempEntity, tempTexture, new Vector2(200, 200));
 
             // ADD tempEntity to the screen
             _sceneManager.AddEntity(tempSight);
-                        // ADD tempEntity to the screen
+            // ADD tempEntity to the screen
             _sceneManager.AddEntity(tempProjectile);
-
-
         }
 
         /// <summary>

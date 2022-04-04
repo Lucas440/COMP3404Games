@@ -39,6 +39,8 @@ namespace Engine.Command
             //loops through each command in the list and Executes it
             foreach (ICommand c in _commandList)
                 c.Execute();
+            //Clears the commandList
+            _commandList.Clear();
         }
     }
 }

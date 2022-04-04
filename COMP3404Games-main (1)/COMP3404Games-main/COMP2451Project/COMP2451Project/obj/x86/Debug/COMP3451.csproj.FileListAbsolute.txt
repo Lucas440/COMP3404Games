@@ -149,3 +149,4 @@ C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-m
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP2451Project.exe
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP2451Project.pdb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\DefenderProjectile.xnb
+C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\DefenderProjectile.xnb
