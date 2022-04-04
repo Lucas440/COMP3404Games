@@ -26,7 +26,7 @@ namespace Engine
         // DECLARE a double called ScreenHeight
         private double ScreenHeight;
 
-        // DELCARE a double called ScreenWidth
+        // DECLARE a double called ScreenWidth
         private double ScreenWidth;
 
         // DECLARE private variable '_engineManager' as type EngineManager
@@ -43,16 +43,16 @@ namespace Engine
         /// <param name="pengineManager"></param>
         public kernel(EngineManager pengineManager)
         {
-            // INITALIZES a graphic as a New GraphicsDeviceManager passing this as a paramiter
+            // INITALISE a graphic as a New GraphicsDeviceManager passing this as a parameter
             graphics = new GraphicsDeviceManager(this);
 
-            // Stores the root for the content as Content
+            // STORE the root for the content as Content
             Content.RootDirectory = "Content";
 
-            // Sets the screen height to 900
+            // SET the screen height to 900
             graphics.PreferredBackBufferHeight = 900;
 
-            // Sets the screen width to 900
+            // SET the screen width to 900
             graphics.PreferredBackBufferWidth = 1600;
 
             // SET _engineManager to the parameter value passed from Program
@@ -63,9 +63,10 @@ namespace Engine
 
             
 
-            //Allows the user to see the mouse
+            // ALLOW the user to see the mouse
             IsMouseVisible = true;
-            //Sets the mouse Cursor to a crosshair
+            
+            // SET the mouse Cursor to a crosshair
             //Mouse.PlatformSetCursor( MouseCursor.Crosshair);
         }
 
@@ -85,9 +86,10 @@ namespace Engine
             // SET ScreenWidth to viewport width - width of the screen
             ScreenWidth = GraphicsDevice.Viewport.Width;
 
-            //Creates a new spriteFont and loads a default text font into it
+            // CREATE a new spriteFont and loads a default text font into it
             SpriteFont spriteFont = Content.Load<SpriteFont>("Text");
 
+            // SET the background of the viewport
             _background = Content.Load<Texture2D>("DrsVsVirusesBackground");
 
             // CALL Initialise method inside EngineManager - Passes the spriteFont
