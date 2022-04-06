@@ -59,6 +59,12 @@ namespace Engine.Managers
 
         IEntity _points;
 
+        int _enemySpawnRate;
+
+        ICommand _alterPointsCommand;
+
+        Random rnd;
+
         /// <summary>
         /// CONSTRUCTOR for EngineManager
         /// </summary>
@@ -95,6 +101,10 @@ namespace Engine.Managers
             // SET the start points for the grid
             _gridXStart = 495;
             _gridYStart = 115;
+
+            _enemySpawnRate = 0;
+
+            rnd = new Random();
         }
 
         /// <summary>
@@ -167,6 +177,14 @@ namespace Engine.Managers
 
             //CALL update method inside _commandSceduler
             _commandScheduler.Update();
+
+            _enemySpawnRate++;
+
+            if (_enemySpawnRate >= 120) 
+            {
+                CreateEnemy();
+                _enemySpawnRate = 0;
+            }
         }
 
         /// <summary>
@@ -175,10 +193,18 @@ namespace Engine.Managers
         /// <param name="pContent"></param>
         public void LoadContent(ContentManager pContent)
         {
-            ICommand alterPointsCommand = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandOneParam<int>>();
-            ((ICommandOneParam<int>)alterPointsCommand).SetData = 100;
-            
-
+            //Initlaise _points
+            _points = _entityManager.CreateEntity<Points>();
+            //Sets the starting location 1400, 50
+            ((DrVsVirusEntity)_points).StartingLocation(new Vector2(1400, 50));
+            //Set _sceneManagers Points to _points
+            _sceneManager.Points = _points;
+            //Initalise _alterPointsCommand
+            _alterPointsCommand = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandOneParam<int>>();
+            //Set the action to AlterPoints
+            ((ICommandOneParam<int>)_alterPointsCommand).SetAction = ((Points)_points).AlterPoints;
+            //Set the data to 100
+            ((ICommandOneParam<int>)_alterPointsCommand).SetData = 100;
             //Sets _content to pContent
             _content = pContent;
 
@@ -188,20 +214,11 @@ namespace Engine.Managers
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
 
-            Random rnd = new Random();
-
             //Creates a set amount of Virus
             for (int x = 0; x < 10; x++) 
             {
-                //Creates a new Virus Entity
-                tempEntity = _entityManager.CreateEntity<Virus>();
-
-                //Calls intialise entity giving a random hight and distance from the goal
-                InitaliseEntity(tempEntity, tempTexture, new Vector2((float)(_width + rnd.Next(50, 150)), rnd.Next(0, Convert.ToInt32(_height))));
-
-                //Calls SetCommands
-                SetCommands(tempEntity);
-                ((Enemy)tempEntity).AlterPoints = alterPointsCommand;
+                //Call CreateEnemy
+                CreateEnemy();
             }
 
 
@@ -228,18 +245,33 @@ namespace Engine.Managers
             SetCommands(tempEntity);
             // SUBSCRIBE the cannon to _inputManager
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
-
+            //Create a new ICommand called createDefender
             ICommand createDefender = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandOneParam<Vector2>>();
+            //Set the action to the method CreateDefender
             ((ICommandOneParam<Vector2>)createDefender).SetAction = CreateDefender;
-
+            //Sets the command in the entity to createDefender
             ((DefenderButton)tempEntity).CreateDefender = createDefender;
 
+        }
+        /// <summary>
+        /// A Method used to create enemys
+        /// </summary>
+        private void CreateEnemy()
+        { 
+            // DECLARE variable 'tempEntity' as type IEntity 
+            IEntity tempEntity;
+            //Creates a new Virus Entity
+            tempEntity = _entityManager.CreateEntity<Virus>();
+            //INTALISE a variable to the Square texture
+            Texture2D tempTexture = _content.Load<Texture2D>("square");
 
-            _points = _entityManager.CreateEntity<Points>();
-            ((DrVsVirusEntity)_points).StartingLocation(new Vector2(1400 , 50));
-            ((ICommandOneParam<int>)alterPointsCommand).SetAction = ((Points)_points).AlterPoints;
-            _sceneManager.Points = _points;
+            //Calls intialise entity giving a random hight and distance from the goal
+            InitaliseEntity(tempEntity, tempTexture, new Vector2((float)(_width + rnd.Next(50, 150)), rnd.Next(0, Convert.ToInt32(_height))));
 
+            //Calls SetCommands
+            SetCommands(tempEntity);
+            //Set the Command in the entity to _alterPointsCommand
+            ((Enemy)tempEntity).AlterPoints = _alterPointsCommand;
         }
 
         /// <summary>
@@ -275,7 +307,7 @@ namespace Engine.Managers
 
                 //Initalises the defender
                 InitaliseEntity(tempDefender, tempTexture, pLocn);
-
+                //Decrease the points by 200
                 ((Points)_points).AlterPoints(-200);
             }
         }

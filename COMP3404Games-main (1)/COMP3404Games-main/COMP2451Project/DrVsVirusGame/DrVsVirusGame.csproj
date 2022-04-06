@@ -60,7 +60,7 @@
     <Compile Include="GameEntities\DrVsVirusEntity.cs" />
     <Compile Include="GameEntities\Enemy.cs" />
     <Compile Include="GameEntities\EntitySight.cs" />
-    <Compile Include="GameEntities\Frendly.cs" />
+    <Compile Include="GameEntities\Friendly.cs" />
     <Compile Include="GameEntities\Points.cs" />
     <Compile Include="GameEntities\Virus.cs" />
     <Compile Include="GameStates\CannonBallState.cs" />

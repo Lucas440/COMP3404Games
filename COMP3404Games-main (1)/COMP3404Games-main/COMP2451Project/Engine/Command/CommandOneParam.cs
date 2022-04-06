@@ -19,6 +19,7 @@ namespace Engine.Command
 
         public void Execute()
         {
+            //Inovker the command
             _action.Invoke(_parameter);
         }
     }

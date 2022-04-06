@@ -15,7 +15,7 @@ namespace DrVsVirusGame.GameEntities
     /// <summary>
     /// A Class used for the cannon game entity
     /// </summary>
-    public class Cannon : Frendly, IClickListener
+    public class Cannon : Friendly, IClickListener
     {
         // DECLARE a variable to hold a cannonball
         CannonBall _ball;

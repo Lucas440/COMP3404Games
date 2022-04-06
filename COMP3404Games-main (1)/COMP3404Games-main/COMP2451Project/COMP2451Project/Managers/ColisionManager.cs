@@ -51,8 +51,9 @@ namespace Engine.Managers
                 // LOOP ahead by one item
                 for (int j = i + 1; j < collidables.Count(); j++)
                 {
-                    if (((collidables[i] is Frendly) && (collidables[j] is Enemy))
-                        || ((collidables[i] is Enemy) && (collidables[j] is Frendly))) 
+                    //If one of the enemys is friendly and one is an enemy this is true
+                    if (((collidables[i] is Friendly) && (collidables[j] is Enemy))
+                        || ((collidables[i] is Enemy) && (collidables[j] is Friendly))) 
                     {
                         // IF the current items' hitboxs are intersecting:
                         if (collidables[i].getHitBox().Intersects(collidables[j].getHitBox()))

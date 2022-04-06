@@ -12,7 +12,7 @@ namespace DrVsVirusGame.GameEntities
     /// <summary>
     /// A Class that represents Frendly Entitys
     /// </summary>
-    public class Frendly : DrVsVirusEntity
+    public class Friendly : DrVsVirusEntity
     {
     }
 }

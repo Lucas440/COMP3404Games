@@ -18,7 +18,7 @@ namespace DrVsVirusGame.GameEntities
     /// <summary>
     /// A Class that represents the cannonball
     /// </summary>
-    public class CannonBall : Frendly
+    public class CannonBall : Friendly
     {
         // DECLARE a Bool called _moving
         private bool _isMoving;
@@ -167,10 +167,6 @@ namespace DrVsVirusGame.GameEntities
                 // SETS _isMoving to _behaviour's IsMoving property
                 _isMoving = ((CannonBallBehaviour)_behaviour).IsMoving;
 
-            }
-            else 
-            {
-                _entityLocn = new Vector2(-1,-1);
             }
 
             // Output the ball's current grid location

@@ -15,7 +15,7 @@ namespace DrVsVirusGame.GameEntities
     /// <summary>
     /// A Class used to represent the Defender entity
     /// </summary>
-    public class Defender : Frendly
+    public class Defender : Friendly
     {
         //DECLARE a EntitySight called _mySight
         private EntitySight _mySight;
