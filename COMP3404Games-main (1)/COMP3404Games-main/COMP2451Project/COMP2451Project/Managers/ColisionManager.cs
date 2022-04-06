@@ -1,5 +1,7 @@
-﻿using Engine.EngineEntitys;
+﻿using DrVsVirusGame.GameEntities;
+using Engine.EngineEntitys;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 /// <summary>
 /// AUTHOR: Lucas Brennan
@@ -27,7 +29,6 @@ namespace Engine.Managers
         /// <summary>
         /// A method that updates the ColisionManager
         /// </summary>
-        /// <param name="pList">A list of entities to be updated</param>
         public void update()
         {
             // DECLARES and INSTANTIATES a list that stores IColliables called collidables
@@ -50,12 +51,16 @@ namespace Engine.Managers
                 // LOOP ahead by one item
                 for (int j = i + 1; j < collidables.Count(); j++)
                 {
-                    // IF the current items' hitboxs are intersecting:
-                    if (collidables[i].getHitBox().Intersects(collidables[j].getHitBox()))
+                    if (((collidables[i] is Frendly) && (collidables[j] is Enemy))
+                        || ((collidables[i] is Enemy) && (collidables[j] is Frendly))) 
                     {
-                        // CALL collision on each object
-                        collidables[i].colision(collidables[j]);
-                        collidables[j].colision(collidables[i]);
+                        // IF the current items' hitboxs are intersecting:
+                        if (collidables[i].getHitBox().Intersects(collidables[j].getHitBox()))
+                        {
+                            // CALL collision on each object
+                            collidables[i].colision(collidables[j]);
+                            collidables[j].colision(collidables[i]);
+                        } 
                     }
                 }
             }

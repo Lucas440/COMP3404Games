@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Engine.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,9 @@ namespace DrVsVirusGame.GameEntities
     /// </summary>
     public abstract class Enemy : DrVsVirusEntity
     {
+        /// <summary>
+        /// A property used to Store a Remove Method
+        /// </summary>
+        public ICommand AlterPoints { get; set; }
     }
 }

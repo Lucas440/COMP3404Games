@@ -130,6 +130,10 @@ namespace DrVsVirusGame.GameEntities
             if (_entityLocn.X < 0) 
             {
                 //Environment.Exit(1);
+                //Scedule commands to Remove and Terminate this
+                ScheduleCommand.Invoke(RemoveMe);
+                ScheduleCommand.Invoke(TerminateMe);
+                
             }
 
             // OUTPUT the current grid location
@@ -146,6 +150,7 @@ namespace DrVsVirusGame.GameEntities
             if (pCollidedEntity is CannonBall || pCollidedEntity is DefenderProjectile)
             {
                 //Scedule commands to Remove and Terminate this
+                ScheduleCommand.Invoke(AlterPoints);
                 ScheduleCommand.Invoke(RemoveMe);
                 ScheduleCommand.Invoke(TerminateMe);
             }

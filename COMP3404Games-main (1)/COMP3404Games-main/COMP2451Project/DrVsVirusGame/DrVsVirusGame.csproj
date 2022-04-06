@@ -60,13 +60,17 @@
     <Compile Include="GameEntities\DrVsVirusEntity.cs" />
     <Compile Include="GameEntities\Enemy.cs" />
     <Compile Include="GameEntities\EntitySight.cs" />
+    <Compile Include="GameEntities\Frendly.cs" />
+    <Compile Include="GameEntities\Points.cs" />
     <Compile Include="GameEntities\Virus.cs" />
     <Compile Include="GameStates\CannonBallState.cs" />
     <Compile Include="GameStates\DrVsVirusState.cs" />
     <Compile Include="GameStates\VirusStates\VirusState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.csproj">
       <Project>{368d4a46-e55b-4a8f-bb14-33d55ddc249e}</Project>
@@ -74,4 +78,11 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\COMP2451Project\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('..\COMP2451Project\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\COMP2451Project\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\COMP2451Project\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets'))" />
+  </Target>
 </Project>

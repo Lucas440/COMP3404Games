@@ -1,4 +1,6 @@
-﻿using Engine.EngineEntitys;
+﻿using DrVsVirusGame.GameEntities;
+using Engine.EngineEntitys;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 /// <summary>
@@ -14,10 +16,12 @@ namespace Engine.Managers
     public class SceneManager
     {
         // DECLARE a new List called entityList
-        private List<IEntity> _entityList;
+        private IList<IEntity> _entityList;
 
         // DECLARE a private variable '_sceneGraph' as type SceneGraph
         private SceneGraph _sceneGraph;
+
+        private SpriteFont _spriteFont;
 
         // DECLARE a new double called screenWidth
         private double _screenWidth;
@@ -25,14 +29,13 @@ namespace Engine.Managers
         // DECLARE a new double called screenHeight
         private double _screenHeight;
 
+        public IEntity Points { get; set; }
+
         /// <summary>
         /// CONSTRUCTOR 'SceneManager' - called upon Instantiation
         /// </summary>
         public SceneManager()
         {
-            // INSTANTIATE entityList as a new List
-            _entityList = new List<IEntity>();
-
             // INSTANTIATE  _sceneGraph as a new SceneGraph
             _sceneGraph = new SceneGraph();
         }
@@ -41,10 +44,12 @@ namespace Engine.Managers
         /// Method 'Initialise' - Initialises the Scene Manager
         /// </summary>
         /// <param name="pSpriteFont">A Font for text</param>
-        public void Initialise(SpriteFont pSpriteFont)
+        public void Initialise(SpriteFont pSpriteFont , IList<IEntity> pEntities)
         {
+            _spriteFont = pSpriteFont;
+            _entityList = pEntities;
             // CALL Initialise inside SceneGraph class - passing entityList and the SpriteFont
-            _sceneGraph.Initialise(_entityList, pSpriteFont);
+            _sceneGraph.Initialise(_entityList, pSpriteFont);    
         }
 
         /// <summary>
@@ -54,7 +59,7 @@ namespace Engine.Managers
         public void AddEntity(IEntity entity)
         {
             // ADD the entity to the list of entities
-            _entityList.Add(entity);
+            //_entityList.Add(entity);
         }
 
         /// <summary>
@@ -90,6 +95,9 @@ namespace Engine.Managers
         {
             // CALL the Draw method inside SceneGraph
             _sceneGraph.Draw(spriteBatch);
+
+            //Draws text on the screen for the current entity
+            spriteBatch.DrawString(_spriteFont, "Your Points " + ((Points)Points).CurrentPoints , Points.Position, Color.Black);
         }
 
         // -------------------------------------------------------- Command Pattern ----------------------------------------------------------

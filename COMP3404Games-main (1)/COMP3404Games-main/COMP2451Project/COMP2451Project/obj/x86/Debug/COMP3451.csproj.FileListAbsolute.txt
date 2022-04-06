@@ -103,18 +103,10 @@ C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-
 C:\Users\BREL1_19\Source\Repos\COMP3404Gam\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP3451.csproj.CopyComplete
 C:\Users\BREL1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Attack_SpriteSheet.xnb
 C:\Users\BREL1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\DrsVsVirusesBackground.xnb
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Content\Attack_SpriteSheet.xnb
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Content\DrsVsVirusesBackground.xnb
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Content\File.xnb
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Content\paddle.xnb
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Content\square.xnb
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Content\Text.xnb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Attack_SpriteSheet.xnb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\DrsVsVirusesBackground.xnb
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\File.xnb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\paddle.xnb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\square.xnb
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Text.xnb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\COMP2451Project.exe
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\COMP2451Project.pdb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\DrVsVirusGame.dll
@@ -129,7 +121,6 @@ C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-m
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.XInput.dll
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.RawInput.dll
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\DrVsVirusGame.pdb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Engine.pdb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\PongGame.pdb
@@ -142,7 +133,6 @@ C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-m
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.RawInput.xml
-C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP3451.csproj.AssemblyReference.cache
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP3451.csproj.CoreCompileInputs.cache
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP3451.csproj.CopyComplete
@@ -150,3 +140,6 @@ C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-m
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\obj\x86\Debug\COMP2451Project.pdb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\DefenderProjectile.xnb
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\DefenderProjectile.xnb
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Text.xnb

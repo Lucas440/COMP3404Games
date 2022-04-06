@@ -57,6 +57,8 @@ namespace Engine.Managers
         // DECLARE a ContentManager called _content
         ContentManager _content;
 
+        IEntity _points;
+
         /// <summary>
         /// CONSTRUCTOR for EngineManager
         /// </summary>
@@ -125,7 +127,7 @@ namespace Engine.Managers
             _collisionManager.Initialize(_entityManager.EntityList);
 
             // CALL Initialise method for Scene Manager (passing pSpriteFont)
-            _sceneManager.Initialise(pSpriteFont);
+            _sceneManager.Initialise(pSpriteFont , _entityManager.EntityList);
 
             // ADD the first row and column to the grid
             //_gridX[0] = 0;
@@ -173,6 +175,10 @@ namespace Engine.Managers
         /// <param name="pContent"></param>
         public void LoadContent(ContentManager pContent)
         {
+            ICommand alterPointsCommand = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandOneParam<int>>();
+            ((ICommandOneParam<int>)alterPointsCommand).SetData = 100;
+            
+
             //Sets _content to pContent
             _content = pContent;
 
@@ -195,16 +201,9 @@ namespace Engine.Managers
 
                 //Calls SetCommands
                 SetCommands(tempEntity);
+                ((Enemy)tempEntity).AlterPoints = alterPointsCommand;
             }
 
-            //Creates a new Virus Entity
-            tempEntity = _entityManager.CreateEntity<Virus>();
-
-            //Calls intialise entity giving a random hight and distance from the goal
-            InitaliseEntity(tempEntity, tempTexture, new Vector2(1650 , 200));
-
-            //Calls SetCommands
-            SetCommands(tempEntity);
 
             //Creates a new Cannon Entity
             tempEntity = _entityManager.CreateEntity<Cannon>();
@@ -224,9 +223,6 @@ namespace Engine.Managers
             // PASS tempCannonBall to the cannon entity
             ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
 
-            //Calls the Create Defender Method
-            CreateDefender(new Vector2(200 , 200));
-
             tempEntity = _entityManager.CreateEntity<DefenderButton>();
             InitaliseEntity(tempEntity , tempTexture , new Vector2(100 , 500));
             SetCommands(tempEntity);
@@ -237,6 +233,13 @@ namespace Engine.Managers
             ((ICommandOneParam<Vector2>)createDefender).SetAction = CreateDefender;
 
             ((DefenderButton)tempEntity).CreateDefender = createDefender;
+
+
+            _points = _entityManager.CreateEntity<Points>();
+            ((DrVsVirusEntity)_points).StartingLocation(new Vector2(1400 , 50));
+            ((ICommandOneParam<int>)alterPointsCommand).SetAction = ((Points)_points).AlterPoints;
+            _sceneManager.Points = _points;
+
         }
 
         /// <summary>
@@ -246,36 +249,35 @@ namespace Engine.Managers
         /// <param name="pContent"></param>
         private void CreateDefender(Vector2 pLocn) 
         {
-            //DECLARE a IEntity called tempDefender
-            IEntity tempDefender;
-            //DECLARE a Texture2D called tempTexture
-            Texture2D tempTexture;
+            if (((Points)_points).CurrentPoints >= 200)
+            {
+                //DECLARE a IEntity called tempDefender
+                IEntity tempDefender;
+                //DECLARE a Texture2D called tempTexture
+                Texture2D tempTexture;
 
-            //Create a new Defender
-            tempDefender = _entityManager.CreateEntity<Defender>();
-            //Load the defender Projectile texture
-            tempTexture = _content.Load<Texture2D>("DefenderProjectile");
-            //Create a defender Projectile
-            IEntity tempProjectile = _entityManager.CreateEntity<DefenderProjectile>();
-            //Set the texture to the projectile texture
-            ((EngineEntitys.IDrawable)tempProjectile).Content(tempTexture);
-            //Sets tempTexture to "square"
-            tempTexture = _content.Load<Texture2D>("square");
-            //Sets the defenders projectile to tempProjectile
-            ((Defender)tempDefender).SetProjectile = (DefenderProjectile)tempProjectile;
-            //Creates a new Entity sight
-            IEntity tempSight = _entityManager.CreateEntity<EntitySight>();
-            //Sets the Defenders sight to tempSight
-            ((Defender)tempDefender).SetSight = (EntitySight)tempSight;
+                //Create a new Defender
+                tempDefender = _entityManager.CreateEntity<Defender>();
+                //Load the defender Projectile texture
+                tempTexture = _content.Load<Texture2D>("DefenderProjectile");
+                //Create a defender Projectile
+                IEntity tempProjectile = _entityManager.CreateEntity<DefenderProjectile>();
+                //Set the texture to the projectile texture
+                ((EngineEntitys.IDrawable)tempProjectile).Content(tempTexture);
+                //Sets tempTexture to "square"
+                tempTexture = _content.Load<Texture2D>("square");
+                //Sets the defenders projectile to tempProjectile
+                ((Defender)tempDefender).SetProjectile = (DefenderProjectile)tempProjectile;
+                //Creates a new Entity sight
+                IEntity tempSight = _entityManager.CreateEntity<EntitySight>();
+                //Sets the Defenders sight to tempSight
+                ((Defender)tempDefender).SetSight = (EntitySight)tempSight;
 
-            //Initalises the defender
-            InitaliseEntity(tempDefender, tempTexture, pLocn);
+                //Initalises the defender
+                InitaliseEntity(tempDefender, tempTexture, pLocn);
 
-
-            // ADD tempEntity to the screen
-            _sceneManager.AddEntity(tempSight);
-            // ADD tempEntity to the screen
-            _sceneManager.AddEntity(tempProjectile);
+                ((Points)_points).AlterPoints(-200);
+            }
         }
 
         /// <summary>
@@ -329,9 +331,6 @@ namespace Engine.Managers
 
             // PASS the grid to the entity
             ((DrVsVirusEntity)pEntity).SetGrid(_gridX, _gridY);
-
-            // ADD tempEntity to the screen
-            _sceneManager.AddEntity(pEntity);
         }
 
         /// <summary>

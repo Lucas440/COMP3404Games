@@ -15,7 +15,7 @@ namespace DrVsVirusGame.GameEntities
     /// <summary>
     /// A Class used to represent a Defenders Projectile
     /// </summary>
-    public class DefenderProjectile : DrVsVirusEntity
+    public class DefenderProjectile : Frendly
     {
         //DECLARE a Vector2 called _startLocn
         private Vector2 _startLocn;

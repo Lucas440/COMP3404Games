@@ -15,7 +15,7 @@ namespace DrVsVirusGame.GameEntities
     /// <summary>
     /// A Class used to represent an Entitys Sight
     /// </summary>
-    public class EntitySight : DrVsVirusEntity
+    public class EntitySight : Frendly
     {
         //DECLARE a Bool called _enemyInSight
         private bool _enemyInSight;

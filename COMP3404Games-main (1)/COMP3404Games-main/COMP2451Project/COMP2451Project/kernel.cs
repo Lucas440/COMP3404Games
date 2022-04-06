@@ -61,7 +61,7 @@ namespace Engine
             // INSTANTIATE '_factories' as new FactoryLocator
             _factories = new FactoryLocator();
 
-            
+            //IsFixedTimeStep = false;
 
             // ALLOW the user to see the mouse
             IsMouseVisible = true;

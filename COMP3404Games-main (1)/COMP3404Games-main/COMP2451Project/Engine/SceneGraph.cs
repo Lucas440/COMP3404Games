@@ -17,7 +17,7 @@ namespace Engine
     public class SceneGraph
     {
         // DECLARE variable '_entityList' as type IEntity - List to store entities
-        private List<IEntity> _entityList;
+        private IList<IEntity> _entityList;
         //DECLARE variable _spriteFont to store the font of the program
         private SpriteFont _spriteFont;
 
@@ -35,7 +35,7 @@ namespace Engine
         /// </summary>
         /// <param name="plist">The List of entitys to draw</param>
         /// <param name="pSpriteFont">A font for text</param>
-        public void Initialise(List<IEntity> plist , SpriteFont pSpriteFont)
+        public void Initialise(IList<IEntity> plist, SpriteFont pSpriteFont)
         {
             // SET _entityList to pList parameter
             _entityList = plist;
@@ -62,12 +62,13 @@ namespace Engine
                         //Draws text on the screen for the current entity
                         spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].Position.X, 800), Color.Black);
                     }
-                    else 
+                    else
                     {
                         //Draws text on the screen for the current entity
                         spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].Position.X - 200, 800), Color.Black);
                     }
                 }
+
                 // IF TRY fails then throw exception
                 catch (Exception e) { }
             }
