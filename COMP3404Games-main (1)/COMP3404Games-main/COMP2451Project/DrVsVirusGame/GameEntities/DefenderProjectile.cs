@@ -26,6 +26,11 @@ namespace DrVsVirusGame.GameEntities
         /// </summary>
         public bool Moving { set {_isMoving = value; } }
         /// <summary>
+        /// A Property that sets the YLocn
+        /// </summary>
+        public int SetY { set { _entityLocn.Y = value; } }
+
+        /// <summary>
         /// The Default Constructor
         /// </summary>
         public DefenderProjectile() 
@@ -80,6 +85,16 @@ namespace DrVsVirusGame.GameEntities
                 //Sets _isMoving to false
                 _isMoving = false;
             }
+        }
+
+        /// <summary>
+        /// A Method which removes this object
+        /// </summary>
+        public void Remove()
+        {
+            //Scedule commands to Remove and Terminate this
+            ScheduleCommand.Invoke(RemoveMe);
+            ScheduleCommand.Invoke(TerminateMe);
         }
     }
 }

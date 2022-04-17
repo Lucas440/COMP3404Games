@@ -46,10 +46,12 @@
   <ItemGroup>
     <Compile Include="Command\CommandOneParam.cs" />
     <Compile Include="Command\CommandScheduler.cs" />
+    <Compile Include="Command\CommandZeroParam.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\ICommandOneParam.cs" />
     <Compile Include="Command\ICommandScheduler.cs" />
     <Compile Include="Command\ICommandSender.cs" />
+    <Compile Include="Command\ICommandZeroParam.cs" />
     <Compile Include="EngineBehaviours\Behaviour.cs" />
     <Compile Include="EngineBehaviours\IBehaviour.cs" />
     <Compile Include="EngineBehaviours\IUpdateListener.cs" />

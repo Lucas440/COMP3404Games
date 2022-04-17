@@ -67,5 +67,14 @@ namespace DrVsVirusGame.GameEntities
                 _enemyInSight = true;
             }
         }
+        /// <summary>
+        /// A Method which removes this object
+        /// </summary>
+        public void Remove() 
+        {
+            //Scedule commands to Remove and Terminate this
+            ScheduleCommand.Invoke(RemoveMe);
+            ScheduleCommand.Invoke(TerminateMe);
+        }
     }
 }

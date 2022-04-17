@@ -56,14 +56,18 @@ namespace Engine.Managers
 
         // DECLARE a ContentManager called _content
         ContentManager _content;
-
+        //DECLARE a IEntity called _points
         IEntity _points;
-
+        //DECLARE a _int called _enemySpawnRate
         int _enemySpawnRate;
-
+        //DECLARE an ICommand called _alterPointsCommand
         ICommand _alterPointsCommand;
-
+        //DECLARE a random called Rnd
         Random rnd;
+        //DECLARE an IEntity called _lives
+        IEntity _lives;
+        //DECLARE an ICommand called _reduceLivesCommand
+        ICommand _reduceLivesCommand;
 
         /// <summary>
         /// CONSTRUCTOR for EngineManager
@@ -101,9 +105,9 @@ namespace Engine.Managers
             // SET the start points for the grid
             _gridXStart = 495;
             _gridYStart = 115;
-
+            //Set _enemySpawnRate to 0
             _enemySpawnRate = 0;
-
+            //INTIALSIE random
             rnd = new Random();
         }
 
@@ -185,6 +189,10 @@ namespace Engine.Managers
                 CreateEnemy();
                 _enemySpawnRate = 0;
             }
+            if (((Lives)_lives).LivesRemaining == 0) 
+            {
+                Environment.Exit(0);
+            }
         }
 
         /// <summary>
@@ -207,19 +215,23 @@ namespace Engine.Managers
             ((ICommandOneParam<int>)_alterPointsCommand).SetData = 100;
             //Sets _content to pContent
             _content = pContent;
+            //INTIALISES _lives
+            _lives = _entityManager.CreateEntity<Lives>();
+            //INTIALSES _reduceLivesCommand
+            _reduceLivesCommand = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandZeroParam>();
+            //Sets the action to ReduceLives
+            ((ICommandZeroParam)_reduceLivesCommand).SetAction = ((Lives)_lives).ReduceLives;
+
+            //Sets the starting location 1400, 50
+            ((DrVsVirusEntity)_lives).StartingLocation(new Vector2(1000, 50));
+
+            _sceneManager.Lives = _lives;
 
             // DECLARE variable 'temptTexture' as type Texture2D - load 'square' texture onto ball
             Texture2D tempTexture = pContent.Load<Texture2D>("square");
 
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
-
-            //Creates a set amount of Virus
-            for (int x = 0; x < 10; x++) 
-            {
-                //Call CreateEnemy
-                CreateEnemy();
-            }
 
 
             //Creates a new Cannon Entity
@@ -270,8 +282,9 @@ namespace Engine.Managers
 
             //Calls SetCommands
             SetCommands(tempEntity);
-            //Set the Command in the entity to _alterPointsCommand
+            //Set the Command in the entity to _alterPointsCommand and _reduceLivesCommand
             ((Enemy)tempEntity).AlterPoints = _alterPointsCommand;
+            ((Enemy)tempEntity).ReduceLives = _reduceLivesCommand;
         }
 
         /// <summary>
@@ -309,6 +322,12 @@ namespace Engine.Managers
                 InitaliseEntity(tempDefender, tempTexture, pLocn);
                 //Decrease the points by 200
                 ((Points)_points).AlterPoints(-200);
+
+                //Sets commands for the objects
+                SetCommands(tempDefender);
+                SetCommands(tempSight);
+                SetCommands(tempProjectile);
+
             }
         }
 

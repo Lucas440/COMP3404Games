@@ -71,49 +71,8 @@ namespace DrVsVirusGame.GameEntities
             // ADDS _behaviour's OnUpdate Method to the event
             _currentBehaviour += _behaviour.OnUpdate;
 
-        }
 
-        /// <summary>
-        /// A method which keeps track of the entity's location within the grid
-        /// </summary>
-        public void UpdateGridLocation()
-        {
-            // Observes the horizontal grid position
-            for (int i = 0; i < _gridX.Length - 1; i++)
-            {
-                // Check each column to find the entity
-                if (_entityLocn.X >= _gridX[i] && _entityLocn.X < _gridX[i + 1])
-                {
-                    // Set the horizontal grid location and break the loop
-                    gridXLocation = i + 1;
-                    break;
-                }
-                else
-                {
-                    // Confirm that the entity is in the last column
-                    gridXLocation = _gridX.Length;
-                }
-            }
 
-            // Observes the vertical grid position
-            for (int i = 0; i < _gridY.Length - 1; i++)
-            {
-                // Check each row to find the entity
-                if (_entityLocn.Y >= _gridY[i] && _entityLocn.Y < _gridY[i + 1])
-                {
-                    // Set the vertical grid location and break the loop
-                    gridYLocation = i + 1;
-                    break;
-                }
-                else
-                {
-                    // Confirm that the entity is in the last row
-                    gridYLocation = _gridY.Length;
-                }
-            }
-
-            // Updates the entity's StateText to output the current grid position
-            StateText = "Current Grid X: " + gridXLocation + " Current Grid Y: " + gridYLocation;
         }
 
         /// <summary>
@@ -129,7 +88,8 @@ namespace DrVsVirusGame.GameEntities
             // IF the virus has gone beyond the left side of the screen
             if (_entityLocn.X < 0) 
             {
-                //Environment.Exit(1);
+                //Scedule a command that reduces lives
+                ScheduleCommand.Invoke(ReduceLives);
                 //Scedule commands to Remove and Terminate this
                 ScheduleCommand.Invoke(RemoveMe);
                 ScheduleCommand.Invoke(TerminateMe);
@@ -138,6 +98,9 @@ namespace DrVsVirusGame.GameEntities
 
             // OUTPUT the current grid location
             UpdateGridLocation();
+
+
+            _entityLocn.Y = _gridY[gridYLocation - 1] + 25;
         }
 
         /// <summary>

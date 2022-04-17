@@ -19,5 +19,9 @@ namespace DrVsVirusGame.GameEntities
         /// A property used to Store a Remove Method
         /// </summary>
         public ICommand AlterPoints { get; set; }
+        /// <summary>
+        /// A Property to reduceLives
+        /// </summary>
+        public ICommand ReduceLives { get; set; }
     }
 }

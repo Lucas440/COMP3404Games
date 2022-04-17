@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Engine.EngineEntitys;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,13 @@ namespace DrVsVirusGame.GameEntities
         /// </summary>
         public override void update()
         {
+            UpdateGridLocation();
+            _entityLocn.Y = _gridY[gridYLocation - 1] + 25;
+
+            //Callss StartingLocation for _myProjectile and _mySight
+            _myProjectile.SetY = (int)_entityLocn.Y;
+            _mySight.StartingLocation(_entityLocn);
+
             //Calls the base class
             base.update();
             //If There is an enemy in sight this is true
@@ -62,6 +70,19 @@ namespace DrVsVirusGame.GameEntities
             {
                 //Starts the projectile moving
                 _myProjectile.Moving = true;
+            }
+        }
+
+        public override void colision(ICollidable pCollidedEntity)
+        {
+            if (pCollidedEntity is Enemy) 
+            {
+                //Removes the sight and projectile
+                _myProjectile.Remove();
+                _mySight.Remove();
+                //Scedule commands to Remove and Terminate this
+                ScheduleCommand.Invoke(RemoveMe);
+                ScheduleCommand.Invoke(TerminateMe);
             }
         }
 
