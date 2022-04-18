@@ -36,5 +36,13 @@ namespace DrVsVirusGame.GameEntities
         {
             _livesRemaining -= 1;  
         }
+        /// <summary>
+        /// A Method that updates lives
+        /// </summary>
+        public override void update()
+        {
+            //Sets the statetext
+            StateText = "Your Lives: " + LivesRemaining;
+        }
     }
 }

@@ -110,7 +110,7 @@ namespace Engine
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // CALL LoadContent method inside EngineManager
-            _engineManager.LoadContent(Content);
+            _engineManager.LoadMainMenu(Content);
         }
 
 

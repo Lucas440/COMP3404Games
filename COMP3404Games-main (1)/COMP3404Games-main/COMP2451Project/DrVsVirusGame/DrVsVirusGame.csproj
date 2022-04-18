@@ -63,6 +63,7 @@
     <Compile Include="GameEntities\EntitySight.cs" />
     <Compile Include="GameEntities\Friendly.cs" />
     <Compile Include="GameEntities\Lives.cs" />
+    <Compile Include="GameEntities\MainMenuButton.cs" />
     <Compile Include="GameEntities\Points.cs" />
     <Compile Include="GameEntities\Virus.cs" />
     <Compile Include="GameStates\CannonBallState.cs" />

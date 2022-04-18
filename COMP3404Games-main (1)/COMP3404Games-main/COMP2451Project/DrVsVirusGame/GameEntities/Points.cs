@@ -39,6 +39,8 @@ namespace DrVsVirusGame.GameEntities
                 //Adds the point change to total points
                 _totalPoints += pPointChange;
             }
+
+            StateText = "Your Points: " + CurrentPoints;
         }
         /// <summary>
         /// A Method that updates the class

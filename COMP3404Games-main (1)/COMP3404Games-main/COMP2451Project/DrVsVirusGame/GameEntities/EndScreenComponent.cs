@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 /// </summary>
 namespace DrVsVirusGame.GameEntities
 {
+    /// <summary>
+    /// A Container for EndScreen Componets
+    /// </summary>
     public class EndScreenComponent : DrVsVirusEntity
     {
     }

@@ -28,14 +28,6 @@ namespace Engine.Managers
 
         // DECLARE a new double called screenHeight
         private double _screenHeight;
-        /// <summary>
-        /// A property used to Get and Set the Points Entity
-        /// </summary>
-        public IEntity Points { get; set; }
-        /// <summary>
-        /// A property used to Get and Set the Lives Entity
-        /// </summary>
-        public IEntity Lives { get; set; }
 
         /// <summary>
         /// CONSTRUCTOR 'SceneManager' - called upon Instantiation
@@ -103,9 +95,9 @@ namespace Engine.Managers
             _sceneGraph.Draw(spriteBatch);
 
             //Draws text on the screen for the current entity
-            spriteBatch.DrawString(_spriteFont, "Your Points " + ((Points)Points).CurrentPoints , Points.Position, Color.Black);
+            //spriteBatch.DrawString(_spriteFont, "Your Points " + ((Points)Points).CurrentPoints , Points.Position, Color.Black);
             //Draws text on the screen for the current entity
-            spriteBatch.DrawString(_spriteFont, "Your Lives " + ((Lives)Lives).LivesRemaining , Lives.Position, Color.Black);
+            //spriteBatch.DrawString(_spriteFont, "Your Lives " + ((Lives)Lives).LivesRemaining , Lives.Position, Color.Black);
         }
 
         // -------------------------------------------------------- Command Pattern ----------------------------------------------------------

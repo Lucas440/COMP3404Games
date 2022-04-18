@@ -69,6 +69,9 @@ namespace Engine.Managers
         //DECLARE an ICommand called _reduceLivesCommand
         ICommand _reduceLivesCommand;
 
+        //DECLARE a bool called _playing
+        bool _playing;
+
         /// <summary>
         /// CONSTRUCTOR for EngineManager
         /// </summary>
@@ -109,6 +112,9 @@ namespace Engine.Managers
             _enemySpawnRate = 0;
             //INTIALSIE random
             rnd = new Random();
+
+            //Set Playing to false
+            _playing = false;
         }
 
         /// <summary>
@@ -173,39 +179,61 @@ namespace Engine.Managers
             // CALL Update method inside InputManager class
             _inputManager.update();
 
-            // CALL Update method inside CollisionManager class
-            _collisionManager.update();
-
-            // CALL Update method inside SceneManager class
-            _sceneManager.Update(pHeight, pWidth);
-
             //CALL update method inside _commandSceduler
             _commandScheduler.Update();
-            //the the lives are greater than or equal to 1 this is true
-            if (((Lives)_lives).LivesRemaining >= 1)
+
+            //If _playing is true
+            if (_playing)
             {
-                //increment _enemySpawnRate
-                _enemySpawnRate++;
-            }
-            //the the _enemySpawnRate are greater than or equal to 120 this is true
-            if (_enemySpawnRate >= 120) 
-            {
-                //Creates an enemy
-                CreateEnemy();
-                //resets _enemySpawnRate
-                _enemySpawnRate = 0;
-            }
-            //If the lives remaining is 0 this is true
-            if (((Lives)_lives).LivesRemaining == 0) 
-            {
-                //clears all entitys
-                _entityManager.EntityList.Clear();
-                //Loads the endScreen
-                LoadEndScreen();
-                //Lives are reduced
-                ((Lives)_lives).ReduceLives();
+
+                // CALL Update method inside CollisionManager class
+                _collisionManager.update();
+
+                // CALL Update method inside SceneManager class
+                _sceneManager.Update(pHeight, pWidth);
+
+                //the the lives are greater than or equal to 1 this is true
+                if (((Lives)_lives).LivesRemaining >= 1)
+                {
+                    //increment _enemySpawnRate
+                    _enemySpawnRate++;
+                }
+                //the the _enemySpawnRate are greater than or equal to 120 this is true
+                if (_enemySpawnRate >= 120)
+                {
+                    //Creates an enemy
+                    CreateEnemy();
+                    //resets _enemySpawnRate
+                    _enemySpawnRate = 0;
+                }
+                //If the lives remaining is 0 this is true
+                if (((Lives)_lives).LivesRemaining == 0)
+                {
+                    //clears all entitys
+                    _entityManager.EntityList.Clear();
+                    //Loads the endScreen
+                    LoadEndScreen();
+                    //Lives are reduced
+                    ((Lives)_lives).ReduceLives();
+                }
             }
         }
+
+        public void LoadMainMenu(ContentManager pContent) 
+        {
+            _content = pContent;
+            IEntity tempEntity = _entityManager.CreateEntity<MainMenuButton>();
+            InitaliseEntity(tempEntity , _content.Load<Texture2D>("Play Button"), new Vector2(700 , 350));
+            SetCommands(tempEntity);
+
+            ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
+
+            ICommand loadMainGame = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandZeroParam>();
+            ((ICommandZeroParam)loadMainGame).SetAction = LoadMainGame;
+
+            ((MainMenuButton)tempEntity).ButtonClicked = loadMainGame;
+        }
+
         /// <summary>
         /// A Method that loaded the End Screen
         /// </summary>
@@ -222,23 +250,13 @@ namespace Engine.Managers
         /// <summary>
         /// METHOD 'LoadContent' - loads content
         /// </summary>
-        /// <param name="pContent"></param>
-        public void LoadContent(ContentManager pContent)
+        public void LoadMainGame()
         {
-            //Initlaise _points
-            _points = _entityManager.CreateEntity<Points>();
-            //Sets the starting location 1400, 50
-            ((DrVsVirusEntity)_points).StartingLocation(new Vector2(1400, 50));
-            //Set _sceneManagers Points to _points
-            _sceneManager.Points = _points;
-            //Initalise _alterPointsCommand
-            _alterPointsCommand = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandOneParam<int>>();
-            //Set the action to AlterPoints
-            ((ICommandOneParam<int>)_alterPointsCommand).SetAction = ((Points)_points).AlterPoints;
-            //Set the data to 100
-            ((ICommandOneParam<int>)_alterPointsCommand).SetData = 100;
-            //Sets _content to pContent
-            _content = pContent;
+            //Clears the entitys
+            _entityManager.EntityList.Clear();
+            //set playing to true
+            _playing = true;
+
             //INTIALISES _lives
             _lives = _entityManager.CreateEntity<Lives>();
             //INTIALSES _reduceLivesCommand
@@ -249,10 +267,20 @@ namespace Engine.Managers
             //Sets the starting location 1400, 50
             ((DrVsVirusEntity)_lives).StartingLocation(new Vector2(1000, 50));
 
-            _sceneManager.Lives = _lives;
+            //Initlaise _points
+            _points = _entityManager.CreateEntity<Points>();
+            //Sets the starting location 1400, 50
+            ((DrVsVirusEntity)_points).StartingLocation(new Vector2(1400, 50));
+
+            //Initalise _alterPointsCommand
+            _alterPointsCommand = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandOneParam<int>>();
+            //Set the action to AlterPoints
+            ((ICommandOneParam<int>)_alterPointsCommand).SetAction = ((Points)_points).AlterPoints;
+            //Set the data to 100
+            ((ICommandOneParam<int>)_alterPointsCommand).SetData = 100;
 
             // DECLARE variable 'temptTexture' as type Texture2D - load 'square' texture onto ball
-            Texture2D tempTexture = pContent.Load<Texture2D>("square");
+            Texture2D tempTexture = _content.Load<Texture2D>("square");
 
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
