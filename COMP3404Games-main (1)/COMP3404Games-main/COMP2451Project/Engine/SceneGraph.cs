@@ -54,8 +54,16 @@ namespace Engine
                 // TRY CATCH
                 try
                 {
-                    // CALL Draw method for each IDrawable entity in the _entityList
-                    spriteBatch.Draw(((EngineEntitys.IDrawable)_entityList[i]).texture(), _entityList[i].Position, Color.AntiqueWhite);
+                    //If the texture is not null this is true
+                    if (((EngineEntitys.IDrawable)_entityList[i]).texture() != null) {
+                        // CALL Draw method for each IDrawable entity in the _entityList
+                        spriteBatch.Draw(((EngineEntitys.IDrawable)_entityList[i]).texture(), _entityList[i].Position, Color.AntiqueWhite);
+                    }
+                    else 
+                    {
+                        //Draws text on the screen for the current entity
+                        spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].Position.X, _entityList[i].Position.Y), Color.Black);
+                    }
                     /*
                     //If the x position is less than 700 this is true
                     if (_entityList[i].Position.X < 700)
@@ -69,6 +77,7 @@ namespace Engine
                         spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].Position.X - 200, 800), Color.Black);
                     }
                     */
+                    
                 }
 
                 // IF TRY fails then throw exception

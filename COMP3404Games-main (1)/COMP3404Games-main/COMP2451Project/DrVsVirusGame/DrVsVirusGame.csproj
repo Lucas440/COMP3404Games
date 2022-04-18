@@ -58,6 +58,7 @@
     <Compile Include="GameEntities\DefenderButton.cs" />
     <Compile Include="GameEntities\DefenderProjectile.cs" />
     <Compile Include="GameEntities\DrVsVirusEntity.cs" />
+    <Compile Include="GameEntities\EndScreenComponent.cs" />
     <Compile Include="GameEntities\Enemy.cs" />
     <Compile Include="GameEntities\EntitySight.cs" />
     <Compile Include="GameEntities\Friendly.cs" />

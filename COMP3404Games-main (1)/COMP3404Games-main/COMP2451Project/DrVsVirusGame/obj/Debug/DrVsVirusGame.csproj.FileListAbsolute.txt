@@ -98,3 +98,7 @@ C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-m
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\DrVsVirusGame\obj\Debug\DrVsVirusGame.pdb
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\DrVsVirusGame\bin\Debug\SharpDX.XInput.dll
 C:\Users\brel1_19\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\DrVsVirusGame\bin\Debug\SharpDX.XInput.xml
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\DrVsVirusGame\bin\Debug\SharpDX.RawInput.dll
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\DrVsVirusGame\bin\Debug\SharpDX.Direct3D9.dll
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\DrVsVirusGame\bin\Debug\SharpDX.RawInput.xml
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\DrVsVirusGame\bin\Debug\SharpDX.Direct3D9.xml

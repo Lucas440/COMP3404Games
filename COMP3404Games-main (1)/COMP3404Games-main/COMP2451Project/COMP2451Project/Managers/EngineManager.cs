@@ -181,18 +181,42 @@ namespace Engine.Managers
 
             //CALL update method inside _commandSceduler
             _commandScheduler.Update();
-
-            _enemySpawnRate++;
-
+            //the the lives are greater than or equal to 1 this is true
+            if (((Lives)_lives).LivesRemaining >= 1)
+            {
+                //increment _enemySpawnRate
+                _enemySpawnRate++;
+            }
+            //the the _enemySpawnRate are greater than or equal to 120 this is true
             if (_enemySpawnRate >= 120) 
             {
+                //Creates an enemy
                 CreateEnemy();
+                //resets _enemySpawnRate
                 _enemySpawnRate = 0;
             }
+            //If the lives remaining is 0 this is true
             if (((Lives)_lives).LivesRemaining == 0) 
             {
-                Environment.Exit(0);
+                //clears all entitys
+                _entityManager.EntityList.Clear();
+                //Loads the endScreen
+                LoadEndScreen();
+                //Lives are reduced
+                ((Lives)_lives).ReduceLives();
             }
+        }
+        /// <summary>
+        /// A Method that loaded the End Screen
+        /// </summary>
+        private void LoadEndScreen() 
+        {
+            //Creates an entity of type endScreenComponent
+            IEntity tempEntity = _entityManager.CreateEntity<EndScreenComponent>();
+            //Sets the text of the entity
+            tempEntity.StateText = "Game Over Your Score Was " + ((Points)_points).TotalPoints;
+            //Sets the location
+            ((DrVsVirusEntity)tempEntity).StartingLocation(new Vector2(700 , 450));
         }
 
         /// <summary>

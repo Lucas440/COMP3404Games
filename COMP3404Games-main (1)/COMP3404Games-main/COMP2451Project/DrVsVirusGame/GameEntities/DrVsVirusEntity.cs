@@ -73,7 +73,7 @@ namespace DrVsVirusGame.GameEntities
             }
 
             // Updates the entity's StateText to output the current grid position
-            StateText = "Current Grid X: " + gridXLocation + " Current Grid Y: " + gridYLocation;
+            //StateText = "Current Grid X: " + gridXLocation + " Current Grid Y: " + gridYLocation;
         }
 
         // -------------------------------------------------------- ICollidable Implemation -------------------------------------------------------------
