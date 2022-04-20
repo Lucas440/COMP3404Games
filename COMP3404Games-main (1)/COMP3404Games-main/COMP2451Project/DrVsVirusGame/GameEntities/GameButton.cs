@@ -15,7 +15,7 @@ namespace DrVsVirusGame.GameEntities
     /// <summary>
     /// A class which represents a MainMenuButton
     /// </summary>
-    public class MainMenuButton : DrVsVirusEntity, IClickListener
+    public class GameButton : DrVsVirusEntity, IClickListener
     {
         /// <summary>
         /// A Method that responds to button Clicks

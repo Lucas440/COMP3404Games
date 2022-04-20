@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using PongGame.Entities;
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// CLASS: 'EngineManager' - manages game engine
@@ -222,7 +223,7 @@ namespace Engine.Managers
         public void LoadMainMenu(ContentManager pContent) 
         {
             _content = pContent;
-            IEntity tempEntity = _entityManager.CreateEntity<MainMenuButton>();
+            IEntity tempEntity = _entityManager.CreateEntity<GameButton>();
             InitaliseEntity(tempEntity , _content.Load<Texture2D>("Play Button"), new Vector2(700 , 350));
             SetCommands(tempEntity);
 
@@ -231,7 +232,7 @@ namespace Engine.Managers
             ICommand loadMainGame = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandZeroParam>();
             ((ICommandZeroParam)loadMainGame).SetAction = LoadMainGame;
 
-            ((MainMenuButton)tempEntity).ButtonClicked = loadMainGame;
+            ((GameButton)tempEntity).ButtonClicked = loadMainGame;
         }
 
         /// <summary>
@@ -252,6 +253,14 @@ namespace Engine.Managers
         /// </summary>
         public void LoadMainGame()
         {
+
+            // DECLARE variable 'temptTexture' as type Texture2D
+            Texture2D tempTexture;
+            
+            foreach (IClickListener listener in _entityManager.EntityList) 
+            {
+                ((IClickPublisher)_inputManager).unSubscribe(listener);
+            }
             //Clears the entitys
             _entityManager.EntityList.Clear();
             //set playing to true
@@ -279,8 +288,8 @@ namespace Engine.Managers
             //Set the data to 100
             ((ICommandOneParam<int>)_alterPointsCommand).SetData = 100;
 
-            // DECLARE variable 'temptTexture' as type Texture2D - load 'square' texture onto ball
-            Texture2D tempTexture = _content.Load<Texture2D>("square");
+            // load 'square' texture onto ball
+            tempTexture = _content.Load<Texture2D>("square");
 
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity;
@@ -304,6 +313,8 @@ namespace Engine.Managers
             // PASS tempCannonBall to the cannon entity
             ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
 
+            tempTexture = _content.Load<Texture2D>("DefenderButton");
+
             tempEntity = _entityManager.CreateEntity<DefenderButton>();
             InitaliseEntity(tempEntity , tempTexture , new Vector2(100 , 500));
             SetCommands(tempEntity);
@@ -316,7 +327,86 @@ namespace Engine.Managers
             //Sets the command in the entity to createDefender
             ((DefenderButton)tempEntity).CreateDefender = createDefender;
 
+            //Create a new Game Button
+            tempEntity = _entityManager.CreateEntity<GameButton>();
+            //Initalise the entity
+            InitaliseEntity(tempEntity, _content.Load<Texture2D>("HealthIcon"), new Vector2(100, 650));
+            //Set commands for the entity
+            SetCommands(tempEntity);
+            //Subscribe the entity to Clicks
+            ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
+            //Create a ICommand called increaseLivesCommand
+            ICommand increaseLivesCommand = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandZeroParam>();
+            //Set the action to the method IncreaseLives
+            ((ICommandZeroParam)increaseLivesCommand).SetAction = IncreaseLives;
+            //Set the ButtonClick command to increaseLivesCommand
+            ((GameButton)tempEntity).ButtonClicked = increaseLivesCommand;
+
+            //Create a new Game Button
+            tempEntity = _entityManager.CreateEntity<GameButton>();
+            //Initalise the entity
+            InitaliseEntity(tempEntity, _content.Load<Texture2D>("NukeButton"), new Vector2(100, 800));
+            //Set commands for the entity
+            SetCommands(tempEntity);
+            //Subscribe the entity to Clicks
+            ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
+            //Create a ICommand called nukeCommand
+            ICommand nukeCommand = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandZeroParam>();
+            //Set the action to the method Nuke
+            ((ICommandZeroParam)nukeCommand).SetAction = Nuke;
+            //Set the ButtonClick command to Nuke
+            ((GameButton)tempEntity).ButtonClicked = nukeCommand;
+
+
         }
+        /// <summary>
+        /// A Method which removes all enemys
+        /// </summary>
+        private void Nuke()
+        {
+            IList<Enemy> removeList = new List<Enemy>();
+
+            //if te player has more than or 1000 points
+            if (((Points)_points).CurrentPoints >= 1000)
+            {
+                // loops over each enemy in the entity list
+                foreach (IEntity e in _entityManager.EntityList) 
+                {
+                    if (e is Enemy)
+                    {
+                        removeList.Add((Enemy)e);
+                    }
+                }
+
+                for (int i = 0; i < removeList.Count; i++) 
+                {
+                    //Removes and Terminates the enemy
+                    _sceneManager.Remove(removeList[i]);
+                    _entityManager.Temerinate(removeList[i]);
+                }
+                //Sets _enemySpawnRate to 0
+                _enemySpawnRate = 0;
+                //Alters points by -1000
+                ((Points)_points).AlterPoints(-1000);
+
+            } 
+        }
+
+            /// <summary>
+            /// A Method used to Increase the amount of lives the player hass
+            /// </summary>
+            private void IncreaseLives() 
+        {
+            //if te player has more than or 500 points and the player has less than 3 lives this is true
+            if (((Points)_points).CurrentPoints >= 500 && ((Lives)_lives).LivesRemaining < 3) 
+            {
+                //Increases lives
+                ((Lives)_lives).IncreaseLives();
+                //Alters points by -500
+                ((Points)_points).AlterPoints(-500);
+            }
+        }
+
         /// <summary>
         /// A Method used to create enemys
         /// </summary>

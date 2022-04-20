@@ -59,8 +59,7 @@ namespace Engine
                         // CALL Draw method for each IDrawable entity in the _entityList
                         spriteBatch.Draw(((EngineEntitys.IDrawable)_entityList[i]).texture(), _entityList[i].Position, Color.AntiqueWhite);
                     }
-                    else 
-                    {
+                    if (_entityList[i].StateText != null) {
                         //Draws text on the screen for the current entity
                         spriteBatch.DrawString(_spriteFont, _entityList[i].StateText, new Vector2(_entityList[i].Position.X, _entityList[i].Position.Y), Color.Black);
                     }
