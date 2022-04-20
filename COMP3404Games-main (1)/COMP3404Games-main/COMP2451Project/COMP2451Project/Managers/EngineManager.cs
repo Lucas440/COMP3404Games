@@ -219,19 +219,27 @@ namespace Engine.Managers
                 }
             }
         }
-
+        /// <summary>
+        /// A Method that loads the main menu
+        /// </summary>
+        /// <param name="pContent">A Content Manager</param>
         public void LoadMainMenu(ContentManager pContent) 
         {
+            //Sets _content to pContent
             _content = pContent;
+            //DECLARE an IEntity called tempEntity - intialise as a gamebutton
             IEntity tempEntity = _entityManager.CreateEntity<GameButton>();
+            //Initaise the entity
             InitaliseEntity(tempEntity , _content.Load<Texture2D>("Play Button"), new Vector2(700 , 350));
+            //Set the entity commands
             SetCommands(tempEntity);
-
+            //Subsicribe the entity
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
-
+            //DECLARE a ICommand called loadMainGame
             ICommand loadMainGame = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandZeroParam>();
+            //Sets the action to the method LoadMainGame
             ((ICommandZeroParam)loadMainGame).SetAction = LoadMainGame;
-
+            //Sets the button Clicked command to loadMainGame
             ((GameButton)tempEntity).ButtonClicked = loadMainGame;
         }
 
@@ -372,12 +380,14 @@ namespace Engine.Managers
                 // loops over each enemy in the entity list
                 foreach (IEntity e in _entityManager.EntityList) 
                 {
+                    //if the entity is an enemy
                     if (e is Enemy)
                     {
+                        //ads the enemy to the remove list
                         removeList.Add((Enemy)e);
                     }
                 }
-
+                // loops over the remove list
                 for (int i = 0; i < removeList.Count; i++) 
                 {
                     //Removes and Terminates the enemy
