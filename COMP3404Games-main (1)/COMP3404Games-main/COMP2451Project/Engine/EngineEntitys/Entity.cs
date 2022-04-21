@@ -2,6 +2,7 @@
 using Engine.Command;
 using Engine.EngineStates;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 /// <summary>
 /// AUTHORS: Lucas Brennan & Flynn Osborne
@@ -28,6 +29,36 @@ namespace Engine.EngineEntitys
         // DECLARE a double called _screenHight
         protected double _screenHight;
 
+
+
+
+        // Texture2D for spritesheet image
+        protected Texture2D _spriteSheet;
+
+        // REFERENCE - https://www.industrian.net/tutorials/using-sprite-sheets/
+        // Timer for animation speed
+        protected float _animationTimer;
+
+        // Threshold for speed
+        protected int _threshold;
+
+        // Array to break down spritesheet into segments
+        // REFERENCE - https://www.industrian.net/tutorials/using-sprite-sheets/
+        protected Rectangle[] _movingRectangles;
+        protected Rectangle[] _attackingRectangles;
+        protected Rectangle[] _deathRectangles;
+
+        // REFERENCE - https://www.industrian.net/tutorials/using-sprite-sheets/
+        // Previous index in animation sequence
+        protected byte _previousAnimationIndex;
+        // Current index in animation sequence
+        protected byte _currentAnimationIndex;
+
+
+
+
+
+
         /// <summary>
         /// A method that updates the entity on each loop
         /// </summary>
@@ -42,6 +73,8 @@ namespace Engine.EngineEntitys
         /// A property that returns the object's state as a text
         /// </summary>
         public string StateText { get; set; }
+
+
 
         /// <summary>
         /// A method that changes the entity's state 

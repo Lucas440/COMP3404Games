@@ -78,6 +78,17 @@ namespace Engine.Managers
         // DECLARE a bool called _playing
         bool _playing;
 
+
+        private float _animationTimer;
+
+        private int _threshold;
+
+        Rectangle[] _fungusMovingRectangles;
+
+        byte _previousAnimationIndex;
+
+        byte _currentAnimationIndex;
+
         /// <summary>
         /// CONSTRUCTOR for EngineManager
         /// </summary>
@@ -175,6 +186,9 @@ namespace Engine.Managers
             {
                 _gridY[i] = _gridY[i - 1] + gridYAdd;
             }
+
+            _animationTimer = 0;
+            _threshold = 100;
         }
 
         /// <summary>

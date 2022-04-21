@@ -47,6 +47,8 @@ namespace DrVsVirusGame.GameEntities
 
             //Sets _damage to 50
             _damage = 50;
+
+           
         }
 
         /// <summary>
@@ -74,8 +76,6 @@ namespace DrVsVirusGame.GameEntities
 
             // ADDS _behaviour's OnUpdate Method to the event
             _currentBehaviour += _behaviour.OnUpdate;
-
-
 
         }
 

@@ -29,6 +29,7 @@ namespace DrVsVirusGame.GameEntities
         protected int _HP;
         //DECLARE an int called _damage
         protected int _damage;
+        
         /// <summary>
         /// Returns the amount of damge this entity does
         /// </summary>
