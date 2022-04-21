@@ -42,6 +42,9 @@ namespace DrVsVirusGame.GameEntities
         /// </summary>
         public CannonBall()
         {
+            //Sets Damage to 100
+            _damage = 100;
+
             // SETS the location to -1 -1
             _entityLocn.X = -1;
             _entityLocn.Y = -1;

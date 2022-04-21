@@ -37,6 +37,9 @@ namespace DrVsVirusGame.GameEntities
         {
             //Set _isMoving to false
             _isMoving = false;
+
+            //Sets _damage to 50
+            _damage = 50;
         }
         /// <summary>
         /// A Method used to set the starting location of the object

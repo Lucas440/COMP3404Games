@@ -42,7 +42,11 @@ namespace DrVsVirusGame.GameEntities
         /// </summary>
         public Virus() 
         {
+            //Set the Hp to 100
+            _HP = 100;
 
+            //Sets _damage to 50
+            _damage = 50;
         }
 
         /// <summary>
@@ -112,11 +116,17 @@ namespace DrVsVirusGame.GameEntities
             //If the Collided entity is a Cannonball this is true
             if (pCollidedEntity is CannonBall || pCollidedEntity is DefenderProjectile)
             {
-                //Alter the points the player has
-                ScheduleCommand.Invoke(AlterPoints);
-                //Scedule commands to Remove and Terminate this
-                ScheduleCommand.Invoke(RemoveMe);
-                ScheduleCommand.Invoke(TerminateMe);
+                //REDUCES the Hp by the amount of damage the entity does
+                _HP -= ((DrVsVirusEntity)pCollidedEntity).Damge;
+                //If _HP is less than 0
+                if (_HP <= 0) 
+                {
+                    //Alter the points the player has
+                    ScheduleCommand.Invoke(AlterPoints);
+                    //Scedule commands to Remove and Terminate this
+                    ScheduleCommand.Invoke(RemoveMe);
+                    ScheduleCommand.Invoke(TerminateMe); 
+                }
             }
         }
     }

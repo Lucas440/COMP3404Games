@@ -421,14 +421,38 @@ namespace Engine.Managers
         /// A Method used to create enemys
         /// </summary>
         private void CreateEnemy()
-        { 
-            // DECLARE variable 'tempEntity' as type IEntity 
-            IEntity tempEntity;
-            //Creates a new Virus Entity
-            tempEntity = _entityManager.CreateEntity<Virus>();
-            //INTALISE a variable to the Square texture
-            Texture2D tempTexture = _content.Load<Texture2D>("square");
+        {
+            //Random a number from 1 to 3
+            int enemyType = rnd.Next(1 , 4);
 
+            // DECLARE variable 'tempEntity' as type IEntity 
+            IEntity tempEntity = null;
+            //INTALISE a variable to the Square texture
+            Texture2D tempTexture = null;
+
+            //enemyType = 1;
+
+            if (enemyType == 1) 
+            {
+                //Creates a new Virus Entity
+                tempEntity = _entityManager.CreateEntity<Virus>();
+                //INTALISE a variable to the Square texture
+                tempTexture = _content.Load<Texture2D>("Virus");
+            }
+            else if (enemyType == 2) 
+            {
+                //Creates a new Virus Entity
+                tempEntity = _entityManager.CreateEntity<Bacteria>();
+                //INTALISE a variable to the Square texture
+                tempTexture = _content.Load<Texture2D>("Bacteria");
+            }
+            else 
+            {
+                //Creates a new Virus Entity
+                tempEntity = _entityManager.CreateEntity<Fungi>();
+                //INTALISE a variable to the Square texture
+                tempTexture = _content.Load<Texture2D>("Fungi");
+            }
             //Calls intialise entity giving a random hight and distance from the goal
             InitaliseEntity(tempEntity, tempTexture, new Vector2((float)(_width + rnd.Next(50, 150)), rnd.Next(0, Convert.ToInt32(_height))));
 

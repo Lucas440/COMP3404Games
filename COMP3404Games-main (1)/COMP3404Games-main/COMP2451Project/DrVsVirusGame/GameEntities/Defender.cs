@@ -36,7 +36,8 @@ namespace DrVsVirusGame.GameEntities
         /// </summary>
         public Defender()
         {
-            
+            //Set the Hp to 100
+            _HP = 200;
         }
         /// <summary>
         /// A Method used to set the starting location of the entity
@@ -77,12 +78,18 @@ namespace DrVsVirusGame.GameEntities
         {
             if (pCollidedEntity is Enemy) 
             {
-                //Removes the sight and projectile
-                _myProjectile.Remove();
-                _mySight.Remove();
-                //Scedule commands to Remove and Terminate this
-                ScheduleCommand.Invoke(RemoveMe);
-                ScheduleCommand.Invoke(TerminateMe);
+                //REDUCES the Hp by the amount of damage the entity does
+                _HP -= ((DrVsVirusEntity)pCollidedEntity).Damge;
+                //If _HP is less than 0
+                if (_HP <= 0)
+                {
+                    //Removes the sight and projectile
+                    _myProjectile.Remove();
+                    _mySight.Remove();
+                    //Scedule commands to Remove and Terminate this
+                    ScheduleCommand.Invoke(RemoveMe);
+                    ScheduleCommand.Invoke(TerminateMe);
+                }
             }
         }
 

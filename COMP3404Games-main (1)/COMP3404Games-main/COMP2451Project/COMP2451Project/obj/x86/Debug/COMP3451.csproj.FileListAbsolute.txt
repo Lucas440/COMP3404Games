@@ -148,3 +148,6 @@ C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-m
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\HealthIcon.xnb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\MoneyIcon.xnb
 C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\NukeButton.xnb
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Bacteria.xnb
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Fungi.xnb
+C:\Users\lucas\Source\Repos\COMP3404Games\COMP3404Games-main (1)\COMP3404Games-main\COMP2451Project\COMP2451Project\bin\Windows\x86\Debug\Content\Virus.xnb

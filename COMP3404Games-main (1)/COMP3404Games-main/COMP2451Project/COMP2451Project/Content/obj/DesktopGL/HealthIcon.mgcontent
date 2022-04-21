@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/lucas/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/HealthIcon.png</SourceFile>
-  <SourceTime>2022-04-20T12:57:49.5426395+01:00</SourceTime>
+  <SourceTime>2022-04-21T09:50:39.854995+01:00</SourceTime>
   <DestFile>C:/Users/lucas/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/bin/DesktopGL/HealthIcon.xnb</DestFile>
-  <DestTime>2022-04-20T13:00:03.709567+01:00</DestTime>
+  <DestTime>2022-04-21T09:51:41.1546969+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T07:36:08+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

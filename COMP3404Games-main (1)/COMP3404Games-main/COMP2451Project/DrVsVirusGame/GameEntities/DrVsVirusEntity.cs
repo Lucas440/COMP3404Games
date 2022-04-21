@@ -25,7 +25,14 @@ namespace DrVsVirusGame.GameEntities
         // DECLARE variables to hold the entity's current location in the grid
         public int gridXLocation;
         public int gridYLocation;
-
+        //DECLARE an int called _HP
+        protected int _HP;
+        //DECLARE an int called _damage
+        protected int _damage;
+        /// <summary>
+        /// Returns the amount of damge this entity does
+        /// </summary>
+        public int Damge { get => _damage; }
 
         /// <summary>
         /// A method which keeps track of the entity's location within the grid

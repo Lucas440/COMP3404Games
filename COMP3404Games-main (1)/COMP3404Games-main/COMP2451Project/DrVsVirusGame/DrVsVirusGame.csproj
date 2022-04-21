@@ -51,7 +51,10 @@
   <ItemGroup>
     <Compile Include="GameBehaviours\CannonBehaviours\CannonBallBehaviour.cs" />
     <Compile Include="GameBehaviours\DrVsVirusBehaviour.cs" />
+    <Compile Include="GameBehaviours\EnemyBehaviour\BacteriaBehaviour.cs" />
+    <Compile Include="GameBehaviours\EnemyBehaviour\FungiBehaviour.cs" />
     <Compile Include="GameBehaviours\EnemyBehaviour\VirusBehaviour.cs" />
+    <Compile Include="GameEntities\Bacteria.cs" />
     <Compile Include="GameEntities\Cannon.cs" />
     <Compile Include="GameEntities\CannonBall.cs" />
     <Compile Include="GameEntities\Defender.cs" />
@@ -62,13 +65,16 @@
     <Compile Include="GameEntities\Enemy.cs" />
     <Compile Include="GameEntities\EntitySight.cs" />
     <Compile Include="GameEntities\Friendly.cs" />
+    <Compile Include="GameEntities\Fungi.cs" />
     <Compile Include="GameEntities\Lives.cs" />
     <Compile Include="GameEntities\GameButton.cs" />
     <Compile Include="GameEntities\Points.cs" />
     <Compile Include="GameEntities\Virus.cs" />
     <Compile Include="GameStates\CannonBallState.cs" />
     <Compile Include="GameStates\DrVsVirusState.cs" />
-    <Compile Include="GameStates\VirusStates\VirusState.cs" />
+    <Compile Include="GameStates\EnemyStates\BacteriaState.cs" />
+    <Compile Include="GameStates\EnemyStates\FungiState.cs" />
+    <Compile Include="GameStates\EnemyStates\VirusState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
