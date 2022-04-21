@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/lucas/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/MoneyIcon.png</SourceFile>
-  <SourceTime>2022-04-21T09:50:39.854995+01:00</SourceTime>
-  <DestFile>C:/Users/lucas/source/repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/bin/Windows/MoneyIcon.xnb</DestFile>
-  <DestTime>2022-04-21T11:37:49.0869865+01:00</DestTime>
+  <SourceFile>C:/Users/lucas/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/HowToPlayButton.png</SourceFile>
+  <SourceTime>2022-04-21T11:26:05.0512206+01:00</SourceTime>
+  <DestFile>C:/Users/lucas/Source/Repos/COMP3404Games/COMP3404Games-main (1)/COMP3404Games-main/COMP2451Project/COMP2451Project/Content/bin/DesktopGL/HowToPlayButton.xnb</DestFile>
+  <DestTime>2022-04-21T11:27:52.6136239+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T07:36:08+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

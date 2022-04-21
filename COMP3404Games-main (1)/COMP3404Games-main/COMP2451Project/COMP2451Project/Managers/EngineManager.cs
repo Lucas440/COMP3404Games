@@ -7,7 +7,6 @@ using Engine.InputEvents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using PongGame.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -129,7 +128,7 @@ namespace Engine.Managers
             // DECLARE two local variables to hold the width and height of the columns and rows
             int gridXAdd;
             int gridYAdd;
-            
+
             // SET the width and height of the screen
             _height = pHeight;
             _width = pWidth;
@@ -148,7 +147,7 @@ namespace Engine.Managers
             _collisionManager.Initialize(_entityManager.EntityList);
 
             // CALL Initialise method for Scene Manager (passing pSpriteFont)
-            _sceneManager.Initialise(pSpriteFont , _entityManager.EntityList);
+            _sceneManager.Initialise(pSpriteFont, _entityManager.EntityList);
 
             // ADD the first row and column to the grid
             //_gridX[0] = 0;
@@ -223,14 +222,14 @@ namespace Engine.Managers
         /// A Method that loads the main menu
         /// </summary>
         /// <param name="pContent">A Content Manager</param>
-        public void LoadMainMenu(ContentManager pContent) 
+        public void LoadMainMenu(ContentManager pContent)
         {
             //Sets _content to pContent
             _content = pContent;
             //DECLARE an IEntity called tempEntity - intialise as a gamebutton
             IEntity tempEntity = _entityManager.CreateEntity<GameButton>();
             //Initaise the entity
-            InitaliseEntity(tempEntity , _content.Load<Texture2D>("Play Button"), new Vector2(700 , 350));
+            InitaliseEntity(tempEntity, _content.Load<Texture2D>("Play Button"), new Vector2(700, 350));
             //Set the entity commands
             SetCommands(tempEntity);
             //Subsicribe the entity
@@ -241,19 +240,138 @@ namespace Engine.Managers
             ((ICommandZeroParam)loadMainGame).SetAction = LoadMainGame;
             //Sets the button Clicked command to loadMainGame
             ((GameButton)tempEntity).ButtonClicked = loadMainGame;
+
+            //DECLARE an IEntity called tempEntity - intialise as a gamebutton
+            tempEntity = _entityManager.CreateEntity<GameButton>();
+            //Initaise the entity
+            InitaliseEntity(tempEntity, _content.Load<Texture2D>("HowToPlayButton"), new Vector2(1000, 750));
+            //Set the entity commands
+            SetCommands(tempEntity);
+            //Subsicribe the entity
+            ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
+            //DECLARE a ICommand called loadMainGame
+            ICommand loadHowToPlay = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandZeroParam>();
+            //Sets the action to the method LoadMainGame
+            ((ICommandZeroParam)loadHowToPlay).SetAction = LoadHowToPlay;
+            //Sets the button Clicked command to loadMainGame
+            ((GameButton)tempEntity).ButtonClicked = loadHowToPlay;
+
+
+        }
+        /// <summary>
+        /// A Method to load the main menu
+        /// </summary>
+        private void LoadMainMenu()
+        {
+            //Loops over every Listener and removes it
+            foreach (IEntity e in _entityManager.EntityList)
+            {
+                if (e is IClickListener)
+                {
+                    ((IClickPublisher)_inputManager).unSubscribe((IClickListener)e);
+                }
+            }
+            //Clears entitys
+            _entityManager.EntityList.Clear();
+            //Loads the MainMenu
+            LoadMainMenu(_content);
+        }
+
+        private void LoadHowToPlay()
+        {
+            //Loops over every Listener and removes it
+            foreach (IEntity e in _entityManager.EntityList)
+            {
+                if (e is IClickListener) 
+                {
+                    ((IClickPublisher)_inputManager).unSubscribe((IClickListener)e);
+                }
+            }
+            //Clears entitys
+            _entityManager.EntityList.Clear();
+
+            //Set the Texture tp DefenderButton
+            Texture2D tempTexture = _content.Load<Texture2D>("DefenderButton");
+            //CREATEs and INTIALIES the entity
+            IEntity tempEntity = _entityManager.CreateEntity<DefenderButton>();
+            InitaliseEntity(tempEntity, tempTexture, new Vector2(100, 500));
+            //Sets the StateText to
+            tempEntity.StateText = "                            This Defender Button Will Allow For Defenders To Be Placed With 200 Points";
+
+            //Create a new Game Button
+            tempEntity = _entityManager.CreateEntity<GameButton>();
+            //Initalise the entity
+            InitaliseEntity(tempEntity, _content.Load<Texture2D>("HealthIcon"), new Vector2(100, 650));
+            //Set commands for the entity
+            SetCommands(tempEntity);
+            //Sets the StateText to
+            tempEntity.StateText = "                            This Health Button Will Allow You To Get Extra Lives For 500 Points";
+
+            //Create a new Game Button  
+            tempEntity = _entityManager.CreateEntity<GameButton>();
+            //Initalise the entity
+            InitaliseEntity(tempEntity, _content.Load<Texture2D>("NukeButton"), new Vector2(100, 800));
+            //Set commands for the entity
+            SetCommands(tempEntity);
+            //Sets the StateText to
+            tempEntity.StateText = "                            This Nuke Button Will Allow You To Removes all Enemys For 1000 Points";
+
+
+            //Creates a new Virus Entity
+            tempEntity = _entityManager.CreateEntity<Virus>();
+            //INTALISE a variable to the Square texture
+            tempTexture = _content.Load<Texture2D>("Virus");
+
+            // Calls intialise entity giving a random hight and distance from the goal
+             InitaliseEntity(tempEntity, tempTexture, new Vector2(800 , 300));
+
+            //Creates a new Virus Entity
+            tempEntity = _entityManager.CreateEntity<Bacteria>();
+            //INTALISE a variable to the Square texture
+            tempTexture = _content.Load<Texture2D>("Bacteria");
+
+            // Calls intialise entity giving a random hight and distance from the goal
+            InitaliseEntity(tempEntity, tempTexture, new Vector2(800, 400));
+
+            //Creates a new Virus Entity
+            tempEntity = _entityManager.CreateEntity<Fungi>();
+            //INTALISE a variable to the Square texture
+            tempTexture = _content.Load<Texture2D>("Fungi");
+
+            // Calls intialise entity giving a random hight and distance from the goal
+            InitaliseEntity(tempEntity, tempTexture, new Vector2(800, 500));
+
+            //Sets the StateText to
+            tempEntity.StateText = "                 These Are the Enemys You will be defending against";
+
+            //DECLARE an IEntity called tempEntity - intialise as a gamebutton
+            tempEntity = _entityManager.CreateEntity<GameButton>();
+            //Initaise the entity
+            InitaliseEntity(tempEntity, _content.Load<Texture2D>("ReturnButton"), new Vector2(1000, 750));
+            //Set the entity commands
+            SetCommands(tempEntity);
+            //Subsicribe the entity
+            ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
+            //DECLARE a ICommand called loadMainGame
+            ICommand loadMainMenu = (_factoryLocator.Get<ICommand>() as IFactory<ICommand>).Create<CommandZeroParam>();
+            //Sets the action to the method LoadMainGame
+            ((ICommandZeroParam)loadMainMenu).SetAction = LoadMainMenu;
+            //Sets the button Clicked command to loadMainGame
+            ((GameButton)tempEntity).ButtonClicked = loadMainMenu;
+
         }
 
         /// <summary>
         /// A Method that loaded the End Screen
         /// </summary>
-        private void LoadEndScreen() 
+        private void LoadEndScreen()
         {
             //Creates an entity of type endScreenComponent
             IEntity tempEntity = _entityManager.CreateEntity<EndScreenComponent>();
             //Sets the text of the entity
             tempEntity.StateText = "Game Over Your Score Was " + ((Points)_points).TotalPoints;
             //Sets the location
-            ((DrVsVirusEntity)tempEntity).StartingLocation(new Vector2(700 , 450));
+            ((DrVsVirusEntity)tempEntity).StartingLocation(new Vector2(700, 450));
         }
 
         /// <summary>
@@ -264,8 +382,8 @@ namespace Engine.Managers
 
             // DECLARE variable 'temptTexture' as type Texture2D
             Texture2D tempTexture;
-            
-            foreach (IClickListener listener in _entityManager.EntityList) 
+            //Loops over each IClickListener and removes it
+            foreach (IClickListener listener in _entityManager.EntityList)
             {
                 ((IClickPublisher)_inputManager).unSubscribe(listener);
             }
@@ -307,7 +425,7 @@ namespace Engine.Managers
             tempEntity = _entityManager.CreateEntity<Cannon>();
 
             // INITIALISE the cannon
-            InitaliseEntity(tempEntity , tempTexture , new Vector2(-1, -1));
+            InitaliseEntity(tempEntity, tempTexture, new Vector2(-1, -1));
 
             // SUBSCRIBE the cannon to _inputManager
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
@@ -316,15 +434,15 @@ namespace Engine.Managers
             IEntity tempCannonBall = _entityManager.CreateEntity<CannonBall>();
 
             // INITIALISE tempCannonBall
-            InitaliseEntity(tempCannonBall , tempTexture , new Vector2());
+            InitaliseEntity(tempCannonBall, tempTexture, new Vector2());
 
             // PASS tempCannonBall to the cannon entity
             ((Cannon)tempEntity).SetCannonBall((CannonBall)tempCannonBall);
-
+            //Set the Texture to DefenderButton
             tempTexture = _content.Load<Texture2D>("DefenderButton");
 
             tempEntity = _entityManager.CreateEntity<DefenderButton>();
-            InitaliseEntity(tempEntity , tempTexture , new Vector2(100 , 500));
+            InitaliseEntity(tempEntity, tempTexture, new Vector2(100, 500));
             SetCommands(tempEntity);
             // SUBSCRIBE the cannon to _inputManager
             ((IClickPublisher)_inputManager).subscribe((IClickListener)tempEntity);
@@ -378,7 +496,7 @@ namespace Engine.Managers
             if (((Points)_points).CurrentPoints >= 1000)
             {
                 // loops over each enemy in the entity list
-                foreach (IEntity e in _entityManager.EntityList) 
+                foreach (IEntity e in _entityManager.EntityList)
                 {
                     //if the entity is an enemy
                     if (e is Enemy)
@@ -388,7 +506,7 @@ namespace Engine.Managers
                     }
                 }
                 // loops over the remove list
-                for (int i = 0; i < removeList.Count; i++) 
+                for (int i = 0; i < removeList.Count; i++)
                 {
                     //Removes and Terminates the enemy
                     _sceneManager.Remove(removeList[i]);
@@ -399,16 +517,16 @@ namespace Engine.Managers
                 //Alters points by -1000
                 ((Points)_points).AlterPoints(-1000);
 
-            } 
+            }
         }
 
-            /// <summary>
-            /// A Method used to Increase the amount of lives the player hass
-            /// </summary>
-            private void IncreaseLives() 
+        /// <summary>
+        /// A Method used to Increase the amount of lives the player hass
+        /// </summary>
+        private void IncreaseLives()
         {
             //if te player has more than or 500 points and the player has less than 3 lives this is true
-            if (((Points)_points).CurrentPoints >= 500 && ((Lives)_lives).LivesRemaining < 3) 
+            if (((Points)_points).CurrentPoints >= 500 && ((Lives)_lives).LivesRemaining < 3)
             {
                 //Increases lives
                 ((Lives)_lives).IncreaseLives();
@@ -423,7 +541,7 @@ namespace Engine.Managers
         private void CreateEnemy()
         {
             //Random a number from 1 to 3
-            int enemyType = rnd.Next(1 , 4);
+            int enemyType = rnd.Next(1, 4);
 
             // DECLARE variable 'tempEntity' as type IEntity 
             IEntity tempEntity = null;
@@ -432,21 +550,21 @@ namespace Engine.Managers
 
             //enemyType = 1;
 
-            if (enemyType == 1) 
+            if (enemyType == 1)
             {
                 //Creates a new Virus Entity
                 tempEntity = _entityManager.CreateEntity<Virus>();
                 //INTALISE a variable to the Square texture
                 tempTexture = _content.Load<Texture2D>("Virus");
             }
-            else if (enemyType == 2) 
+            else if (enemyType == 2)
             {
                 //Creates a new Virus Entity
                 tempEntity = _entityManager.CreateEntity<Bacteria>();
                 //INTALISE a variable to the Square texture
                 tempTexture = _content.Load<Texture2D>("Bacteria");
             }
-            else 
+            else
             {
                 //Creates a new Virus Entity
                 tempEntity = _entityManager.CreateEntity<Fungi>();
@@ -468,7 +586,7 @@ namespace Engine.Managers
         /// </summary>
         /// <param name="pLocn"></param>
         /// <param name="pContent"></param>
-        private void CreateDefender(Vector2 pLocn) 
+        private void CreateDefender(Vector2 pLocn)
         {
             if (((Points)_points).CurrentPoints >= 200)
             {
@@ -545,7 +663,7 @@ namespace Engine.Managers
         /// <param name="pEntity">The Entity being initialised</param>
         /// <param name="pTexture">The Texture of the entity</param>
         /// <param name="pPosition">the Position of the entity</param>
-        private void InitaliseEntity(IEntity pEntity , Texture2D pTexture , Vector2 pPosition) 
+        private void InitaliseEntity(IEntity pEntity, Texture2D pTexture, Vector2 pPosition)
         {
             // SET the boundaries for tempEntity
             ((ICollidable)pEntity).setBoundaries(_width, _height);
