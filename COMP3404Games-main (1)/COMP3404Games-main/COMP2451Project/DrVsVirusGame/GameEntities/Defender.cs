@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 /// <summary>
 /// CLASS 'Defender' - for defender entity
-/// Author: William Eardley & Lucas Brennan
-/// Date: 28/03/2022
+/// Author: William Eardley, Lucas Brennan & Flynn Osborne
+/// Date: 25/04/2022
 /// </summary>
 namespace DrVsVirusGame.GameEntities
 {
@@ -18,8 +18,13 @@ namespace DrVsVirusGame.GameEntities
     /// </summary>
     public class Defender : Friendly
     {
+        // DECLARE integer variables for difficulty adjustment
+        private int counter;
+        private int fireRate;
+
         //DECLARE a EntitySight called _mySight
         private EntitySight _mySight;
+
         /// <summary>
         ///A Property used to Set the entity sight
         /// </summary>
@@ -27,10 +32,12 @@ namespace DrVsVirusGame.GameEntities
 
         //DECLARE a DefenderProjectile called _myProjectile
         private DefenderProjectile _myProjectile;
+
         /// <summary>
         /// A Property used to set the Projectile
         /// </summary>
         public DefenderProjectile SetProjectile { set { _myProjectile = value; } }
+
         /// <summary>
         /// The Default constructor
         /// </summary>
@@ -38,6 +45,12 @@ namespace DrVsVirusGame.GameEntities
         {
             //Set the Hp to 100
             _HP = 200;
+
+            // SET the counter to 0
+            counter = 0;
+
+            // SET the rate of fire
+            fireRate = 90;
         }
         /// <summary>
         /// A Method used to set the starting location of the entity
@@ -66,11 +79,22 @@ namespace DrVsVirusGame.GameEntities
 
             //Calls the base class
             base.update();
+
             //If There is an enemy in sight this is true
             if (_mySight.EnemyInSight == true) 
             {
-                //Starts the projectile moving
-                _myProjectile.Moving = true;
+                // IF the counter is above or equal to the fire rate:
+                if (counter >= fireRate)
+                {
+                    //Starts the projectile moving
+                    _myProjectile.Moving = true;
+
+                    // RESET the counter
+                    counter = 0;
+                }
+
+                // ADD 1 to the counter
+                counter++;
             }
         }
 
