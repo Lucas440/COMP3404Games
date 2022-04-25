@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Author : Lucas brennan
-/// Date : 6/4/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 6/4/2022
 /// </summary>
 namespace DrVsVirusGame.GameEntities
 {
     /// <summary>
-    /// A Class that represents Frendly Entitys
+    /// A Class that represents Friendly Entities
     /// </summary>
     public class Friendly : DrVsVirusEntity
     {

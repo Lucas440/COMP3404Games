@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Author Lucas Brennan
-/// 
-/// Date 17/04/22
+/// AUTHOR: Lucas Brennan
+/// DATE: 17/04/2022
 /// </summary>
 namespace DrVsVirusGame.GameEntities
 {
@@ -15,8 +14,9 @@ namespace DrVsVirusGame.GameEntities
     /// </summary>
     public class Lives : DrVsVirusEntity
     {
-        //The Amount Of Lives Remaining
+        // The number of Lives Remaining
         private int _livesRemaining;
+
         /// <summary>
         /// A Property which returns the anount of lives
         /// </summary>
@@ -27,28 +27,34 @@ namespace DrVsVirusGame.GameEntities
         /// </summary>
         public Lives() 
         {
+            // SET the number of lives
             _livesRemaining = 3;
         }
+
         /// <summary>
         /// A Method which reduces lives
         /// </summary>
         public void ReduceLives() 
         {
+            // DECREASE the life count by 1
             _livesRemaining -= 1;  
         }
+
         /// <summary>
         /// A Method which reduces lives
         /// </summary>
         public void IncreaseLives()
         {
+            // INCREASE the life count by 1
             _livesRemaining += 1;
         }
+
         /// <summary>
         /// A Method that updates lives
         /// </summary>
         public override void update()
         {
-            //Sets the statetext
+            // SET the statetext
             StateText = "Your Lives: " + LivesRemaining;
         }
     }
