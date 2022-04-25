@@ -123,6 +123,8 @@ namespace DrVsVirusGame.GameEntities
             // OUTPUT the current grid location
             UpdateGridLocation();
 
+
+            // REFERENCE - https://www.industrian.net/tutorials/using-sprite-sheets/
             // Check if the timer has exceeded the threshold.
             if (_animationTimer > _threshold)
             {
