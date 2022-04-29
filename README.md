@@ -3,9 +3,13 @@
 This is our final year project for the games model done during univercity
 
 The Coding for this project was done by
+
 Lucas Brennan
+
 Flynn Osborne
+
 Will Eardley
+
 
 This is a game inspired by Plants Vs Zomibes where the goal is to survive as long as possible.
 The player will do this by gaining points they can use to place defences and use powerups.
