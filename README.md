@@ -1,6 +1,6 @@
 # COMP3404Games
 ## Overview
-This is our final year project for the games model done during univercity
+This is our final year project for the games module done during university
 
 The Coding for this project was done by
 
